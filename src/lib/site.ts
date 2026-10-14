@@ -341,6 +341,19 @@ export const reviews: Review[] = [
   },
 ];
 
+/** Freelance track record (from the marketplace profile). Update these numbers as they grow. */
+export const trackRecord = {
+  rating: 4.9,
+  reviewCount: 40,
+  badges: ["Top Rated", "100% Job Success"],
+  stats: [
+    { value: "4.9★", label: "Average from 40 reviews" },
+    { value: "$30K+", label: "Earned from client work" },
+    { value: "65", label: "Jobs completed" },
+    { value: "2,669", label: "Hours delivered" },
+  ],
+};
+
 export const faqs = [
   {
     q: "What is included in community management?",

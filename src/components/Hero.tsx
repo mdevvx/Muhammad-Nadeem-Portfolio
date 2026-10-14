@@ -1,15 +1,14 @@
-import { ArrowRight, MapPin, Star } from "lucide-react";
+import { ArrowRight, Crown, MapPin, Star } from "lucide-react";
 import ServerMock from "./ServerMock";
-import { niches, profile, reviews } from "@/lib/site";
+import { niches, profile, reviews, trackRecord } from "@/lib/site";
 
 const heroProof = [
   { value: "30+", label: "Bots built" },
-  { value: "5+ yrs", label: "Running servers" },
-  { value: "Py + JS", label: "Bot stacks" },
+  { value: "65", label: "Jobs completed" },
+  { value: "100%", label: "Job success" },
 ];
 
 const featuredCompany = reviews.find((r) => r.featured)?.company;
-const clientCount = new Set(reviews.map((r) => `${r.client}|${r.company ?? ""}`)).size;
 
 export default function Hero() {
   return (
@@ -23,6 +22,10 @@ export default function Hero() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
             Open for new projects
+          </span>
+          <span className="chip ml-2 gap-1.5 border-pop/40 bg-pop/10 text-fg">
+            <Crown size={13} className="text-pop" aria-hidden="true" />
+            Top Rated
           </span>
 
           <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
@@ -51,7 +54,7 @@ export default function Hero() {
               ))}
             </span>
             <span>
-              Rated <span className="font-semibold text-fg">5.0</span> by {clientCount} clients
+              Rated <span className="font-semibold text-fg">{trackRecord.rating}</span> from {trackRecord.reviewCount} client reviews
               {featuredCompany && <>, including {featuredCompany}</>}
             </span>
             <ArrowRight size={14} className="transition group-hover:translate-x-0.5" />

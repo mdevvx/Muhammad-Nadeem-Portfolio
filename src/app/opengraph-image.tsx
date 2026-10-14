@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { ImageResponse } from "next/og";
-import { niches, profile, reviews } from "@/lib/site";
+import { niches, profile, trackRecord } from "@/lib/site";
 
 export const runtime = "nodejs";
 export const alt = `${profile.name}, ${profile.role}`;
@@ -86,7 +86,7 @@ export default async function OpengraphImage() {
 
           <div style={{ display: "flex", alignItems: "flex-end", gap: 44, fontSize: 22, color: "#a1a1aa" }}>
             <Stat value="30+" label="bots built" />
-            <Stat value="5.0" star label={`${reviews.length} client reviews`} />
+            <Stat value={String(trackRecord.rating)} star label={`${trackRecord.reviewCount} client reviews`} />
             <Stat value="5+ yrs" label="on Discord" />
           </div>
         </div>
