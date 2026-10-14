@@ -9,7 +9,7 @@ const social = [
   { label: "Upwork", href: links.upwork },
   { label: "LinkedIn", href: links.linkedin },
   { label: "Discord", href: links.discord },
-];
+].filter((s) => s.href);
 
 // Drop a photo named avatar.(jpg|jpeg|png|webp) into /public; until then the initials show.
 const avatar = ["avatar.jpg", "avatar.jpeg", "avatar.png", "avatar.webp"].find((f) =>

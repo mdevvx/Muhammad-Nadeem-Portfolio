@@ -85,13 +85,15 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
-            <li className="mt-2 grid grid-cols-2 gap-2">
+            <li className={`mt-2 grid gap-2 ${links.booking ? "grid-cols-2" : "grid-cols-1"}`}>
               <a href="#contact" onClick={() => setOpen(false)} className="btn-primary">
                 Hire me
               </a>
-              <a href={links.booking} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                Book a call
-              </a>
+              {links.booking && (
+                <a href={links.booking} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                  Book a call
+                </a>
+              )}
             </li>
           </ul>
         </div>

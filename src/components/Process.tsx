@@ -1,5 +1,5 @@
 import SectionHeading from "./SectionHeading";
-import { process } from "@/lib/site";
+import { processSteps } from "@/lib/site";
 
 export default function Process() {
   return (
@@ -16,7 +16,7 @@ export default function Process() {
               }
             />
             <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
-              {process.map((p) => (
+              {processSteps.map((p) => (
                 <li key={p.step} className="bg-surface p-5">
                   <div className="flex items-center gap-3">
                     <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent-soft/15 font-mono text-xs font-bold text-accent">

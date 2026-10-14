@@ -1,12 +1,14 @@
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Star } from "lucide-react";
 import ServerMock from "./ServerMock";
-import { niches, profile } from "@/lib/site";
+import { niches, profile, reviews } from "@/lib/site";
 
 const heroProof = [
   { value: "30+", label: "Bots built" },
   { value: "5+ yrs", label: "Running servers" },
   { value: "Py + JS", label: "Bot stacks" },
 ];
+
+const featuredCompany = reviews.find((r) => r.featured)?.company;
 
 export default function Hero() {
   return (
@@ -40,6 +42,19 @@ export default function Hero() {
               Free server health check
             </a>
           </div>
+
+          <a href="#reviews" className="group mt-6 inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted transition hover:text-fg">
+            <span className="flex gap-0.5" aria-hidden="true">
+              {Array.from({ length: 5 }, (_, i) => (
+                <Star key={i} size={14} className="fill-pop text-pop" />
+              ))}
+            </span>
+            <span>
+              <span className="font-semibold text-fg">5.0</span> from {reviews.length} Upwork clients
+              {featuredCompany && <>, including {featuredCompany}</>}
+            </span>
+            <ArrowRight size={14} className="transition group-hover:translate-x-0.5" />
+          </a>
 
           <dl className="mt-8 grid max-w-md grid-cols-3 gap-4 border-y border-line py-5">
             {heroProof.map((p) => (

@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import HealthCheck from "@/components/HealthCheck";
+import Reviews from "@/components/Reviews";
 import ScrollEffects from "@/components/ScrollEffects";
 import CommandPalette from "@/components/CommandPalette";
 import Process from "@/components/Process";
@@ -20,7 +21,7 @@ const jsonLd = {
   areaServed: "Worldwide",
   address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
   email: profile.email,
-  sameAs: [links.github, links.upwork, links.linkedin],
+  sameAs: [links.github, links.upwork, links.linkedin].filter(Boolean),
 };
 
 export default function Home() {
@@ -37,6 +38,7 @@ export default function Home() {
         <Hero />
         <Services />
         <Projects />
+        <Reviews />
         <HealthCheck />
         <Process />
         <About />

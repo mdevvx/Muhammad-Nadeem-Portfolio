@@ -90,14 +90,16 @@ export default function Contact() {
                   </a>
                   <CopyEmail />
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent-soft/15 text-accent">
-                    <CalendarCheck size={18} />
-                  </span>
-                  <a href={links.booking} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-accent">
-                    Book a free 30 minute call
-                  </a>
-                </li>
+                {links.booking && (
+                  <li className="flex items-center gap-3">
+                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent-soft/15 text-accent">
+                      <CalendarCheck size={18} />
+                    </span>
+                    <a href={links.booking} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-accent">
+                      Book a free 30 minute call
+                    </a>
+                  </li>
+                )}
                 <li className="flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent-soft/15 text-accent">
                     <Clock size={18} />

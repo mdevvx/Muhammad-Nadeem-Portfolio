@@ -1,15 +1,17 @@
 /**
  * All site content lives here. Edit this file to change copy, links and projects.
- * Every external URL below is a PLACEHOLDER. Replace it with the real link.
  */
 
+// Profile links come from env vars (see .env.example). Each process.env access must stay
+// written out in full so Next.js can inline it into client components at build time.
+// An empty value hides that link's buttons instead of leaving a dead link.
 export const links = {
-  upwork: "https://www.upwork.com/freelancers/mdevvx",
-  github: "https://github.com/mdevvx",
-  linkedin: "https://example.com/linkedin", // TODO
-  discord: "https://example.com/discord", // TODO: Discord server invite or profile
-  booking: "https://example.com/book-a-call", // TODO: Calendly / booking page
-} as const;
+  github: process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/mdevvx",
+  upwork: process.env.NEXT_PUBLIC_UPWORK_URL || "https://www.upwork.com/freelancers/mdevvx",
+  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "",
+  discord: process.env.NEXT_PUBLIC_DISCORD_URL || "",
+  booking: process.env.NEXT_PUBLIC_BOOKING_URL || "",
+};
 
 export const profile = {
   name: "Muhammad Nadeem",
@@ -116,7 +118,7 @@ export const botService = {
   ],
 };
 
-export const process = [
+export const processSteps = [
   {
     step: "01",
     title: "Tell me what you need",
@@ -253,6 +255,116 @@ export const stack: { group: string; items: string[] }[] = [
 ];
 
 export const niches = ["Ecommerce", "Trading", "Gaming", "AI", "Web3"];
+
+/** Verbatim from Upwork (https://www.upwork.com/freelancers/mdevvx). Do not edit quotes. */
+export type Review = {
+  client: string;
+  company?: string;
+  project: string;
+  rating: number;
+  dates: string;
+  quote?: string; // some Upwork reviews are stars + endorsements only
+  endorsements: string[];
+  featured?: boolean;
+};
+
+export const reviews: Review[] = [
+  {
+    client: "Daniel Jeong",
+    company: "BlueWillow AI",
+    project: "Discord Moderation Help",
+    rating: 5,
+    dates: "Feb 27 – Apr 5, 2023",
+    featured: true,
+    quote:
+      "I just wanted to take a moment to express my gratitude for all the hard work and dedication you have put into moderating our Discord community. Your efforts have not gone unnoticed and have made a significant impact on our community's overall experience.\n\nI have been consistently impressed with your ability to keep the chat organized and friendly, while still allowing for open and constructive discussions. Your patience, professionalism, and positive attitude have been instrumental in creating a welcoming environment for everyone.\n\nYour swift and fair handling of rule violations and conflicts has been especially admirable. Your ability to diffuse tense situations and calmly address issues has helped to maintain the overall harmony of the community.\n\nThank you for your outstanding contributions to our community. Your time and effort have made a real difference, and we are lucky to have you as a moderator.",
+    endorsements: ["Professional", "Solution Oriented", "Committed to Quality"],
+  },
+  {
+    client: "Davide Scaramella",
+    project: "Discord setup and security hardening",
+    rating: 5,
+    dates: "May 29 – Jun 26, 2026",
+    quote:
+      "Great experience working with Muhammad. Our Discord server had been built up over time by a few different admins, and it had gradually turned into a mess — a blowout of superseded bots, roles, and channels that nobody had cleaned up. Security was my biggest concern going in, but Muhammad sorted out the whole thing: knowledgeable, effective, and quick to respond throughout. He delivered exactly what we needed and I'd happily work with him again.",
+    endorsements: ["Committed to Quality", "Solution Oriented", "Detail Oriented"],
+  },
+  {
+    client: "Adam Wilcox",
+    project: "Discord Server Creation",
+    rating: 5,
+    dates: "May 2 – May 24, 2026",
+    quote: "Great guy! Super easy to work with and has a great ability to follow instructions. Will use again 100%!!",
+    endorsements: ["Committed to Quality", "Solution Oriented", "Detail Oriented"],
+  },
+  {
+    client: "HR",
+    company: "Imagine Innovation",
+    project: "Pajama Billionaire Community automation and management",
+    rating: 5,
+    dates: "Dec 10, 2025 – May 18, 2026",
+    quote: "Nadeem was easy to work with, Very Efficient and he gets the work done!",
+    endorsements: ["Solution Oriented", "Clear Communicator"],
+  },
+  {
+    client: "HR",
+    company: "Imagine Innovation",
+    project: "Pajama Billionaire Community automation and management",
+    rating: 5,
+    dates: "Nov 14 – Dec 9, 2025",
+    quote:
+      "Muhammad was a delight to work with. He did an excellent job with our automations and we will not hesitate to hire him for similar projects in the nearest future. Thank you Muhammad!",
+    endorsements: ["Collaborative", "Committed to Quality", "Solution Oriented"],
+  },
+  {
+    client: "Lovro Jambrecina",
+    project: "Discord Moderator",
+    rating: 5,
+    dates: "Feb 12 – Mar 11, 2026",
+    quote: "Delivered everything fast, was reliable and understood everything\nWill re-hire when I need some more work done\nGreat job!!!",
+    endorsements: ["Reliable", "Clear Communicator"],
+  },
+  {
+    client: "Shaun Eng",
+    project: "Discord Revamp",
+    rating: 5,
+    dates: "Feb 26 – May 8, 2026",
+    quote: "Great experience with Discord and helped us revamp our server.",
+    endorsements: ["Committed to Quality", "Solution Oriented", "Accountable for Outcomes"],
+  },
+  {
+    client: "Nick Irvine",
+    project: "Build and deploy a discord bot",
+    rating: 5,
+    dates: "Feb 22 – May 22, 2026",
+    endorsements: ["Committed to Quality", "Solution Oriented", "Clear Communicator"],
+  },
+];
+
+/** Unprompted shout-outs posted in client Discord servers (verbatim, from screenshots). */
+export const shoutouts: {
+  author: string;
+  handle: string;
+  server: string;
+  messages: { text: string; reactions: { emoji: string; count: number }[] }[];
+}[] = [
+  {
+    author: "Zuri Aki",
+    handle: "zuriakimain",
+    server: "Vector Games Live 2.0",
+    messages: [
+      {
+        text: "I gotta give a shout out again. The discord team is going in @everyone",
+        reactions: [
+          { emoji: "❤️", count: 5 },
+          { emoji: "💯", count: 5 },
+          { emoji: "🔥", count: 2 },
+        ],
+      },
+      { text: "That team is you bro lol", reactions: [{ emoji: "🔥", count: 5 }] },
+    ],
+  },
+];
 
 export const faqs = [
   {
