@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 7 8 13;
+  --surface: 14 16 25;
+  --elevated: 22 25 38;
+  --line: 36 40 58;
+  --fg: 238 240 248;
+  --muted: 148 155 178;
+  --accent: 138 146 255;
+  --accent-soft: 88 101 242;
+  --mint: 45 212 191;
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  --bg: 246 247 251;
+  --surface: 255 255 255;
+  --elevated: 238 240 250;
+  --line: 222 225 240;
+  --fg: 14 16 30;
+  --muted: 84 91 115;
+  --accent: 71 82 230;
+  --accent-soft: 88 101 242;
+  --mint: 13 148 136;
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+    background-image:
+      radial-gradient(60rem 30rem at 85% -10%, rgb(var(--accent-soft) / 0.18), transparent 60%),
+      radial-gradient(40rem 24rem at -10% 20%, rgb(var(--mint) / 0.08), transparent 60%);
+    background-attachment: fixed;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    letter-spacing: -0.02em;
+  }
+  ::selection {
+    background: rgb(var(--accent) / 0.35);
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-accent-soft text-white shadow-lg shadow-accent-soft/25 hover:brightness-110 active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-surface/60 text-fg hover:border-accent/60 hover:bg-elevated;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-surface/80 backdrop-blur-sm;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-line bg-elevated/70 px-3 py-1 text-xs font-medium text-muted;
+  }
+  .text-gradient {
+    @apply animate-shine bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--mint)), rgb(var(--accent)));
+    background-size: 200% auto;
+  }
+  /* Reveal on scroll: only hidden when JS is running to bring it back (see ScrollEffects). */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out;
+  }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgb(var(--line) / 0.35) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--line) / 0.35) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .eyebrow {
+    @apply font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent;
+  }
+  .field {
+    @apply w-full rounded-xl border border-line bg-bg/60 px-4 py-3 text-sm text-fg placeholder:text-muted/70 transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30;
+  }
+}
