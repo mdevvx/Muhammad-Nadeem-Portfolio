@@ -69,7 +69,7 @@ export default function HealthCheck() {
   const b = result ? band(result.score) : null;
 
   return (
-    <section id="health-check" className="py-20 sm:py-28">
+    <section id="health-check" className="py-16 sm:py-20">
       <div className="container-page grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div data-reveal>
           <SectionHeading

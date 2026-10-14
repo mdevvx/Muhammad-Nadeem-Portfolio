@@ -13,7 +13,7 @@ export default function Projects() {
   const filters: Filter[] = ["All", ...projectCategories];
 
   return (
-    <section id="work" className="py-20 sm:py-28">
+    <section id="work" className="py-16 sm:py-20">
       <div className="container-page">
         <div data-reveal className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading

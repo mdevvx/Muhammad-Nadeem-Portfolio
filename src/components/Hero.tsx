@@ -10,7 +10,7 @@ const heroProof = [
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pb-20 pt-36 sm:pt-44">
+    <section id="top" className="relative overflow-hidden pb-12 pt-36 sm:pb-16 sm:pt-44">
       <div className="grid-bg pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
       <div className="container-page grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="animate-fade-up">

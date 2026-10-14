@@ -1,13 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import HealthCheck from "@/components/HealthCheck";
 import ScrollEffects from "@/components/ScrollEffects";
 import CommandPalette from "@/components/CommandPalette";
 import Process from "@/components/Process";
-import Stack from "@/components/Stack";
 import About from "@/components/About";
 import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
@@ -37,12 +35,10 @@ export default function Home() {
       <Navbar />
       <main id="main">
         <Hero />
-        <Stats />
         <Services />
         <Projects />
         <HealthCheck />
         <Process />
-        <Stack />
         <About />
         <Faq />
         <Contact />

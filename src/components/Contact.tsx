@@ -65,7 +65,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 sm:py-28">
+    <section id="contact" className="py-16 sm:py-20">
       <div className="container-page">
         <div data-reveal className="card relative overflow-hidden p-6 sm:p-10 lg:p-12">
           <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-accent-soft/20 blur-3xl" aria-hidden="true" />

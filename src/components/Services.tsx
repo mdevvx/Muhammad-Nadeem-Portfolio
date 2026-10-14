@@ -1,7 +1,7 @@
 import { Bot, Check, Compass, LayoutDashboard, ShieldCheck, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import SectionHeading from "./SectionHeading";
-import { botService, services, type IconKey } from "@/lib/site";
+import { botService, services, stack, type IconKey } from "@/lib/site";
 
 const icons: Record<IconKey, LucideIcon> = {
   users: Users,
@@ -22,7 +22,7 @@ async def ticket(i: discord.Interaction, topic: str):
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 sm:py-28">
+    <section id="services" className="py-16 sm:py-20">
       <div data-reveal className="container-page">
         <SectionHeading
           eyebrow="Services"
@@ -60,7 +60,7 @@ export default function Services() {
 
           <article className="card relative overflow-hidden p-6 md:col-span-6 md:p-8">
             <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent-soft/20 blur-3xl" aria-hidden="true" />
-            <div className="relative grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+            <div className="relative grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
               <div>
                 <span className="chip border-accent/40 text-accent">Specialty</span>
                 <h3 className="mt-4 flex items-center gap-3 text-2xl font-bold tracking-tight">
@@ -79,6 +79,7 @@ export default function Services() {
                 </a>
               </div>
 
+              <div className="space-y-5">
               <div aria-hidden="true" className="overflow-hidden rounded-xl border border-line bg-bg/70">
                 <div className="flex items-center gap-1.5 border-b border-line px-4 py-2.5">
                   <span className="h-2 w-2 rounded-full bg-line" />
@@ -89,6 +90,19 @@ export default function Services() {
                 <pre className="overflow-x-auto p-4 font-mono text-[12px] leading-relaxed text-fg/90">
                   <code>{snippet}</code>
                 </pre>
+              </div>
+
+              <div>
+                <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-muted">Stack I build with</p>
+                <dl className="mt-3 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                  {stack.map((g) => (
+                    <div key={g.group}>
+                      <dt className="text-xs font-semibold text-fg">{g.group}</dt>
+                      <dd className="mt-1 text-xs leading-relaxed text-muted">{g.items.join(" · ")}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
               </div>
             </div>
           </article>

@@ -3,33 +3,33 @@ import { process } from "@/lib/site";
 
 export default function Process() {
   return (
-    <section id="process" className="py-20 sm:py-28">
+    <section id="process" className="py-16 sm:py-20">
       <div data-reveal className="container-page">
-        <SectionHeading
-          eyebrow="How it works"
-          align="center"
-          title={
-            <>
-              A simple process, <span className="text-gradient">no runaround</span>
-            </>
-          }
-        />
-
-        <ol className="relative mt-14 grid gap-6 md:grid-cols-4">
-          <div
-            aria-hidden="true"
-            className="absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-transparent via-line to-transparent md:block"
-          />
-          {process.map((p) => (
-            <li key={p.step} className="relative">
-              <span className="relative z-10 grid h-12 w-12 place-items-center rounded-2xl border border-line bg-surface font-mono text-sm font-bold text-accent shadow-lg shadow-black/10">
-                {p.step}
-              </span>
-              <h3 className="mt-5 text-lg font-semibold tracking-tight">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
-            </li>
-          ))}
-        </ol>
+        <div className="card overflow-hidden">
+          <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.8fr_2.2fr] lg:gap-10">
+            <SectionHeading
+              eyebrow="How it works"
+              title={
+                <>
+                  A simple process, <span className="text-gradient">no runaround</span>
+                </>
+              }
+            />
+            <ol className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+              {process.map((p) => (
+                <li key={p.step} className="bg-surface p-5">
+                  <div className="flex items-center gap-3">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent-soft/15 font-mono text-xs font-bold text-accent">
+                      {p.step}
+                    </span>
+                    <h3 className="text-base font-semibold">{p.title}</h3>
+                  </div>
+                  <p className="mt-2.5 text-sm leading-relaxed text-muted">{p.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
       </div>
     </section>
   );

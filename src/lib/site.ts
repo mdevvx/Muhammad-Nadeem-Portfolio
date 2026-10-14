@@ -32,13 +32,6 @@ export const nav = [
   { label: "FAQ", href: "#faq" },
 ] as const;
 
-export const stats = [
-  { value: "5+", label: "Years running Discord communities" },
-  { value: "5", label: "Core niches: ecommerce, trading, gaming, AI, Web3" },
-  { value: "2", label: "Bot stacks: discord.py and discord.js" },
-  { value: "UTC+5", label: "Based in Lahore, easy overlap with EU and Asia" },
-] as const;
-
 export type IconKey = "users" | "layout" | "shield" | "compass" | "bot";
 
 export const services: {

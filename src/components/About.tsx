@@ -18,7 +18,7 @@ const avatar = ["avatar.jpg", "avatar.jpeg", "avatar.png", "avatar.webp"].find((
 
 export default function About() {
   return (
-    <section id="about" className="py-20 sm:py-28">
+    <section id="about" className="py-16 sm:py-20">
       <div data-reveal className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div className="mx-auto w-full max-w-sm">
           <div className="relative">
