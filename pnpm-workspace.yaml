@@ -1,2 +1,6 @@
+# Older pnpm versions (used by some build servers) require a packages list here.
+packages:
+  - "."
+
 minimumReleaseAgeExclude:
   - lucide-react@1.57.0
