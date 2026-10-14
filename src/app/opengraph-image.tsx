@@ -86,7 +86,7 @@ export default async function OpengraphImage() {
 
           <div style={{ display: "flex", alignItems: "flex-end", gap: 44, fontSize: 22, color: "#a1a1aa" }}>
             <Stat value="30+" label="bots built" />
-            <Stat value="5.0" star label={`${reviews.length} Upwork reviews`} />
+            <Stat value="5.0" star label={`${reviews.length} client reviews`} />
             <Stat value="5+ yrs" label="on Discord" />
           </div>
         </div>

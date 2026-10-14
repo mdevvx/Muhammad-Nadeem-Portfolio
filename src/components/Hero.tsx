@@ -9,6 +9,7 @@ const heroProof = [
 ];
 
 const featuredCompany = reviews.find((r) => r.featured)?.company;
+const clientCount = new Set(reviews.map((r) => `${r.client}|${r.company ?? ""}`)).size;
 
 export default function Hero() {
   return (
@@ -50,7 +51,7 @@ export default function Hero() {
               ))}
             </span>
             <span>
-              <span className="font-semibold text-fg">5.0</span> from {reviews.length} Upwork clients
+              Rated <span className="font-semibold text-fg">5.0</span> by {clientCount} clients
               {featuredCompany && <>, including {featuredCompany}</>}
             </span>
             <ArrowRight size={14} className="transition group-hover:translate-x-0.5" />

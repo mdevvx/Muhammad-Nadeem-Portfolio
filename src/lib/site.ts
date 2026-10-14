@@ -256,14 +256,14 @@ export const stack: { group: string; items: string[] }[] = [
 
 export const niches = ["Ecommerce", "Trading", "Gaming", "AI", "Web3"];
 
-/** Verbatim from Upwork (https://www.upwork.com/freelancers/mdevvx). Do not edit quotes. */
+/** Client reviews, quoted verbatim. Do not edit quotes. */
 export type Review = {
   client: string;
   company?: string;
   project: string;
   rating: number;
   dates: string;
-  quote?: string; // some Upwork reviews are stars + endorsements only
+  quote?: string; // some reviews are a rating only; those are left out of the carousel
   endorsements: string[];
   featured?: boolean;
 };
@@ -338,31 +338,6 @@ export const reviews: Review[] = [
     rating: 5,
     dates: "Feb 22 – May 22, 2026",
     endorsements: ["Committed to Quality", "Solution Oriented", "Clear Communicator"],
-  },
-];
-
-/** Unprompted shout-outs posted in client Discord servers (verbatim, from screenshots). */
-export const shoutouts: {
-  author: string;
-  handle: string;
-  server: string;
-  messages: { text: string; reactions: { emoji: string; count: number }[] }[];
-}[] = [
-  {
-    author: "Zuri Aki",
-    handle: "zuriakimain",
-    server: "Vector Games Live 2.0",
-    messages: [
-      {
-        text: "I gotta give a shout out again. The discord team is going in @everyone",
-        reactions: [
-          { emoji: "❤️", count: 5 },
-          { emoji: "💯", count: 5 },
-          { emoji: "🔥", count: 2 },
-        ],
-      },
-      { text: "That team is you bro lol", reactions: [{ emoji: "🔥", count: 5 }] },
-    ],
   },
 ];
 
