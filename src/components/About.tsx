@@ -19,10 +19,10 @@ const avatar = ["avatar.jpg", "avatar.jpeg", "avatar.png", "avatar.webp"].find((
 export default function About() {
   return (
     <section id="about" className="py-16 sm:py-20">
-      <div data-reveal className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <div data-reveal className="container-page grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div className="mx-auto w-full max-w-sm">
           <div className="relative">
-            <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-accent-soft/40 to-mint/30 blur-xl" aria-hidden="true" />
+            <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-accent-soft/40 to-pop/30 blur-xl" aria-hidden="true" />
             <div className="card relative grid aspect-square place-items-center overflow-hidden">
               {avatar ? (
                 <Image

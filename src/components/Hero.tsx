@@ -12,12 +12,12 @@ export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden pb-12 pt-36 sm:pb-16 sm:pt-44">
       <div className="grid-bg pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
-      <div className="container-page grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="container-page grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="animate-fade-up">
-          <span className="chip gap-2 border-mint/40 text-fg">
+          <span className="chip gap-2 border-accent/40 text-fg">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-mint" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
             Open for new projects
           </span>
@@ -32,11 +32,11 @@ export default function Hero() {
             servers for ecommerce, trading, gaming, AI and Web3 brands, with over five years of hands-on Discord work.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#contact" className="btn-primary">
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
+            <a href="#contact" className="btn-primary w-full py-3.5 sm:w-auto sm:py-3">
               Start a project <ArrowRight size={16} />
             </a>
-            <a href="#health-check" className="btn-ghost">
+            <a href="#health-check" className="btn-ghost w-full py-3.5 sm:w-auto sm:py-3">
               Free server health check
             </a>
           </div>

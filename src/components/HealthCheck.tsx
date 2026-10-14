@@ -15,7 +15,7 @@ const choices: { label: string; value: Answer }[] = [
 ];
 
 function band(score: number) {
-  if (score >= 80) return { label: "Solid foundation", tone: "text-mint", note: "A few tweaks will take this server from good to great." };
+  if (score >= 80) return { label: "Solid foundation", tone: "text-accent", note: "A few tweaks will take this server from good to great." };
   if (score >= 50) return { label: "Gaps worth fixing", tone: "text-amber-400", note: "Members are probably slipping through some of these gaps right now." };
   return { label: "At risk", tone: "text-red-400", note: "These gaps cost members and expose the server to raids and scams." };
 }
@@ -70,7 +70,7 @@ export default function HealthCheck() {
 
   return (
     <section id="health-check" className="py-16 sm:py-20">
-      <div className="container-page grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <div className="container-page grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div data-reveal>
           <SectionHeading
             eyebrow="Free tool"
@@ -84,7 +84,7 @@ export default function HealthCheck() {
           <ul className="mt-8 space-y-3 text-sm text-muted">
             {healthAreas.map((a) => (
               <li key={a.area} className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 rounded-full bg-mint" />
+                <span className="h-1.5 w-1.5 rounded-full bg-pop" />
                 <span>
                   <span className="font-medium text-fg">{a.area}</span>, {areaBlurb[a.area]}
                 </span>
@@ -94,7 +94,7 @@ export default function HealthCheck() {
         </div>
 
         <div data-reveal className="card relative overflow-hidden p-6 sm:p-8">
-          <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-mint/10 blur-3xl" aria-hidden="true" />
+          <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-pop/10 blur-3xl" aria-hidden="true" />
 
           {!done && (
             <div className="relative">
@@ -108,7 +108,7 @@ export default function HealthCheck() {
               </div>
               <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-elevated" aria-hidden="true">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-accent-soft to-mint transition-all duration-500"
+                  className="h-full rounded-full bg-gradient-to-r from-accent-soft to-pop transition-all duration-500"
                   style={{ width: `${(step / healthQuestions.length) * 100}%` }}
                 />
               </div>
@@ -163,7 +163,7 @@ export default function HealthCheck() {
                     </div>
                     <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-elevated">
                       <div
-                        className={`h-full rounded-full transition-all duration-700 ${a.pct >= 80 ? "bg-mint" : a.pct >= 50 ? "bg-amber-400" : "bg-red-400"}`}
+                        className={`h-full rounded-full transition-all duration-700 ${a.pct >= 80 ? "bg-accent" : a.pct >= 50 ? "bg-amber-400" : "bg-red-400"}`}
                         style={{ width: `${Math.max(a.pct, 4)}%` }}
                       />
                     </div>
@@ -223,7 +223,7 @@ function ScoreRing({ score }: { score: number }) {
         <defs>
           <linearGradient id="score-grad" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="rgb(var(--accent-soft))" />
-            <stop offset="100%" stopColor="rgb(var(--mint))" />
+            <stop offset="100%" stopColor="rgb(var(--pop))" />
           </linearGradient>
         </defs>
         <circle cx="50" cy="50" r={r} fill="none" stroke="rgb(var(--elevated))" strokeWidth="9" />

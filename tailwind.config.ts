@@ -15,7 +15,8 @@ const config: Config = {
         muted: withAlpha("--muted"),
         accent: withAlpha("--accent"),
         "accent-soft": withAlpha("--accent-soft"),
-        mint: withAlpha("--mint"),
+        pop: withAlpha("--pop"),
+        "on-accent": withAlpha("--on-accent"),
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],

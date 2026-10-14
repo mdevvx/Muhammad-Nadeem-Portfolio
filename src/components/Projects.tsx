@@ -42,12 +42,12 @@ export default function Projects() {
                 onClick={() => setFilter(f)}
                 className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition ${
                   active
-                    ? "border-accent-soft bg-accent-soft text-white shadow-lg shadow-accent-soft/25"
+                    ? "border-accent-soft bg-accent-soft text-on-accent shadow-lg shadow-accent-soft/25"
                     : "border-line bg-surface/60 text-muted hover:border-accent/60 hover:text-fg"
                 }`}
               >
                 {f}
-                <span className={`font-mono text-xs ${active ? "text-white/80" : "text-muted/70"}`}>{count}</span>
+                <span className={`font-mono text-xs ${active ? "text-on-accent/70" : "text-muted/70"}`}>{count}</span>
               </button>
             );
           })}
@@ -63,7 +63,7 @@ export default function Projects() {
                 className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent-soft/0 blur-3xl transition duration-500 group-hover:bg-accent-soft/20"
                 aria-hidden="true"
               />
-              <p className="font-mono text-[11px] uppercase tracking-widest text-mint">{p.kind}</p>
+              <p className="font-mono text-[11px] uppercase tracking-widest text-pop">{p.kind}</p>
               <h3 className="mt-3 text-lg font-semibold">{p.title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{p.blurb}</p>
               <ul className="mt-5 flex flex-wrap gap-2">

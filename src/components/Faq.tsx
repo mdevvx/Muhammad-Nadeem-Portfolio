@@ -5,7 +5,7 @@ import { faqs } from "@/lib/site";
 export default function Faq() {
   return (
     <section id="faq" className="py-16 sm:py-20">
-      <div data-reveal className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+      <div data-reveal className="container-page grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr]">
         <SectionHeading
           eyebrow="FAQ"
           title={

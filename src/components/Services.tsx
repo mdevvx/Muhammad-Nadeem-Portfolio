@@ -34,7 +34,7 @@ export default function Services() {
           description="Pick one service or combine them. Most projects start with a buildout or a bot and grow into ongoing management."
         />
 
-        <div className="mt-12 grid gap-4 md:grid-cols-6">
+        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-6">
           {services.map((s) => {
             const Icon = icons[s.icon];
             return (
@@ -49,7 +49,7 @@ export default function Services() {
                 <ul className="mt-5 space-y-2">
                   {s.points.map((p) => (
                     <li key={p} className="flex items-start gap-2 text-sm">
-                      <Check size={15} className="mt-0.5 shrink-0 text-mint" />
+                      <Check size={15} className="mt-0.5 shrink-0 text-pop" />
                       <span>{p}</span>
                     </li>
                   ))}
@@ -60,7 +60,7 @@ export default function Services() {
 
           <article className="card relative overflow-hidden p-6 md:col-span-6 md:p-8">
             <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent-soft/20 blur-3xl" aria-hidden="true" />
-            <div className="relative grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+            <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
               <div>
                 <span className="chip border-accent/40 text-accent">Specialty</span>
                 <h3 className="mt-4 flex items-center gap-3 text-2xl font-bold tracking-tight">
@@ -94,7 +94,7 @@ export default function Services() {
 
               <div>
                 <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-muted">Stack I build with</p>
-                <dl className="mt-3 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
                   {stack.map((g) => (
                     <div key={g.group}>
                       <dt className="text-xs font-semibold text-fg">{g.group}</dt>

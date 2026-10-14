@@ -62,7 +62,7 @@ const scenarios: Scenario[] = [
     bot: "Membership Bot",
     user: { initials: "SR", name: "Sara", text: "Submitted my email: sara@…" },
     reply: {
-      color: "border-mint",
+      color: "border-accent",
       title: "Welcome in, Sara",
       body: "Your email matches an active subscription. Roles assigned and the members area is now unlocked.",
       fields: [
@@ -128,19 +128,19 @@ export default function ServerMock() {
 
   return (
     <div className="relative" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      <div className="absolute -inset-8 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent-soft/35 via-transparent to-mint/25 blur-3xl" aria-hidden="true" />
+      <div className="absolute -inset-8 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent-soft/35 via-transparent to-pop/25 blur-3xl" aria-hidden="true" />
       <div className="card overflow-hidden shadow-2xl shadow-black/40">
         <div className="flex items-center gap-1.5 border-b border-line bg-elevated/70 px-4 py-3">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-mint/80" />
+          <span className="h-2.5 w-2.5 rounded-full bg-pop/80" />
           <span className="ml-3 font-mono text-[11px] text-muted">your-server</span>
-          <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-mint/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-mint">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-mint" /> Live demo
+          <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" /> Live demo
           </span>
         </div>
 
-        <div className="grid grid-cols-[8.5rem_1fr] sm:grid-cols-[11rem_1fr]">
+        <div className="grid grid-cols-[8.5rem_minmax(0,1fr)] sm:grid-cols-[11rem_minmax(0,1fr)]">
           <div className="border-r border-line bg-bg/40 p-2.5 sm:p-3">
             <p className="mb-2 px-2 font-mono text-[10px] uppercase tracking-widest text-muted">Try a bot</p>
             <ul className="space-y-0.5" role="tablist" aria-label="Bot demos">
@@ -177,73 +177,17 @@ export default function ServerMock() {
             </div>
           </div>
 
-          <div id="bot-demo-panel" role="tabpanel" aria-live="polite" className="flex min-h-[19rem] flex-col p-3 sm:min-h-[20rem] sm:p-4">
-            <p className="mb-3 inline-flex items-center gap-1.5 self-start rounded-full border border-line px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-muted">
-              <s.icon size={12} className="text-accent" /> {s.label}
-            </p>
-
-            <div key={`u-${index}`} className="flex animate-msg-in gap-3">
-              <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-elevated text-[11px] font-semibold">{s.user.initials}</div>
-              <div className="min-w-0">
-                <p className="text-xs font-semibold">
-                  {s.user.name} <span className="ml-1 font-normal text-muted">Today at 9:41</span>
-                </p>
-                <p className="mt-0.5 text-xs text-muted">{s.user.text}</p>
+          {/* Every scene is laid out invisibly in the same cell, so the panel is always as tall
+              as the longest reply and the card never resizes when the scene changes. */}
+          <div id="bot-demo-panel" role="tabpanel" aria-live="polite" className="grid p-3 sm:p-4">
+            {scenarios.map((sc) => (
+              <div key={sc.channel} aria-hidden="true" className="invisible flex flex-col [grid-area:1/1]">
+                <Scene s={sc} stage={2} index={-1} />
               </div>
+            ))}
+            <div className="flex flex-col [grid-area:1/1]">
+              <Scene s={s} stage={stage} index={index} />
             </div>
-
-            <div className="mt-4 flex gap-3">
-              {stage >= 1 && (
-                <div className="grid h-8 w-8 shrink-0 animate-msg-in place-items-center rounded-full bg-gradient-to-br from-accent-soft to-mint text-white">
-                  <Bot size={15} />
-                </div>
-              )}
-              {stage === 1 && (
-                <p className="flex items-center gap-2 self-center text-[11px] text-muted">
-                  <span className="flex gap-0.5" aria-hidden="true">
-                    <span className="h-1.5 w-1.5 animate-typing-dot rounded-full bg-muted" />
-                    <span className="h-1.5 w-1.5 animate-typing-dot rounded-full bg-muted [animation-delay:150ms]" />
-                    <span className="h-1.5 w-1.5 animate-typing-dot rounded-full bg-muted [animation-delay:300ms]" />
-                  </span>
-                  {s.bot} is typing
-                </p>
-              )}
-              {stage === 2 && (
-                <div key={`b-${index}`} className="min-w-0 flex-1 animate-msg-in">
-                  <p className="text-xs font-semibold">
-                    {s.bot} <span className="ml-1 rounded bg-accent-soft px-1 py-px text-[9px] font-bold uppercase text-white">App</span>
-                  </p>
-                  <div className={`mt-1.5 rounded-lg border-l-4 ${s.reply.color} bg-elevated/80 p-3`}>
-                    <p className="text-xs font-semibold">{s.reply.title}</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted">{s.reply.body}</p>
-                    {s.reply.fields && (
-                      <dl className="mt-2.5 grid grid-cols-2 gap-2">
-                        {s.reply.fields.map((f) => (
-                          <div key={f.name}>
-                            <dt className="text-[10px] font-semibold uppercase tracking-wide text-muted">{f.name}</dt>
-                            <dd className="text-[11px] text-fg">{f.value}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    )}
-                    <div className="mt-2.5 flex flex-wrap gap-2">
-                      {s.reply.buttons.map((b, i) => (
-                        <span
-                          key={b}
-                          className={`rounded px-2 py-1 text-[10px] font-semibold ${
-                            i === 0 ? "bg-accent-soft text-white" : "bg-surface text-muted ring-1 ring-line"
-                          }`}
-                        >
-                          {b}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="mt-auto rounded-lg bg-elevated/70 px-3 py-2.5 text-xs text-muted">Message #{s.channel}</div>
           </div>
         </div>
       </div>
@@ -251,5 +195,77 @@ export default function ServerMock() {
         Click a channel to replay a bot · sample data
       </p>
     </div>
+  );
+}
+
+function Scene({ s, stage, index }: { s: Scenario; stage: 0 | 1 | 2; index: number }) {
+  return (
+    <>
+    <p className="mb-3 inline-flex items-center gap-1.5 self-start rounded-full border border-line px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-muted">
+      <s.icon size={12} className="text-accent" /> {s.label}
+    </p>
+
+    <div key={`u-${index}`} className="flex animate-msg-in gap-3">
+      <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-elevated text-[11px] font-semibold">{s.user.initials}</div>
+      <div className="min-w-0">
+        <p className="text-xs font-semibold">
+          {s.user.name} <span className="ml-1 font-normal text-muted">Today at 9:41</span>
+        </p>
+        <p className="mt-0.5 text-xs text-muted">{s.user.text}</p>
+      </div>
+    </div>
+
+    <div className="mt-4 flex gap-3">
+      {stage >= 1 && (
+        <div className="grid h-8 w-8 shrink-0 animate-msg-in place-items-center rounded-full bg-gradient-to-br from-accent-soft to-pop text-on-accent">
+          <Bot size={15} />
+        </div>
+      )}
+      {stage === 1 && (
+        <p className="flex items-center gap-2 self-center text-[11px] text-muted">
+          <span className="flex gap-0.5" aria-hidden="true">
+            <span className="h-1.5 w-1.5 animate-typing-dot rounded-full bg-muted" />
+            <span className="h-1.5 w-1.5 animate-typing-dot rounded-full bg-muted [animation-delay:150ms]" />
+            <span className="h-1.5 w-1.5 animate-typing-dot rounded-full bg-muted [animation-delay:300ms]" />
+          </span>
+          {s.bot} is typing
+        </p>
+      )}
+      {stage === 2 && (
+        <div key={`b-${index}`} className="min-w-0 flex-1 animate-msg-in">
+          <p className="text-xs font-semibold">
+            {s.bot} <span className="ml-1 rounded bg-accent-soft px-1 py-px text-[9px] font-bold uppercase text-on-accent">App</span>
+          </p>
+          <div className={`mt-1.5 rounded-lg border-l-4 ${s.reply.color} bg-elevated/80 p-3`}>
+            <p className="text-xs font-semibold">{s.reply.title}</p>
+            <p className="mt-1 text-[11px] leading-relaxed text-muted">{s.reply.body}</p>
+            {s.reply.fields && (
+              <dl className="mt-2.5 grid grid-cols-2 gap-2">
+                {s.reply.fields.map((f) => (
+                  <div key={f.name}>
+                    <dt className="text-[10px] font-semibold uppercase tracking-wide text-muted">{f.name}</dt>
+                    <dd className="text-[11px] text-fg">{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            <div className="mt-2.5 flex flex-wrap gap-2">
+              {s.reply.buttons.map((b, i) => (
+                <span
+                  key={b}
+                  className={`rounded px-2 py-1 text-[10px] font-semibold ${
+                    i === 0 ? "bg-accent-soft text-on-accent" : "bg-surface text-muted ring-1 ring-line"
+                  }`}
+                >
+                  {b}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+
+    <div className="mt-auto rounded-lg bg-elevated/70 px-3 py-2.5 text-xs text-muted">Message #{s.channel}</div>    </>
   );
 }

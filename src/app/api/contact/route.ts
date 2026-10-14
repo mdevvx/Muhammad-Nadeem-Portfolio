@@ -77,7 +77,7 @@ function leadMessage(lead: Lead) {
     components: [
       {
         type: C.container,
-        accent_color: fromHealthCheck ? 0x2dd4bf : 0x5865f2,
+        accent_color: fromHealthCheck ? 0xfb923c : 0xa3e635,
         components: [
           {
             type: C.textDisplay,

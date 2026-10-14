@@ -6,7 +6,7 @@ export default function Process() {
     <section id="process" className="py-16 sm:py-20">
       <div data-reveal className="container-page">
         <div className="card overflow-hidden">
-          <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.8fr_2.2fr] lg:gap-10">
+          <div className="grid grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-[0.8fr_2.2fr] lg:gap-10">
             <SectionHeading
               eyebrow="How it works"
               title={
@@ -15,7 +15,7 @@ export default function Process() {
                 </>
               }
             />
-            <ol className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+            <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
               {process.map((p) => (
                 <li key={p.step} className="bg-surface p-5">
                   <div className="flex items-center gap-3">

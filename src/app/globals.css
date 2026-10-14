@@ -3,28 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --bg: 7 8 13;
-  --surface: 14 16 25;
-  --elevated: 22 25 38;
-  --line: 36 40 58;
-  --fg: 238 240 248;
-  --muted: 148 155 178;
-  --accent: 138 146 255;
-  --accent-soft: 88 101 242;
-  --mint: 45 212 191;
+  /* Electric lime + hot orange on neutral black */
+  --bg: 9 9 11;
+  --surface: 18 18 21;
+  --elevated: 27 27 31;
+  --line: 41 41 47;
+  --fg: 244 244 240;
+  --muted: 161 161 170;
+  --accent: 190 242 100;
+  --accent-soft: 163 230 53;
+  --pop: 251 146 60;
+  --on-accent: 12 14 8;
   color-scheme: dark;
 }
 
 html[data-theme="light"] {
-  --bg: 246 247 251;
+  --bg: 250 250 246;
   --surface: 255 255 255;
-  --elevated: 238 240 250;
-  --line: 222 225 240;
-  --fg: 14 16 30;
-  --muted: 84 91 115;
-  --accent: 71 82 230;
-  --accent-soft: 88 101 242;
-  --mint: 13 148 136;
+  --elevated: 243 244 238;
+  --line: 226 227 219;
+  --fg: 20 20 18;
+  --muted: 87 87 80;
+  --accent: 77 124 15;
+  --accent-soft: 132 204 22;
+  --pop: 234 88 12;
+  --on-accent: 12 14 8;
   color-scheme: light;
 }
 
@@ -36,8 +39,8 @@ html[data-theme="light"] {
   body {
     @apply bg-bg font-sans text-fg antialiased;
     background-image:
-      radial-gradient(60rem 30rem at 85% -10%, rgb(var(--accent-soft) / 0.18), transparent 60%),
-      radial-gradient(40rem 24rem at -10% 20%, rgb(var(--mint) / 0.08), transparent 60%);
+      radial-gradient(60rem 30rem at 85% -10%, rgb(var(--accent-soft) / 0.12), transparent 60%),
+      radial-gradient(40rem 24rem at -10% 20%, rgb(var(--pop) / 0.07), transparent 60%);
     background-attachment: fixed;
   }
   h1,
@@ -71,7 +74,7 @@ html[data-theme="light"] {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-200;
   }
   .btn-primary {
-    @apply btn bg-accent-soft text-white shadow-lg shadow-accent-soft/25 hover:brightness-110 active:scale-[0.98];
+    @apply btn bg-accent-soft text-on-accent shadow-lg shadow-accent-soft/25 hover:brightness-110 active:scale-[0.98];
   }
   .btn-ghost {
     @apply btn border border-line bg-surface/60 text-fg hover:border-accent/60 hover:bg-elevated;
@@ -84,7 +87,7 @@ html[data-theme="light"] {
   }
   .text-gradient {
     @apply animate-shine bg-clip-text text-transparent;
-    background-image: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--mint)), rgb(var(--accent)));
+    background-image: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--pop)), rgb(var(--accent)));
     background-size: 200% auto;
   }
   /* Reveal on scroll: only hidden when JS is running to bring it back (see ScrollEffects). */

@@ -69,7 +69,7 @@ export default function Contact() {
       <div className="container-page">
         <div data-reveal className="card relative overflow-hidden p-6 sm:p-10 lg:p-12">
           <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-accent-soft/20 blur-3xl" aria-hidden="true" />
-          <div className="relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <SectionHeading
                 eyebrow="Contact"
@@ -85,7 +85,7 @@ export default function Contact() {
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent-soft/15 text-accent">
                     <Mail size={18} />
                   </span>
-                  <a href={`mailto:${profile.email}`} className="min-w-0 truncate font-medium hover:text-accent">
+                  <a href={`mailto:${profile.email}`} className="min-w-0 break-all font-medium hover:text-accent">
                     {profile.email}
                   </a>
                   <CopyEmail />
@@ -108,7 +108,7 @@ export default function Contact() {
             </div>
 
             <form onSubmit={onSubmit} noValidate className="space-y-4" aria-describedby="form-status">
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-1.5 block text-sm font-medium">
                     Name
@@ -123,7 +123,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="handle" className="mb-1.5 block text-sm font-medium">
                     Discord or WhatsApp <span className="font-normal text-muted">(optional)</span>
@@ -188,7 +188,7 @@ export default function Contact() {
                 id="form-status"
                 role="status"
                 aria-live="polite"
-                className={`min-h-[1.25rem] text-sm ${status.state === "error" ? "text-red-400" : "text-mint"}`}
+                className={`min-h-[1.25rem] text-sm ${status.state === "error" ? "text-red-400" : "text-accent"}`}
               >
                 {status.message}
               </p>
@@ -218,7 +218,7 @@ function CopyEmail() {
       aria-label={copied ? "Email copied" : "Copy email address"}
       className="ml-1 inline-flex shrink-0 items-center gap-1 rounded-full border border-line px-2.5 py-1 text-xs text-muted transition hover:border-accent/60 hover:text-fg"
     >
-      {copied ? <Check size={13} className="text-mint" /> : <Copy size={13} />}
+      {copied ? <Check size={13} className="text-accent" /> : <Copy size={13} />}
       {copied ? "Copied" : "Copy"}
     </button>
   );
