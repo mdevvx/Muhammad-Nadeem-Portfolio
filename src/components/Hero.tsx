@@ -16,17 +16,19 @@ export default function Hero() {
       <div className="grid-bg pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
       <div className="container-page grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="animate-fade-up">
-          <span className="chip gap-2 border-accent/40 text-fg">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="chip h-8 gap-2 border-accent/40 py-0 text-fg">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              Open for new projects
             </span>
-            Open for new projects
-          </span>
-          <span className="chip ml-2 gap-1.5 border-pop/40 bg-pop/10 text-fg">
-            <Crown size={13} className="text-pop" aria-hidden="true" />
-            Top Rated
-          </span>
+            <span className="chip h-8 gap-1.5 border-pop/40 bg-pop/10 py-0 text-fg">
+              <Crown size={13} className="text-pop" aria-hidden="true" />
+              Top Rated
+            </span>
+          </div>
 
           <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
             A Discord your members{" "}

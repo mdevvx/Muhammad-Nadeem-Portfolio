@@ -74,7 +74,7 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <a href="#contact" className="btn-primary mt-7">
+                <a href="#contact" className="btn-primary mt-7 w-full py-3.5 sm:w-auto sm:py-3">
                   Discuss a bot
                 </a>
               </div>
