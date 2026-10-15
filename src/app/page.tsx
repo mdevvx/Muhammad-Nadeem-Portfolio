@@ -54,10 +54,21 @@ const jsonLd = {
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Discord services",
-        itemListElement: [...services.map((s) => s.title), botService.title].map((name) => ({
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name },
-        })),
+        itemListElement: [
+          ...services.map((s) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: s.title, description: s.blurb },
+            ...(s.price && {
+              priceSpecification: {
+                "@type": s.priceUnit === "/month" ? "UnitPriceSpecification" : "PriceSpecification",
+                price: Number(s.price.replace(/[^0-9.]/g, "")),
+                priceCurrency: "USD",
+                ...(s.priceUnit === "/month" && { unitText: "MONTH" }),
+              },
+            }),
+          })),
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: botService.title, description: botService.blurb } },
+        ],
       },
       sameAs,
     },

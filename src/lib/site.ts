@@ -85,6 +85,9 @@ export const services: {
       "Regular reports on what's working and what isn't",
     ],
     span: "md:col-span-3",
+    price: "$1,500",
+    priceUnit: "/month",
+    priceNote: "Billed monthly"
   },
   {
     id: "buildout",
@@ -99,6 +102,9 @@ export const services: {
       "Branded embeds, rules and server guide",
     ],
     span: "md:col-span-3",
+    price: "$350",
+    priceUnit: "one-time",
+    priceNote: "One-time project"
   },
   {
     id: "security",
@@ -113,6 +119,9 @@ export const services: {
       "Member security guidance for scam-heavy niches",
     ],
     span: "md:col-span-3",
+    price: "$1,000",
+    priceUnit: "/month",
+    priceNote: "Billed monthly"
   },
   {
     id: "strategy",
@@ -127,6 +136,9 @@ export const services: {
       "Async support between sessions",
     ],
     span: "md:col-span-3",
+    price: "$800",
+    priceUnit: "/month",
+    priceNote: "Billed monthly"
   },
 ];
 

@@ -52,6 +52,33 @@ html[data-theme="light"] {
   ::selection {
     background: rgb(var(--accent) / 0.35);
   }
+
+  /* Scrollbar in the site colors. scrollbar-color is Firefox-only here because Chromium
+     ignores the ::-webkit gradient thumb whenever scrollbar-color is set. */
+  @supports (-moz-appearance: none) {
+    html {
+      scrollbar-color: rgb(var(--accent-soft)) rgb(var(--bg));
+      scrollbar-width: thin;
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--bg));
+  }
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid rgb(var(--bg));
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgb(var(--accent-soft)), rgb(var(--pop)));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgb(var(--accent)), rgb(var(--pop)));
+  }
+  ::-webkit-scrollbar-corner {
+    background: rgb(var(--bg));
+  }
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-accent;
   }
