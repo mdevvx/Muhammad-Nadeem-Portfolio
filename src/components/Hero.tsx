@@ -1,12 +1,12 @@
 import { ArrowRight, BadgeCheck, Crown, Star } from "lucide-react";
 import ServerMock from "./ServerMock";
-import { profile, reviews, trackRecord } from "@/lib/site";
+import { formatCount, formatRating, profile, reviews, stats, trackRecord } from "@/lib/site";
 import CountUp from "./CountUp";
 
 const heroProof = [
-  { value: "30+", label: "Bots built" },
-  { value: "65", label: "Jobs completed" },
-  { value: "5+ yrs", label: "On Discord" },
+  { value: `${formatCount(stats.botsBuilt)}+`, label: "Bots built" },
+  { value: formatCount(stats.jobsCompleted), label: "Jobs completed" },
+  { value: `${stats.yearsExperience}+ yrs`, label: "On Discord" },
 ];
 
 const featuredCompany = reviews.find((r) => r.featured)?.company;
@@ -35,7 +35,7 @@ export default function Hero() {
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
             I&apos;m {profile.name}, a Discord community manager and bot developer. I run, build and secure
-            servers for ecommerce, trading, gaming, AI and Web3 brands, with over five years of hands-on Discord work.
+            servers for ecommerce, trading, gaming, AI and Web3 brands, with over {stats.yearsExperience} years of hands-on Discord work.
           </p>
 
           <div className="mt-8 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
@@ -55,7 +55,7 @@ export default function Hero() {
               ))}
             </span>
             <span>
-              Rated <span className="font-semibold text-fg">{trackRecord.rating}</span> from {trackRecord.reviewCount} client reviews
+              Rated <span className="font-semibold text-fg">{formatRating(trackRecord.rating)}</span> from {formatCount(trackRecord.reviewCount)} client reviews
               {featuredCompany && <>, including {featuredCompany}</>}
             </span>
             <ArrowRight size={14} className="transition group-hover:translate-x-0.5" />

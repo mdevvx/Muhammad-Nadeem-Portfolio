@@ -28,6 +28,50 @@ export const seo = {
   ],
 };
 
+/* ------------------------------------------------------------------ */
+/* Numbers shown on the site, set from env vars (see .env.example).     */
+/* Each process.env access is written out in full so Next.js can inline */
+/* it into client components. Unset vars fall back to the defaults.     */
+/* ------------------------------------------------------------------ */
+
+const num = (raw: string | undefined, fallback: number) => {
+  const n = Number(raw?.replace(/[^0-9.]/g, ""));
+  return raw && raw.trim() !== "" && Number.isFinite(n) ? n : fallback;
+};
+
+/** Unset: default price. Set but empty: no price, the card shows "Custom pricing". */
+const priceOf = (raw: string | undefined, fallback: number) => {
+  if (raw === undefined) return fallback;
+  return raw.trim() === "" ? undefined : num(raw, fallback);
+};
+
+export const stats = {
+  botsBuilt: num(process.env.NEXT_PUBLIC_STAT_BOTS_BUILT, 30),
+  yearsExperience: num(process.env.NEXT_PUBLIC_STAT_YEARS_EXPERIENCE, 5),
+  jobsCompleted: num(process.env.NEXT_PUBLIC_STAT_JOBS_COMPLETED, 65),
+  hoursDelivered: num(process.env.NEXT_PUBLIC_STAT_HOURS_DELIVERED, 2669),
+  totalEarnings: num(process.env.NEXT_PUBLIC_STAT_TOTAL_EARNINGS, 30000),
+  totalReviews: num(process.env.NEXT_PUBLIC_STAT_TOTAL_REVIEWS, 40),
+  avgRating: num(process.env.NEXT_PUBLIC_STAT_AVG_RATING, 4.9),
+};
+
+const prices = {
+  management: priceOf(process.env.NEXT_PUBLIC_PRICE_COMMUNITY_MANAGEMENT, 1500),
+  buildout: priceOf(process.env.NEXT_PUBLIC_PRICE_SERVER_BUILDOUT, 350),
+  security: priceOf(process.env.NEXT_PUBLIC_PRICE_MODERATION_SECURITY, 1000),
+  strategy: priceOf(process.env.NEXT_PUBLIC_PRICE_STRATEGY_CONSULTING, 800),
+};
+
+/** $1,500 */
+export const formatPrice = (n: number) => `$${n.toLocaleString("en-US")}`;
+/** $30K+ for thousands, $1.2M+ for millions */
+export const formatEarnings = (n: number) =>
+  n >= 1_000_000 ? `$${+(n / 1_000_000).toFixed(1)}M+` : n >= 1_000 ? `$${Math.floor(n / 1_000)}K+` : `$${n}+`;
+/** 2,669 */
+export const formatCount = (n: number) => n.toLocaleString("en-US");
+/** 4.9 */
+export const formatRating = (n: number) => n.toFixed(1);
+
 export const links = {
   github: process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/mdevvx",
   upwork: process.env.NEXT_PUBLIC_UPWORK_URL || "https://www.upwork.com/freelancers/mdevvx",
@@ -85,7 +129,7 @@ export const services: {
       "Regular reports on what's working and what isn't",
     ],
     span: "md:col-span-3",
-    price: "$1,500",
+    price: prices.management !== undefined ? formatPrice(prices.management) : undefined,
     priceUnit: "/month",
     priceNote: "Billed monthly"
   },
@@ -102,7 +146,7 @@ export const services: {
       "Branded embeds, rules and server guide",
     ],
     span: "md:col-span-3",
-    price: "$350",
+    price: prices.buildout !== undefined ? formatPrice(prices.buildout) : undefined,
     priceUnit: "one-time",
     priceNote: "One-time project"
   },
@@ -119,7 +163,7 @@ export const services: {
       "Member security guidance for scam-heavy niches",
     ],
     span: "md:col-span-3",
-    price: "$1,000",
+    price: prices.security !== undefined ? formatPrice(prices.security) : undefined,
     priceUnit: "/month",
     priceNote: "Billed monthly"
   },
@@ -136,7 +180,7 @@ export const services: {
       "Async support between sessions",
     ],
     span: "md:col-span-3",
-    price: "$800",
+    price: prices.strategy !== undefined ? formatPrice(prices.strategy) : undefined,
     priceUnit: "/month",
     priceNote: "Billed monthly"
   },
@@ -390,14 +434,14 @@ export const reviews: Review[] = [
 
 /** Freelance track record (from the marketplace profile). Update these numbers as they grow. */
 export const trackRecord = {
-  rating: 4.9,
-  reviewCount: 40,
+  rating: stats.avgRating,
+  reviewCount: stats.totalReviews,
   badges: ["Top Rated", "100% Job Success"],
   stats: [
-    { value: "4.9★", label: "Average from 40 reviews" },
-    { value: "$30K+", label: "Earned from client work" },
-    { value: "65", label: "Jobs completed" },
-    { value: "2,669", label: "Hours delivered" },
+    { value: `${formatRating(stats.avgRating)}★`, label: `Average from ${formatCount(stats.totalReviews)} reviews` },
+    { value: formatEarnings(stats.totalEarnings), label: "Earned from client work" },
+    { value: formatCount(stats.jobsCompleted), label: "Jobs completed" },
+    { value: formatCount(stats.hoursDelivered), label: "Hours delivered" },
   ],
 };
 

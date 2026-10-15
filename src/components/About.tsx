@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
 import SectionHeading from "./SectionHeading";
-import { links, profile } from "@/lib/site";
+import { links, profile, stats } from "@/lib/site";
 
 const social = [
   { label: "Upwork", href: links.upwork },
@@ -56,7 +56,7 @@ export default function About() {
           <div className="mt-6 space-y-4 text-base leading-relaxed text-muted">
             <p>
               I&apos;m {profile.name}, a software engineer and Discord specialist based in {profile.location}. I&apos;ve spent more
-              than five years inside ecommerce, trading, gaming, AI and Web3 communities, running them day to day and building the tools that
+              than {stats.yearsExperience} years inside ecommerce, trading, gaming, AI and Web3 communities, running them day to day and building the tools that
               keep them organised and safe.
             </p>
             <p>
