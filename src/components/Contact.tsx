@@ -11,6 +11,8 @@ type Status = { state: "idle" | "sending" | "success" | "error"; message?: strin
 /** Other sections (e.g. the Health Check) dispatch this window event to fill in the form. */
 export const PREFILL_EVENT = "contact:prefill";
 export type ContactPrefill = { service?: string; message?: string; source?: "Health Check" };
+/** Other pages store a ContactPrefill here before navigating to /#contact. */
+export const PREFILL_STORAGE_KEY = "contact-prefill";
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>({ state: "idle" });
@@ -36,6 +38,19 @@ export default function Contact() {
       }, 700);
     };
     window.addEventListener(PREFILL_EVENT, onPrefill);
+
+    // Arriving from /health-check with results to send.
+    try {
+      const stored = sessionStorage.getItem(PREFILL_STORAGE_KEY);
+      if (stored) {
+        sessionStorage.removeItem(PREFILL_STORAGE_KEY);
+        onPrefill(new CustomEvent(PREFILL_EVENT, { detail: JSON.parse(stored) }));
+        setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }), 100);
+      }
+    } catch {
+      /* storage blocked */
+    }
+
     return () => window.removeEventListener(PREFILL_EVENT, onPrefill);
   }, []);
 

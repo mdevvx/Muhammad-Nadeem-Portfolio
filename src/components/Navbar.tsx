@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Command, Menu, X } from "lucide-react";
 import { OPEN_PALETTE_EVENT } from "./CommandPalette";
@@ -9,11 +10,13 @@ import { links, nav, profile } from "@/lib/site";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  // On other pages, section links need to go back to the home page first.
+  const base = usePathname() === "/" ? "" : "/";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 print:hidden">
       <a
-        href="#health-check"
+        href="/health-check"
         className="group relative isolate flex h-9 items-center justify-center gap-2.5 border-b border-accent/20 bg-bg/85 px-4 text-xs font-medium text-fg backdrop-blur-md before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-r before:from-accent-soft/5 before:via-accent-soft/15 before:to-pop/10 sm:text-[13px]"
       >
         <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
@@ -37,7 +40,7 @@ export default function Navbar() {
         aria-label="Main"
         className="mx-auto flex max-w-4xl items-center justify-between rounded-full border border-line bg-surface/80 py-2 pl-5 pr-2 shadow-lg shadow-black/10 backdrop-blur-md"
       >
-        <a href="#top" className="flex items-center gap-2 font-semibold tracking-tight" onClick={() => setOpen(false)}>
+        <a href={`${base}#top`} className="flex items-center gap-2 font-semibold tracking-tight" onClick={() => setOpen(false)}>
           <Image
             src="/avatar.jpg"
             alt=""
@@ -53,7 +56,7 @@ export default function Navbar() {
           {nav.map((item) => (
             <li key={item.href}>
               <a
-                href={item.href}
+                href={`${base}${item.href}`}
                 data-nav-link
                 className="rounded-full px-3.5 py-2 text-sm text-muted transition hover:bg-elevated hover:text-fg data-[active]:bg-elevated data-[active]:text-fg"
               >
@@ -73,7 +76,7 @@ export default function Navbar() {
             <Command size={12} /> K
           </button>
           <ThemeToggle />
-          <a href="#contact" className="btn-primary hidden px-4 py-2 sm:inline-flex">
+          <a href={`${base}#contact`} className="btn-primary hidden px-4 py-2 sm:inline-flex">
             Hire me
           </a>
           <button
@@ -98,7 +101,7 @@ export default function Navbar() {
             {nav.map((item) => (
               <li key={item.href}>
                 <a
-                  href={item.href}
+                  href={`${base}${item.href}`}
                   onClick={() => setOpen(false)}
                   className="block rounded-2xl px-4 py-3 text-sm font-medium text-fg hover:bg-elevated"
                 >
@@ -107,7 +110,7 @@ export default function Navbar() {
               </li>
             ))}
             <li className={`mt-2 grid gap-2 ${links.booking ? "grid-cols-2" : "grid-cols-1"}`}>
-              <a href="#contact" onClick={() => setOpen(false)} className="btn-primary">
+              <a href={`${base}#contact`} onClick={() => setOpen(false)} className="btn-primary">
                 Hire me
               </a>
               {links.booking && (

@@ -9,7 +9,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line pb-10 pt-14">
+    <footer className="border-t border-line pb-10 pt-14 print:hidden">
       <div className="container-page grid grid-cols-2 gap-10 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div className="col-span-2 md:col-span-1">
           <p className="font-display text-xl font-bold">{profile.siteName}</p>
@@ -18,8 +18,8 @@ export default function Footer() {
           </p>
         </div>
 
-        <FooterCol title="Services" items={[...services.map((s) => ({ label: s.title, href: "#services" })), { label: botService.title, href: "#services" }]} />
-        <FooterCol title="Site" items={nav.map((n) => ({ label: n.label, href: n.href }))} />
+        <FooterCol title="Services" items={[...services.map((s) => ({ label: s.title, href: "/#services" })), { label: botService.title, href: "/#services" }, { label: "Free health check", href: "/health-check" }]} />
+        <FooterCol title="Site" items={nav.map((n) => ({ label: n.label, href: `/${n.href}` }))} />
         <FooterCol
           title="Contact"
           items={[{ label: "Email me", href: `mailto:${profile.email}` }, ...socials.map((s) => ({ ...s, external: true }))]}

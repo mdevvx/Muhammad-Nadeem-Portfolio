@@ -11,7 +11,7 @@ const shortcuts = [
   { label: "services", href: "/#services" },
   { label: "bots", href: "/#work" },
   { label: "reviews", href: "/#reviews" },
-  { label: "free-health-check", href: "/#health-check" },
+  { label: "free-health-check", href: "/health-check" },
   { label: "contact", href: "/#contact" },
 ];
 

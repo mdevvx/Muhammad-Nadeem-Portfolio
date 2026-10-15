@@ -4,13 +4,16 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight, Command, CornerDownLeft, Copy, Hash, Moon, Search, Stethoscope } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { links, nav, profile } from "@/lib/site";
-import { OPEN_HEALTH_EVENT } from "./HealthCheck";
 
 type Action = { id: string; label: string; hint: string; icon: LucideIcon; run: () => void };
 
 export const OPEN_PALETTE_EVENT = "palette:open";
 
 function go(hash: string) {
+  if (window.location.pathname !== "/") {
+    window.location.href = `/${hash}`;
+    return;
+  }
   document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
   history.replaceState(null, "", hash);
 }
@@ -27,7 +30,7 @@ export default function CommandPalette() {
     () => [
       ...nav.map((n) => ({ id: n.href, label: n.label, hint: "Jump to section", icon: Hash, run: () => go(n.href) })),
       { id: "contact", label: "Start a project", hint: "Jump to contact form", icon: CornerDownLeft, run: () => go("#contact") },
-      { id: "audit", label: "Run the Server Health Check", hint: "Free, 2 minutes", icon: Stethoscope, run: () => window.dispatchEvent(new Event(OPEN_HEALTH_EVENT)) },
+      { id: "audit", label: "Run the Server Health Check", hint: "Free, 2 minutes", icon: Stethoscope, run: () => (window.location.href = "/health-check") },
       {
         id: "copy",
         label: "Copy email address",
