@@ -19,7 +19,6 @@ export default function Fit() {
 
         <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-[1.4fr_1fr]">
           <div className="card relative overflow-hidden p-6 sm:p-8">
-            <div className="absolute -left-20 -top-20 h-56 w-56 rounded-full bg-accent/10 blur-3xl" aria-hidden="true" />
             <p className="relative text-sm font-semibold text-accent">You&apos;re a great fit if…</p>
             <ul className="relative mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
               {fit.good.map((g) => (

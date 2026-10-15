@@ -59,10 +59,6 @@ export default function Projects() {
               key={`${filter}-${p.title}`}
               className="card group relative flex animate-msg-in flex-col overflow-hidden p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl hover:shadow-accent-soft/10"
             >
-              <div
-                className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent-soft/0 blur-3xl transition duration-500 group-hover:bg-accent-soft/20"
-                aria-hidden="true"
-              />
               <p className="font-mono text-[11px] uppercase tracking-widest text-pop">{p.kind}</p>
               <h3 className="mt-3 text-lg font-semibold">{p.title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{p.blurb}</p>

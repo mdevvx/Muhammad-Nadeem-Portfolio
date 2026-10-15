@@ -19,8 +19,6 @@ export default function NotFound() {
   return (
     <main className="relative flex min-h-screen items-center overflow-hidden py-16">
       <div className="grid-bg pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
-      <div className="absolute left-1/2 top-1/3 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-accent-soft/15 blur-3xl" aria-hidden="true" />
-
       <div className="container-page flex flex-col items-center text-center">
         <p className="text-gradient font-display text-[7rem] font-bold leading-none sm:text-[10rem]">404</p>
         <h1 className="mt-2 text-3xl font-bold sm:text-4xl">This channel doesn&apos;t exist</h1>

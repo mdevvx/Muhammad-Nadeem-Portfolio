@@ -218,8 +218,6 @@ export default function HealthCheckApp() {
       </ol>
 
       <div className="card relative overflow-hidden p-6 sm:p-10">
-        <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-pop/10 blur-3xl print:hidden" aria-hidden="true" />
-
         {phase === "context" && (
           <div className="relative animate-msg-in">
             <h2 className="text-2xl font-bold sm:text-3xl">First, a bit about your server</h2>
@@ -281,7 +279,7 @@ export default function HealthCheckApp() {
             </div>
             <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-elevated" aria-hidden="true">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-accent-soft to-pop transition-all duration-500"
+                className="h-full rounded-full bg-accent-soft transition-all duration-500"
                 style={{ width: `${(step / healthQuestions.length) * 100}%` }}
               />
             </div>
@@ -404,7 +402,7 @@ export default function HealthCheckApp() {
             )}
 
             {/* Matching service */}
-            <div className="mt-10 rounded-2xl border border-line bg-gradient-to-r from-accent-soft/10 to-pop/10 p-5 sm:p-6">
+            <div className="mt-10 rounded-2xl border border-line bg-elevated/60 p-5 sm:p-6">
               <p className="font-mono text-[11px] uppercase tracking-widest text-muted">Where I&apos;d start</p>
               <div className="mt-2 flex flex-wrap items-baseline justify-between gap-2">
                 <p className="font-display text-xl font-bold">{serviceFor(result.weakest.area).title}</p>

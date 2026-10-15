@@ -17,7 +17,7 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 print:hidden">
       <a
         href="/health-check"
-        className="group relative isolate flex h-9 items-center justify-center gap-2.5 border-b border-accent/20 bg-bg/85 px-4 text-xs font-medium text-fg backdrop-blur-md before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-r before:from-accent-soft/5 before:via-accent-soft/15 before:to-pop/10 sm:text-[13px]"
+        className="group flex h-9 items-center justify-center gap-2.5 border-b border-accent/20 bg-accent-soft/15 px-4 text-xs font-medium text-fg backdrop-blur-md sm:text-[13px]"
       >
         <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />

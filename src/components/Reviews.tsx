@@ -118,7 +118,6 @@ export default function Reviews() {
 
         {/* Track record band */}
         <div className="card relative mt-10 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-accent-soft/10 via-transparent to-pop/10" aria-hidden="true" />
           <div className="relative grid grid-cols-1 gap-6 p-6 sm:p-8 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-10">
             <ul className="flex flex-wrap gap-3 lg:flex-col">
               {trackRecord.badges.map((b, i) => (
@@ -172,10 +171,6 @@ export default function Reviews() {
                 aria-label={`${i + 1} of ${slides.length}`}
                 className="card group relative flex h-[22rem] w-[85%] shrink-0 snap-center flex-col sm:snap-start overflow-hidden p-6 transition duration-300 hover:border-accent/50 sm:w-[calc(50%-0.5rem)] lg:w-[calc((100%-2rem)/3)]"
               >
-                <div
-                  className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-pop/0 blur-3xl transition duration-500 group-hover:bg-pop/15"
-                  aria-hidden="true"
-                />
                 <div className="relative flex items-start justify-between gap-3">
                   <p className="line-clamp-2 font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] text-accent">{r.project}</p>
                   <Quote size={28} className="shrink-0 text-accent/20" aria-hidden="true" />
@@ -195,7 +190,7 @@ export default function Reviews() {
                 )}
 
                 <figcaption className="relative mt-auto flex items-center gap-3 border-t border-line pt-4">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-accent-soft to-pop font-display text-sm font-bold text-on-accent">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent-soft font-display text-sm font-bold text-on-accent">
                     {initials(r)}
                   </span>
                   <span className="min-w-0 truncate font-semibold">{who(r)}</span>
@@ -243,7 +238,7 @@ export default function Reviews() {
               ))}
             </blockquote>
             <figcaption className="mt-8 flex items-center gap-3 border-t border-line pt-5">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-accent-soft to-pop font-display text-sm font-bold text-on-accent">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent-soft font-display text-sm font-bold text-on-accent">
                 {initials(open)}
               </span>
               <span className="font-semibold">{who(open)}</span>

@@ -64,7 +64,6 @@ export default function Services() {
           })}
 
           <article className="card relative overflow-hidden p-6 md:col-span-6 md:p-8">
-            <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent-soft/20 blur-3xl" aria-hidden="true" />
             <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
               <div>
                 <span className="chip border-accent/40 text-accent">Specialty</span>

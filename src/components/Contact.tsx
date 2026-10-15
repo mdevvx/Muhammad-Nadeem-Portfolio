@@ -88,7 +88,6 @@ export default function Contact() {
     <section id="contact" className="py-16 sm:py-20">
       <div className="container-page">
         <div data-reveal className="card relative overflow-hidden p-6 sm:p-10 lg:p-12">
-          <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-accent-soft/20 blur-3xl" aria-hidden="true" />
           <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <SectionHeading
@@ -248,7 +247,6 @@ function SuccessModal({ name, onClose }: { name: string; onClose: () => void }) 
         aria-describedby="sent-body"
         className="card relative w-full max-w-md animate-msg-in overflow-hidden p-8 text-center"
       >
-        <div className="absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" aria-hidden="true" />
         <button
           type="button"
           onClick={onClose}
@@ -277,7 +275,7 @@ function SuccessModal({ name, onClose }: { name: string; onClose: () => void }) 
 
         {/* Auto-close countdown */}
         <div className="absolute inset-x-0 bottom-0 h-1 bg-elevated" aria-hidden="true">
-          <div className="h-full origin-left animate-[shrink_6s_linear_forwards] bg-gradient-to-r from-accent-soft to-pop" />
+          <div className="h-full origin-left animate-[shrink_6s_linear_forwards] bg-accent-soft" />
         </div>
       </div>
     </div>

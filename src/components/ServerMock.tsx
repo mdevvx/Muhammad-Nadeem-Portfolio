@@ -128,7 +128,6 @@ export default function ServerMock() {
 
   return (
     <div className="relative" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      <div className="absolute -inset-8 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent-soft/35 via-transparent to-pop/25 blur-3xl" aria-hidden="true" />
       <div className="card overflow-hidden shadow-2xl shadow-black/40">
         <div className="flex items-center gap-1.5 border-b border-line bg-elevated/70 px-4 py-3">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
@@ -217,7 +216,7 @@ function Scene({ s, stage, index }: { s: Scenario; stage: 0 | 1 | 2; index: numb
 
     <div className="mt-4 flex gap-3">
       {stage >= 1 && (
-        <div className="grid h-8 w-8 shrink-0 animate-msg-in place-items-center rounded-full bg-gradient-to-br from-accent-soft to-pop text-on-accent">
+        <div className="grid h-8 w-8 shrink-0 animate-msg-in place-items-center rounded-full bg-accent-soft text-on-accent">
           <Bot size={15} />
         </div>
       )}

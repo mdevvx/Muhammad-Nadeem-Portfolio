@@ -63,7 +63,7 @@ export default function ScrollEffects() {
 
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-0.5" aria-hidden="true">
-      <div ref={barRef} className="h-full origin-left scale-x-0 bg-gradient-to-r from-accent-soft via-accent to-pop" />
+      <div ref={barRef} className="h-full origin-left scale-x-0 bg-accent-soft" />
     </div>
   );
 }

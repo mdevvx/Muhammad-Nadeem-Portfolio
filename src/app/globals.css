@@ -18,12 +18,12 @@
 }
 
 html[data-theme="light"] {
-  --bg: 250 250 246;
+  --bg: 252 252 249;
   --surface: 255 255 255;
-  --elevated: 243 244 238;
-  --line: 226 227 219;
-  --fg: 20 20 18;
-  --muted: 87 87 80;
+  --elevated: 244 246 238;
+  --line: 230 232 222;
+  --fg: 28 28 24;
+  --muted: 98 98 90;
   --accent: 77 124 15;
   --accent-soft: 132 204 22;
   --pop: 234 88 12;
@@ -47,10 +47,6 @@ html[data-theme="light"] {
   }
   body {
     @apply bg-bg font-sans text-fg antialiased;
-    background-image:
-      radial-gradient(60rem 30rem at 85% -10%, rgb(var(--accent-soft) / 0.12), transparent 60%),
-      radial-gradient(40rem 24rem at -10% 20%, rgb(var(--pop) / 0.07), transparent 60%);
-    background-attachment: fixed;
   }
   h1,
   h2,
@@ -80,10 +76,10 @@ html[data-theme="light"] {
   ::-webkit-scrollbar-thumb {
     border: 2px solid rgb(var(--bg));
     border-radius: 999px;
-    background: linear-gradient(180deg, rgb(var(--accent-soft)), rgb(var(--pop)));
+    background: rgb(var(--accent-soft));
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, rgb(var(--accent)), rgb(var(--pop)));
+    background: rgb(var(--accent));
   }
   ::-webkit-scrollbar-corner {
     background: rgb(var(--bg));
@@ -121,10 +117,9 @@ html[data-theme="light"] {
   .chip {
     @apply inline-flex items-center rounded-full border border-line bg-elevated/70 px-3 py-1 text-xs font-medium text-muted;
   }
+  /* Solid highlight color for emphasised words (kept as a class so headings stay unchanged) */
   .text-gradient {
-    @apply animate-shine bg-clip-text text-transparent;
-    background-image: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--pop)), rgb(var(--accent)));
-    background-size: 200% auto;
+    @apply text-pop;
   }
   /* Reveal on scroll: only hidden when JS is running to bring it back (see ScrollEffects). */
   .js [data-reveal] {

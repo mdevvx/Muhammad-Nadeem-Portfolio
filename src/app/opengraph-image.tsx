@@ -17,7 +17,7 @@ export default async function OpengraphImage() {
   ]);
   const photoSrc = `data:image/jpeg;base64,${photo.toString("base64")}`;
 
-  const lime = "#bef264";
+  const lime = "#a3e635";
   const orange = "#fb923c";
 
   return new ImageResponse(
@@ -28,9 +28,8 @@ export default async function OpengraphImage() {
           height: "100%",
           display: "flex",
           position: "relative",
-          backgroundColor: "#09090b",
-          backgroundImage: `radial-gradient(circle at 92% 8%, rgba(163,230,53,0.28), transparent 45%), radial-gradient(circle at 70% 110%, rgba(251,146,60,0.22), transparent 45%)`,
-          color: "#f4f4f0",
+          backgroundColor: "#fcfcf9",
+          color: "#1c1c18",
           fontFamily: "sans-serif",
           padding: "64px 72px",
         }}
@@ -44,7 +43,7 @@ export default async function OpengraphImage() {
                 alignItems: "center",
                 gap: 12,
                 alignSelf: "flex-start",
-                border: "1px solid rgba(190,242,100,0.4)",
+                border: "1px solid rgba(77,124,15,0.35)",
                 borderRadius: 999,
                 padding: "8px 18px",
                 fontSize: 22,
@@ -69,22 +68,20 @@ export default async function OpengraphImage() {
               <span>A Discord your members</span>
               <span
                 style={{
-                  backgroundImage: `linear-gradient(90deg, ${lime}, ${orange})`,
-                  backgroundClip: "text",
-                  color: "transparent",
+                  color: orange,
                 }}
               >
                 actually stay in
               </span>
             </div>
 
-            <div style={{ display: "flex", marginTop: 22, fontSize: 26, color: "#a1a1aa", maxWidth: 620, lineHeight: 1.35 }}>
+            <div style={{ display: "flex", marginTop: 22, fontSize: 26, color: "#62625a", maxWidth: 620, lineHeight: 1.35 }}>
               Community management, custom bots and server security for{" "}
               {niches.join(", ").toLowerCase().replace("ai", "AI").replace("web3", "Web3").replace(/, ([^,]*)$/, " and $1")} brands.
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 44, fontSize: 22, color: "#a1a1aa" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 44, fontSize: 22, color: "#62625a" }}>
             <Stat value={`${formatCount(stats.botsBuilt)}+`} label="bots built" />
             <Stat value={formatRating(trackRecord.rating)} star label={`${formatCount(trackRecord.reviewCount)} client reviews`} />
             <Stat value={`${stats.yearsExperience}+ yrs`} label="on Discord" />
@@ -98,7 +95,7 @@ export default async function OpengraphImage() {
               display: "flex",
               padding: 6,
               borderRadius: 40,
-              backgroundImage: `linear-gradient(135deg, ${lime}, ${orange})`,
+              backgroundColor: lime,
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -106,7 +103,7 @@ export default async function OpengraphImage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 22 }}>
             <span style={{ fontFamily: "Bricolage", fontSize: 34, fontWeight: 800 }}>{profile.name}</span>
-            <span style={{ fontSize: 22, color: "#a1a1aa", marginTop: 4 }}>{profile.role}</span>
+            <span style={{ fontSize: 22, color: "#62625a", marginTop: 4 }}>{profile.role}</span>
           </div>
         </div>
       </div>
@@ -122,7 +119,7 @@ function Stat({ value, label, star }: { value: string; label: string; star?: boo
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <span style={{ fontFamily: "Bricolage", fontSize: 42, fontWeight: 800, color: "#f4f4f0" }}>{value}</span>
+        <span style={{ fontFamily: "Bricolage", fontSize: 42, fontWeight: 800, color: "#1c1c18" }}>{value}</span>
         {star && (
           <svg width="32" height="32" viewBox="0 0 24 24">
             <path

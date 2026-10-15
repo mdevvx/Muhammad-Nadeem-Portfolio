@@ -16,9 +16,6 @@ export default function HealthCheck() {
     <section id="health-check" className="py-16 sm:py-20">
       <div data-reveal className="container-page">
         <div className="card relative overflow-hidden p-6 sm:p-10 lg:p-12">
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-pop/15 blur-3xl" aria-hidden="true" />
-          <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent-soft/10 blur-3xl" aria-hidden="true" />
-
           <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
               <SectionHeading
