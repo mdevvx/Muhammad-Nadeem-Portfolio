@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { display, sans, mono } from "@/lib/fonts";
-import { profile, seo, siteUrl } from "@/lib/site";
+import { defaultTheme, paletteHex, paletteName, profile, seo, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fafaf6",
+  themeColor: paletteHex.bg,
   width: "device-width",
   initialScale: 1,
 };
@@ -43,7 +43,7 @@ const themeScript = `(function(){document.documentElement.classList.add("js");tr
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="light" className={`${sans.variable} ${display.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme={defaultTheme} data-palette={paletteName} className={`${sans.variable} ${display.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

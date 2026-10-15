@@ -72,6 +72,25 @@ export const formatCount = (n: number) => n.toLocaleString("en-US");
 /** 4.9 */
 export const formatRating = (n: number) => n.toFixed(1);
 
+/** Color palette: "crimson" (default), "forest", "rose" or "ink". Set NEXT_PUBLIC_PALETTE to switch. */
+export const paletteName = (["crimson", "forest", "rose", "ink"] as const).find((p) => p === process.env.NEXT_PUBLIC_PALETTE) ?? "crimson";
+
+/** Theme a first-time visitor sees. crimson is a black palette so it opens dark; the rest open light. */
+export const defaultTheme: "dark" | "light" =
+  process.env.NEXT_PUBLIC_DEFAULT_THEME === "light" || process.env.NEXT_PUBLIC_DEFAULT_THEME === "dark"
+    ? process.env.NEXT_PUBLIC_DEFAULT_THEME
+    : paletteName === "crimson"
+      ? "dark"
+      : "light";
+
+/** Hex values for the share image, tab icon and browser bar color (CSS tokens can't be used there). */
+export const paletteHex = {
+  crimson: { accent: "#be123c", pop: "#f43f5e", onAccent: "#ffffff", bg: "#0a090a", fg: "#f6f1f2", muted: "#aaa0a4" },
+  forest: { accent: "#15803d", pop: "#b45309", onAccent: "#ffffff", bg: "#fcfbf7", fg: "#1e1c18", muted: "#66625a" },
+  rose: { accent: "#e11d48", pop: "#b45309", onAccent: "#ffffff", bg: "#fcfbf7", fg: "#1e1c18", muted: "#66625a" },
+  ink: { accent: "#1c1c1a", pop: "#a16207", onAccent: "#ffffff", bg: "#fcfbf7", fg: "#1e1c18", muted: "#66625a" },
+}[paletteName];
+
 export const links = {
   github: process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/mdevvx",
   upwork: process.env.NEXT_PUBLIC_UPWORK_URL || "https://www.upwork.com/freelancers/mdevvx",
