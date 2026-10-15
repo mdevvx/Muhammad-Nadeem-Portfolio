@@ -16,9 +16,6 @@ export default function Footer() {
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted">
             Discord community management, custom bots and server security for brands that take their community seriously.
           </p>
-          <a href="#contact" className="btn-primary mt-5 px-4 py-2">
-            Start a project
-          </a>
         </div>
 
         <FooterCol title="Services" items={[...services.map((s) => ({ label: s.title, href: "#services" })), { label: botService.title, href: "#services" }]} />

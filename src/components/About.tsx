@@ -65,9 +65,9 @@ export default function About() {
               documentation that lets your team own the result.
             </p>
             <p>
-              I co-founded <strong className="font-semibold text-fg">DuoPlus</strong>, a two-person agency, with Muhammad
-              Shaukat. Today I work with ecommerce, trading, gaming, AI and Web3 communities, either directly or
-              under the DuoPlus name.
+              I co-founded <strong className="font-semibold text-fg">DuoPlus</strong> with Muhammad Shaukat, where we build
+              and run our own Discord products like PulseNotify and Threadly. Running them for real users is how I learned
+              what it takes to keep a bot reliable. Today I work with ecommerce, trading, gaming, AI and Web3 communities.
             </p>
           </div>
 

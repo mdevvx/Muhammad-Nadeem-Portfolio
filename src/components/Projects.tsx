@@ -23,7 +23,7 @@ export default function Projects() {
                 Discord bots <span className="text-gradient">in production</span>
               </>
             }
-            description="Custom bots built for client servers and my own DuoPlus products, in discord.py and discord.js."
+            description="Custom bots I&apos;ve built for client servers, plus a few of my own products, in discord.py and discord.js."
           />
           <a href={links.github} target="_blank" rel="noopener noreferrer" className="btn-ghost shrink-0 self-start sm:self-auto">
             <FolderGit2 size={16} /> All bots on GitHub

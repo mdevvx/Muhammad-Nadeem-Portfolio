@@ -190,7 +190,7 @@ export const projects: {
   {
     title: "PulseNotify",
     categories: ["Automation"],
-    kind: "Product, DuoPlus",
+    kind: "Own product",
     blurb:
       "Multi-server bot that posts an alert the moment a creator uploads, posts or goes live on YouTube, Kick or Instagram, with per-event toggles, custom messages and role mentions.",
     tags: ["discord.py", "Supabase", "Official APIs"],
@@ -253,7 +253,7 @@ export const projects: {
   {
     title: "Threadly",
     categories: ["Engagement", "Automation"],
-    kind: "Product, DuoPlus",
+    kind: "Own product",
     blurb:
       "Creates a personal welcome thread or channel for every new member, with fully customizable welcome messages built on Discord's Components V2.",
     tags: ["discord.py", "Components V2", "Supabase"],
@@ -262,7 +262,7 @@ export const projects: {
   {
     title: "PulseReact",
     categories: ["Engagement", "Automation"],
-    kind: "Product, DuoPlus",
+    kind: "Own product",
     blurb:
       "Per-server auto-react system: any number of channels and emojis, filtered by message type such as text, image, link, video or file.",
     tags: ["discord.py", "Supabase", "Automation"],
@@ -443,7 +443,7 @@ export const faqs = [
   },
   {
     q: "How do we pay and how is the work protected?",
-    a: "You can work with me directly or through my agency, DuoPlus. Either way, we agree on scope, milestones and what you're getting in writing before I start.",
+    a: "You work with me directly. Before I start, we agree in writing on the scope, milestones and exactly what you're getting, so there are no surprises on either side.",
   },
 ] as const;
 

@@ -78,21 +78,21 @@ export default function Contact() {
                     Let&apos;s fix your Discord, <span className="text-gradient">together</span>
                   </>
                 }
-                description="Tell me about your server or the bot you have in mind. I will reply with an honest read and a rough scope."
+                description="Tell me about your server or the bot you have in mind. I&apos;ll get back to you with an honest take and a rough scope."
               />
               <ul className="mt-8 space-y-4 text-sm">
                 <li className="flex items-center gap-3">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent-soft/15 text-accent">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-soft/15 text-accent">
                     <Mail size={18} />
                   </span>
-                  <a href={`mailto:${profile.email}`} className="min-w-0 break-all font-medium hover:text-accent">
+                  <a href={`mailto:${profile.email}`} className="min-w-0 truncate text-[13px] font-medium hover:text-accent sm:text-sm">
                     {profile.email}
                   </a>
                   <CopyEmail />
                 </li>
                 {links.booking && (
                   <li className="flex items-center gap-3">
-                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent-soft/15 text-accent">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-soft/15 text-accent">
                       <CalendarCheck size={18} />
                     </span>
                     <a href={links.booking} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-accent">
@@ -101,7 +101,7 @@ export default function Contact() {
                   </li>
                 )}
                 <li className="flex items-center gap-3">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent-soft/15 text-accent">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-soft/15 text-accent">
                     <Clock size={18} />
                   </span>
                   <LocalTime />
@@ -218,10 +218,10 @@ function CopyEmail() {
       type="button"
       onClick={copy}
       aria-label={copied ? "Email copied" : "Copy email address"}
-      className="ml-1 inline-flex shrink-0 items-center gap-1 rounded-full border border-line px-2.5 py-1 text-xs text-muted transition hover:border-accent/60 hover:text-fg"
+      className="ml-auto inline-flex h-8 shrink-0 items-center gap-1 rounded-full border border-line px-2.5 text-xs text-muted transition hover:border-accent/60 hover:text-fg sm:ml-1"
     >
       {copied ? <Check size={13} className="text-accent" /> : <Copy size={13} />}
-      {copied ? "Copied" : "Copy"}
+      <span className="hidden sm:inline">{copied ? "Copied" : "Copy"}</span>
     </button>
   );
 }
