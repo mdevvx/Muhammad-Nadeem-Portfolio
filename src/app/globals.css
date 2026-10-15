@@ -31,6 +31,15 @@ html[data-theme="light"] {
   color-scheme: light;
 }
 
+@keyframes shrink {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

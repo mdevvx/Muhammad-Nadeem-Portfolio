@@ -27,7 +27,7 @@ export default function About() {
               {avatar ? (
                 <Image
                   src={`/${avatar}`}
-                  alt={`Portrait of ${profile.name}`}
+                  alt={profile.name}
                   fill
                   sizes="(min-width: 1024px) 24rem, 90vw"
                   className="object-cover"

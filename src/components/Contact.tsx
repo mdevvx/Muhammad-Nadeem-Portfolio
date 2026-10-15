@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { CalendarCheck, Check, Clock, Copy, Loader2, Mail, Send } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { CalendarCheck, Check, Clock, Copy, Loader2, Mail, Send, X } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import ServiceSelect from "./ServiceSelect";
 import { contactServices, links, profile } from "@/lib/site";
@@ -14,6 +14,8 @@ export type ContactPrefill = { service?: string; message?: string; source?: "Hea
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>({ state: "idle" });
+  const [sentTo, setSentTo] = useState<string | null>(null);
+  const closeSent = useCallback(() => setSentTo(null), []);
   const [service, setService] = useState("");
   const [message, setMessage] = useState("");
   const [source, setSource] = useState<"Contact form" | "Health Check">("Contact form");
@@ -41,6 +43,7 @@ export default function Contact() {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
+    const firstName = String(data.name ?? "").trim().split(/\s+/)[0] ?? "";
     setStatus({ state: "sending" });
 
     try {
@@ -58,7 +61,9 @@ export default function Contact() {
       setService("");
       setMessage("");
       setSource("Contact form");
-      setStatus({ state: "success", message: "Thanks! Your message is in. I usually reply within one business day." });
+      setStatus({ state: "success" });
+      // Short pause so the button settles before the confirmation pops up.
+      setTimeout(() => setSentTo(firstName), 350);
     } catch {
       setStatus({ state: "error", message: `Network error. You can email me at ${profile.email}.` });
     }
@@ -190,15 +195,77 @@ export default function Contact() {
                 id="form-status"
                 role="status"
                 aria-live="polite"
-                className={`min-h-[1.25rem] text-sm ${status.state === "error" ? "text-red-400" : "text-accent"}`}
+                className="min-h-[1.25rem] text-sm text-red-400"
               >
-                {status.message}
+                {status.state === "error" && status.message}
               </p>
             </form>
           </div>
         </div>
       </div>
+
+      {sentTo !== null && <SuccessModal name={sentTo} onClose={closeSent} />}
     </section>
+  );
+}
+
+const AUTO_CLOSE_MS = 6000;
+
+/** Confirmation shown after a successful send. Closes itself after a few seconds. */
+function SuccessModal({ name, onClose }: { name: string; onClose: () => void }) {
+  useEffect(() => {
+    const t = setTimeout(onClose, AUTO_CLOSE_MS);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [onClose]);
+
+  return (
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-bg/80 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
+      <div
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby="sent-title"
+        aria-describedby="sent-body"
+        className="card relative w-full max-w-md animate-msg-in overflow-hidden p-8 text-center"
+      >
+        <div className="absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" aria-hidden="true" />
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          autoFocus
+          className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-line text-muted transition hover:text-fg"
+        >
+          <X size={16} />
+        </button>
+
+        <span className="relative mx-auto grid h-16 w-16 place-items-center rounded-full bg-accent text-on-accent shadow-lg shadow-accent/30">
+          <span className="absolute inset-0 animate-ping rounded-full bg-accent/40 [animation-iteration-count:2]" aria-hidden="true" />
+          <Check size={30} strokeWidth={3} className="relative" />
+        </span>
+
+        <h3 id="sent-title" className="relative mt-6 text-2xl font-bold">
+          Message sent{name ? `, ${name}` : ""}!
+        </h3>
+        <p id="sent-body" className="relative mt-3 text-sm leading-relaxed text-muted">
+          Thanks for reaching out. I&apos;ll read it properly and get back to you within one business day, usually sooner.
+        </p>
+
+        <button type="button" onClick={onClose} className="btn-primary relative mt-7 w-full">
+          Sounds good
+        </button>
+
+        {/* Auto-close countdown */}
+        <div className="absolute inset-x-0 bottom-0 h-1 bg-elevated" aria-hidden="true">
+          <div className="h-full origin-left animate-[shrink_6s_linear_forwards] bg-gradient-to-r from-accent-soft to-pop" />
+        </div>
+      </div>
+    </div>
   );
 }
 
