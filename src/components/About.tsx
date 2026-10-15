@@ -5,9 +5,9 @@ import SectionHeading from "./SectionHeading";
 import { links, profile } from "@/lib/site";
 
 const social = [
-  { label: "GitHub", href: links.github },
   { label: "Upwork", href: links.upwork },
   { label: "LinkedIn", href: links.linkedin },
+  { label: "GitHub", href: links.github },
   { label: "Discord", href: links.discord },
 ].filter((s) => s.href);
 
@@ -55,18 +55,18 @@ export default function About() {
           />
           <div className="mt-6 space-y-4 text-base leading-relaxed text-muted">
             <p>
-              I am {profile.name}, a software engineer and Discord specialist based in {profile.location}. I have spent more
+              I&apos;m {profile.name}, a software engineer and Discord specialist based in {profile.location}. I&apos;ve spent more
               than five years inside ecommerce, trading, gaming, AI and Web3 communities, running them day to day and building the tools that
               keep them organised and safe.
             </p>
             <p>
               Because I write the bots as well as manage the servers, I can fix problems at the root instead of working around
-              them. That is why I build in both Python and JavaScript, back them with proper databases and write the
+              them. That&apos;s why I build in both Python and JavaScript, back them with proper databases and write the
               documentation that lets your team own the result.
             </p>
             <p>
               I co-founded <strong className="font-semibold text-fg">DuoPlus</strong>, a two-person agency, with Muhammad
-              Shaukat. Today I work with ecommerce, trading, gaming, AI and Web3 communities, either directly through Upwork or
+              Shaukat. Today I work with ecommerce, trading, gaming, AI and Web3 communities, either directly or
               under the DuoPlus name.
             </p>
           </div>

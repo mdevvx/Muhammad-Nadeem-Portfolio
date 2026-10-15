@@ -1,32 +1,30 @@
-import { ArrowRight, Crown, MapPin, Star } from "lucide-react";
+import { ArrowRight, BadgeCheck, Crown, Star } from "lucide-react";
 import ServerMock from "./ServerMock";
-import { niches, profile, reviews, trackRecord } from "@/lib/site";
+import { profile, reviews, trackRecord } from "@/lib/site";
+import CountUp from "./CountUp";
 
 const heroProof = [
   { value: "30+", label: "Bots built" },
   { value: "65", label: "Jobs completed" },
-  { value: "100%", label: "Job success" },
+  { value: "5+ yrs", label: "On Discord" },
 ];
 
 const featuredCompany = reviews.find((r) => r.featured)?.company;
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pb-12 pt-36 sm:pb-16 sm:pt-44">
+    <section id="top" className="relative overflow-hidden pb-12 pt-44 sm:pb-16 sm:pt-52">
       <div className="grid-bg pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
       <div className="container-page grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="animate-fade-up">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="chip h-8 gap-2 border-accent/40 py-0 text-fg">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
-              Open for new projects
-            </span>
             <span className="chip h-8 gap-1.5 border-pop/40 bg-pop/10 py-0 text-fg">
               <Crown size={13} className="text-pop" aria-hidden="true" />
               Top Rated
+            </span>
+            <span className="chip h-8 gap-1.5 border-accent/40 bg-accent/10 py-0 text-fg">
+              <BadgeCheck size={13} className="text-accent" aria-hidden="true" />
+              100% Job Success
             </span>
           </div>
 
@@ -36,7 +34,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            I am {profile.name}. I manage communities, build custom bots and lock down
+            I&apos;m {profile.name}, a Discord community manager and bot developer. I run, build and secure
             servers for ecommerce, trading, gaming, AI and Web3 brands, with over five years of hands-on Discord work.
           </p>
 
@@ -48,6 +46,7 @@ export default function Hero() {
               Free server health check
             </a>
           </div>
+          <p className="mt-3 text-xs text-muted">Free 30-minute call · No pitch, no pressure · Replies within 24 hours</p>
 
           <a href="#reviews" className="group mt-6 inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted transition hover:text-fg">
             <span className="flex gap-0.5" aria-hidden="true">
@@ -67,26 +66,15 @@ export default function Hero() {
               <div key={p.label}>
                 <dt className="sr-only">{p.label}</dt>
                 <dd>
-                  <span className="block font-display text-2xl font-bold">{p.value}</span>
+                  <span className="block font-display text-2xl font-bold">
+                    <CountUp value={p.value} />
+                  </span>
                   <span className="text-xs text-muted">{p.label}</span>
                 </dd>
               </div>
             ))}
           </dl>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted">
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin size={15} /> {profile.location}
-            </span>
-            <span aria-hidden="true" className="hidden h-4 w-px bg-line sm:block" />
-            <ul className="flex flex-wrap gap-2">
-              {niches.map((n) => (
-                <li key={n} className="chip">
-                  {n}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <div className="animate-fade-up [animation-delay:150ms]">

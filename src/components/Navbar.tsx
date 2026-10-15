@@ -11,7 +11,28 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 px-4">
+    <header className="fixed inset-x-0 top-0 z-50">
+      <a
+        href="#health-check"
+        className="group relative isolate flex h-9 items-center justify-center gap-2.5 border-b border-accent/20 bg-bg/85 px-4 text-xs font-medium text-fg backdrop-blur-md before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-r before:from-accent-soft/5 before:via-accent-soft/15 before:to-pop/10 sm:text-[13px]"
+      >
+        <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+        </span>
+        <span>
+          <span className="sm:hidden">Accepting clients</span>
+          <span className="hidden sm:inline">Currently accepting clients</span>
+        </span>
+        <span className="text-muted/60" aria-hidden="true">
+          ·
+        </span>
+        <span className="font-semibold text-accent underline decoration-accent/40 underline-offset-4 transition group-hover:decoration-accent">
+          <span className="sm:hidden">Free server check</span>
+          <span className="hidden sm:inline">Get your free server health check</span>
+        </span>
+      </a>
+      <div className="px-4 pt-3">
       <nav
         aria-label="Main"
         className="mx-auto flex max-w-4xl items-center justify-between rounded-full border border-line bg-surface/80 py-2 pl-5 pr-2 shadow-lg shadow-black/10 backdrop-blur-md"
@@ -98,6 +119,7 @@ export default function Navbar() {
           </ul>
         </div>
       )}
+      </div>
     </header>
   );
 }

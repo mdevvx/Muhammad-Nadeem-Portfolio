@@ -4,6 +4,8 @@ import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import HealthCheck from "@/components/HealthCheck";
 import Reviews from "@/components/Reviews";
+import ClientMarquee from "@/components/ClientMarquee";
+import Fit from "@/components/Fit";
 import ScrollEffects from "@/components/ScrollEffects";
 import CommandPalette from "@/components/CommandPalette";
 import Process from "@/components/Process";
@@ -11,17 +13,72 @@ import About from "@/components/About";
 import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import { links, profile } from "@/lib/site";
+import { botService, faqs, links, profile, seo, services, siteUrl } from "@/lib/site";
+
+const sameAs = [links.upwork, links.linkedin, links.github, links.discord].filter(Boolean);
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: profile.name,
-  description: profile.description,
-  areaServed: "Worldwide",
-  address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
-  email: profile.email,
-  sameAs: [links.github, links.upwork, links.linkedin].filter(Boolean),
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: profile.name,
+      jobTitle: "Discord Community Manager & Bot Developer",
+      url: siteUrl,
+      image: `${siteUrl}/avatar.jpg`,
+      email: `mailto:${profile.email}`,
+      address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
+      sameAs,
+      knowsAbout: [
+        "Discord community management",
+        "Discord server setup",
+        "Discord moderation",
+        "Discord bot development",
+        "discord.py",
+        "discord.js",
+        "Community security",
+      ],
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#service`,
+      name: `${profile.name}, Discord Community Manager & Bot Developer`,
+      description: seo.description,
+      url: siteUrl,
+      image: `${siteUrl}/opengraph-image`,
+      email: profile.email,
+      areaServed: "Worldwide",
+      address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
+      provider: { "@id": `${siteUrl}/#person` },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Discord services",
+        itemListElement: [...services.map((s) => s.title), botService.title].map((name) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name },
+        })),
+      },
+      sameAs,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: profile.name,
+      publisher: { "@id": `${siteUrl}/#person` },
+      inLanguage: "en",
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ],
 };
 
 export default function Home() {
@@ -36,9 +93,11 @@ export default function Home() {
       <Navbar />
       <main id="main">
         <Hero />
+        <ClientMarquee />
         <Services />
         <Projects />
         <Reviews />
+        <Fit />
         <HealthCheck />
         <Process />
         <About />

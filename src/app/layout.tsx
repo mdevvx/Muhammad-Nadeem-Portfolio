@@ -1,39 +1,35 @@
 import type { Metadata, Viewport } from "next";
 import { display, sans, mono } from "@/lib/fonts";
-import { profile } from "@/lib/site";
+import { profile, seo, siteUrl } from "@/lib/site";
 import "./globals.css";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: `${profile.name} | ${profile.role}`,
-    template: `%s | ${profile.siteName}`,
-  },
-  description: profile.description,
-  keywords: [
-    "Discord community manager",
-    "Discord bot developer",
-    "Discord server setup",
-    "Discord moderation",
-    "discord.py",
-    "discord.js",
-    "Discord security consulting",
-  ],
-  authors: [{ name: profile.name }],
+  title: { default: seo.title, template: `%s | ${profile.name}` },
+  description: seo.description,
+  keywords: seo.keywords,
+  authors: [{ name: profile.name, url: siteUrl }],
+  creator: profile.name,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: `${profile.name} | ${profile.role}`,
-    description: profile.description,
-    siteName: profile.siteName,
+    url: "/",
+    locale: "en_US",
+    siteName: profile.name,
+    title: seo.title,
+    description: seo.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} | ${profile.role}`,
-    description: profile.description,
+    title: seo.title,
+    description: seo.description,
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  category: "technology",
 };
 
 export const viewport: Viewport = {

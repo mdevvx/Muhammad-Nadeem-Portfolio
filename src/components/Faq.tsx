@@ -10,7 +10,7 @@ export default function Faq() {
           eyebrow="FAQ"
           title={
             <>
-              Straight answers, <span className="text-gradient">no fluff</span>
+              Questions clients <span className="text-gradient">usually ask</span>
             </>
           }
           description="Do not see your question? Send a message below and I will reply personally."

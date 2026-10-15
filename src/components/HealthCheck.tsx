@@ -73,7 +73,7 @@ export default function HealthCheck() {
       <div className="container-page grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div data-reveal>
           <SectionHeading
-            eyebrow="Free tool"
+            eyebrow="Free Discord server audit"
             title={
               <>
                 How healthy is <span className="text-gradient">your server?</span>

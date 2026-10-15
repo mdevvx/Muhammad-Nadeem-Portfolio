@@ -25,10 +25,10 @@ export default function Services() {
     <section id="services" className="py-16 sm:py-20">
       <div data-reveal className="container-page">
         <SectionHeading
-          eyebrow="Services"
+          eyebrow="Discord services and pricing"
           title={
             <>
-              Everything your server needs, <span className="text-gradient">under one roof</span>
+              What I can take <span className="text-gradient">off your plate</span>
             </>
           }
           description="Pick one service or combine them. Most projects start with a buildout or a bot and grow into ongoing management."
@@ -38,7 +38,7 @@ export default function Services() {
           {services.map((s) => {
             const Icon = icons[s.icon];
             return (
-              <article key={s.id} className={`card group p-6 transition hover:-translate-y-0.5 hover:border-accent/50 ${s.span}`}>
+              <article key={s.id} className={`card group flex flex-col p-6 transition hover:-translate-y-0.5 hover:border-accent/50 ${s.span}`}>
                 <div className="flex items-center gap-3">
                   <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent-soft/15 text-accent">
                     <Icon size={21} />
@@ -46,7 +46,7 @@ export default function Services() {
                   <h3 className="text-lg font-semibold tracking-tight">{s.title}</h3>
                 </div>
                 <p className="mt-4 text-sm leading-relaxed text-muted">{s.blurb}</p>
-                <ul className="mt-5 space-y-2">
+                <ul className="mb-6 mt-5 space-y-2">
                   {s.points.map((p) => (
                     <li key={p} className="flex items-start gap-2 text-sm">
                       <Check size={15} className="mt-0.5 shrink-0 text-pop" />
@@ -54,6 +54,11 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-auto flex flex-wrap items-baseline gap-x-2 gap-y-1 border-t border-line pt-5">
+                  <span className="font-display text-2xl font-bold">{s.price ?? "Custom"}</span>
+                  <span className="text-sm text-muted">{s.price ? s.priceUnit : "pricing"}</span>
+                  <span className="w-full text-xs text-muted">{s.priceNote ?? "Scoped on a free call"}</span>
+                </div>
               </article>
             );
           })}
@@ -74,7 +79,12 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <a href="#contact" className="btn-primary mt-7 w-full py-3.5 sm:w-auto sm:py-3">
+                <div className="mt-6 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <span className="font-display text-2xl font-bold">{botService.price ?? "Custom"}</span>
+                  <span className="text-sm text-muted">{botService.price ? botService.priceUnit : "pricing"}</span>
+                  <span className="w-full text-xs text-muted">{botService.priceNote ?? "Quoted per bot after a short scoping call"}</span>
+                </div>
+                <a href="#contact" className="btn-primary mt-6 w-full py-3.5 sm:w-auto sm:py-3">
                   Discuss a bot
                 </a>
               </div>
@@ -106,6 +116,16 @@ export default function Services() {
               </div>
             </div>
           </article>
+        </div>
+
+        <div className="mt-4 flex flex-col gap-4 rounded-2xl border border-dashed border-line p-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-muted">
+            <span className="font-semibold text-fg">Need something in between?</span> Part-time coverage, project-based work or a
+            buildout plus light management, scoped to fit earlier-stage brands.
+          </p>
+          <a href="#contact" className="btn-ghost shrink-0">
+            Scope a custom plan
+          </a>
         </div>
       </div>
     </section>

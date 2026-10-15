@@ -11,7 +11,7 @@ export default function Process() {
               eyebrow="How it works"
               title={
                 <>
-                  A simple process, <span className="text-gradient">no runaround</span>
+                  How we&apos;ll <span className="text-gradient">work together</span>
                 </>
               }
             />

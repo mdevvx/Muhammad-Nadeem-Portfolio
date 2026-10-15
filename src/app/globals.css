@@ -34,7 +34,7 @@ html[data-theme="light"] {
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 8rem;
   }
   body {
     @apply bg-bg font-sans text-fg antialiased;

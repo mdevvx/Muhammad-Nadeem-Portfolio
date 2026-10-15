@@ -1,49 +1,86 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BadgeCheck, ChevronLeft, ChevronRight, Crown, Quote } from "lucide-react";
+import { BadgeCheck, ChevronLeft, ChevronRight, Crown, Quote, X } from "lucide-react";
 import SectionHeading from "./SectionHeading";
-import { reviews, trackRecord } from "@/lib/site";
+import CountUp from "./CountUp";
+import { reviews, trackRecord, type Review } from "@/lib/site";
 
 const slides = reviews.filter((r) => r.quote);
-const AUTOPLAY_MS = 7000;
+const AUTOPLAY_MS = 6000;
 
-const who = (client: string, company?: string) => (company ? `${client}, ${company}` : client);
+const who = (r: Review) => (r.company ? `${r.client}, ${r.company}` : r.client);
+const initials = (r: Review) => {
+  const words = r.client.split(" ");
+  return (words.length === 1 ? words[0].slice(0, 2) : words.map((w) => w[0]).join("").slice(0, 2)).toUpperCase();
+};
+// Rough length at which a review overflows the clamped card body.
+const isLong = (r: Review) => (r.quote?.length ?? 0) > 230;
 
-/** Swipeable testimonial carousel: native scroll-snap, arrow buttons, dots and gentle autoplay. */
+/** Equal-size review cards in a swipeable row. Long reviews are clamped with a "Read more" dialog. */
 export default function Reviews() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [index, setIndex] = useState(0);
+  const [page, setPage] = useState(0);
+  const [pages, setPages] = useState(1);
   const [paused, setPaused] = useState(false);
+  const [open, setOpen] = useState<Review | null>(null);
 
-  const goTo = useCallback((i: number) => {
+  const step = useCallback(() => {
     const track = trackRef.current;
-    if (!track) return;
-    const n = (i + slides.length) % slides.length;
-    track.scrollTo({ left: n * track.clientWidth, behavior: "smooth" });
+    const card = track?.firstElementChild as HTMLElement | null;
+    if (!track || !card) return 0;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return card.offsetWidth + gap;
   }, []);
 
-  // Keep the dots in sync with swipes and arrow clicks alike.
+  const goTo = useCallback(
+    (p: number) => {
+      const track = trackRef.current;
+      if (!track) return;
+      const perView = Math.max(1, Math.round(track.clientWidth / step()));
+      const total = Math.max(1, slides.length - perView + 1);
+      const n = ((p % total) + total) % total;
+      track.scrollTo({ left: n * step(), behavior: "smooth" });
+    },
+    [step],
+  );
+
+  // Track position (for dots) on swipe, arrows and resize alike.
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
     let frame = 0;
-    const onScroll = () => {
+    const sync = () => {
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => setIndex(Math.round(track.scrollLeft / track.clientWidth)));
+      frame = requestAnimationFrame(() => {
+        const s = step() || 1;
+        const perView = Math.max(1, Math.round(track.clientWidth / s));
+        setPages(Math.max(1, slides.length - perView + 1));
+        setPage(Math.round(track.scrollLeft / s));
+      });
     };
-    track.addEventListener("scroll", onScroll, { passive: true });
+    sync();
+    track.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
     return () => {
       cancelAnimationFrame(frame);
-      track.removeEventListener("scroll", onScroll);
+      track.removeEventListener("scroll", sync);
+      window.removeEventListener("resize", sync);
     };
-  }, []);
+  }, [step]);
 
   useEffect(() => {
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setTimeout(() => goTo(index + 1), AUTOPLAY_MS);
+    if (paused || open || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = setTimeout(() => goTo(page + 1), AUTOPLAY_MS);
     return () => clearTimeout(t);
-  }, [index, paused, goTo]);
+  }, [page, paused, open, goTo]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   if (slides.length === 0) return null;
 
@@ -55,23 +92,23 @@ export default function Reviews() {
             eyebrow="Client reviews"
             title={
               <>
-                Don&apos;t take my word, <span className="text-gradient">take theirs</span>
+                What clients said <span className="text-gradient">after the work</span>
               </>
             }
           />
           <div className="flex shrink-0 gap-2">
             <button
               type="button"
-              onClick={() => goTo(index - 1)}
-              aria-label="Previous review"
+              onClick={() => goTo(page - 1)}
+              aria-label="Previous reviews"
               className="grid h-11 w-11 place-items-center rounded-full border border-line bg-surface/60 text-muted transition hover:border-accent/60 hover:text-fg"
             >
               <ChevronLeft size={18} />
             </button>
             <button
               type="button"
-              onClick={() => goTo(index + 1)}
-              aria-label="Next review"
+              onClick={() => goTo(page + 1)}
+              aria-label="Next reviews"
               className="grid h-11 w-11 place-items-center rounded-full border border-line bg-surface/60 text-muted transition hover:border-accent/60 hover:text-fg"
             >
               <ChevronRight size={18} />
@@ -101,7 +138,9 @@ export default function Reviews() {
                 <div key={s.label}>
                   <dt className="sr-only">{s.label}</dt>
                   <dd>
-                    <span className="text-gradient block font-display text-3xl font-bold sm:text-5xl">{s.value}</span>
+                    <span className="text-gradient block font-display text-3xl font-bold sm:text-5xl">
+                      <CountUp value={s.value} />
+                    </span>
                     <span className="mt-1 block text-xs text-muted sm:text-sm">{s.label}</span>
                   </dd>
                 </div>
@@ -111,7 +150,7 @@ export default function Reviews() {
         </div>
 
         <div
-          className="relative mt-6"
+          className="mt-6"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocusCapture={() => setPaused(true)}
@@ -123,7 +162,7 @@ export default function Reviews() {
             role="region"
             aria-roledescription="carousel"
             aria-label="Client reviews"
-            className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="-mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {slides.map((r, i) => (
               <figure
@@ -131,49 +170,87 @@ export default function Reviews() {
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${i + 1} of ${slides.length}`}
-                className="w-full shrink-0 snap-center"
+                className="card group relative flex h-[22rem] w-[85%] shrink-0 snap-center flex-col sm:snap-start overflow-hidden p-6 transition duration-300 hover:border-accent/50 sm:w-[calc(50%-0.5rem)] lg:w-[calc((100%-2rem)/3)]"
               >
-                <div className="card relative mx-auto flex h-full flex-col justify-center overflow-hidden p-6 sm:p-10 lg:p-14">
-                  <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-pop/10 blur-3xl" aria-hidden="true" />
-                  <Quote size={56} className="absolute right-6 top-6 text-accent/15 sm:right-10 sm:top-10" aria-hidden="true" />
-
-                  <p className="relative font-mono text-xs uppercase tracking-[0.18em] text-accent">{r.project}</p>
-                  <blockquote
-                    className={`relative mt-5 space-y-4 font-display font-semibold leading-snug ${
-                      r.quote!.length > 400 ? "text-base sm:text-lg" : "text-lg sm:text-2xl"
-                    }`}
-                  >
-                    {r.quote!.split("\n\n").map((para, p, all) => (
-                      <p key={p} className="whitespace-pre-line">
-                        {p === 0 && "“"}
-                        {para}
-                        {p === all.length - 1 && "”"}
-                      </p>
-                    ))}
-                  </blockquote>
-                  <figcaption className="relative mt-8 flex items-center gap-3">
-                    <span className="h-px w-8 bg-gradient-to-r from-accent to-pop" aria-hidden="true" />
-                    <span className="font-semibold">{who(r.client, r.company)}</span>
-                  </figcaption>
+                <div
+                  className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-pop/0 blur-3xl transition duration-500 group-hover:bg-pop/15"
+                  aria-hidden="true"
+                />
+                <div className="relative flex items-start justify-between gap-3">
+                  <p className="line-clamp-2 font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] text-accent">{r.project}</p>
+                  <Quote size={28} className="shrink-0 text-accent/20" aria-hidden="true" />
                 </div>
+
+                <blockquote className="relative mt-4 line-clamp-6 whitespace-pre-line text-[15px] leading-relaxed text-fg/90">
+                  &ldquo;{r.quote!.replace(/\n\n/g, " ")}&rdquo;
+                </blockquote>
+                {isLong(r) && (
+                  <button
+                    type="button"
+                    onClick={() => setOpen(r)}
+                    className="relative mt-2 self-start text-sm font-semibold text-accent hover:underline"
+                  >
+                    Read more
+                  </button>
+                )}
+
+                <figcaption className="relative mt-auto flex items-center gap-3 border-t border-line pt-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-accent-soft to-pop font-display text-sm font-bold text-on-accent">
+                    {initials(r)}
+                  </span>
+                  <span className="min-w-0 truncate font-semibold">{who(r)}</span>
+                </figcaption>
               </figure>
             ))}
           </div>
 
           <div className="mt-6 flex justify-center gap-2">
-            {slides.map((r, i) => (
+            {Array.from({ length: pages }, (_, i) => (
               <button
-                key={r.client + r.dates}
+                key={i}
                 type="button"
                 onClick={() => goTo(i)}
-                aria-label={`Show review ${i + 1}`}
-                aria-current={i === index}
-                className={`h-2 rounded-full transition-all duration-300 ${i === index ? "w-8 bg-accent" : "w-2 bg-line hover:bg-muted"}`}
+                aria-label={`Go to review ${i + 1}`}
+                aria-current={i === page}
+                className={`h-2 rounded-full transition-all duration-300 ${i === page ? "w-8 bg-accent" : "w-2 bg-line hover:bg-muted"}`}
               />
             ))}
           </div>
         </div>
       </div>
+
+      {open && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Review from ${who(open)}`}>
+          <div className="absolute inset-0 bg-bg/80 backdrop-blur-sm" onClick={() => setOpen(null)} aria-hidden="true" />
+          <figure className="card relative max-h-[85vh] w-full max-w-2xl animate-msg-in overflow-y-auto p-6 sm:p-10">
+            <button
+              type="button"
+              onClick={() => setOpen(null)}
+              aria-label="Close"
+              autoFocus
+              className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-line text-muted transition hover:text-fg"
+            >
+              <X size={16} />
+            </button>
+            <p className="pr-10 font-mono text-xs uppercase tracking-[0.16em] text-accent">{open.project}</p>
+            <blockquote className="mt-5 space-y-4 text-base leading-relaxed sm:text-lg">
+              {open.quote!.split("\n\n").map((p, i, all) => (
+                <p key={i} className="whitespace-pre-line">
+                  {i === 0 && "“"}
+                  {p}
+                  {i === all.length - 1 && "”"}
+                </p>
+              ))}
+            </blockquote>
+            <figcaption className="mt-8 flex items-center gap-3 border-t border-line pt-5">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-accent-soft to-pop font-display text-sm font-bold text-on-accent">
+                {initials(open)}
+              </span>
+              <span className="font-semibold">{who(open)}</span>
+            </figcaption>
+          </figure>
+        </div>
+      )}
     </section>
   );
 }

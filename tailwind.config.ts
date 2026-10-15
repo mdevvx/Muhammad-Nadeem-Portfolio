@@ -24,6 +24,10 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
         "fade-up": {
           "0%": { opacity: "0", transform: "translateY(14px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
@@ -51,6 +55,7 @@ const config: Config = {
         "msg-in": "msg-in 0.35s ease-out both",
         "typing-dot": "typing-dot 1.2s ease-in-out infinite",
         shine: "shine 6s linear infinite",
+        marquee: "marquee 40s linear infinite",
       },
     },
   },

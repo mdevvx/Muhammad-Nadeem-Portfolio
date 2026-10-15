@@ -5,6 +5,29 @@
 // Profile links come from env vars (see .env.example). Each process.env access must stay
 // written out in full so Next.js can inline it into client components at build time.
 // An empty value hides that link's buttons instead of leaving a dead link.
+/** Public site URL. Falls back to the live domain so canonical links and the sitemap never point at localhost. */
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://mnadeem.duoplus.org").replace(/\/$/, "");
+
+/** Search snippet: aim for ~150-160 characters with the main search terms up front. */
+export const seo = {
+  title: "Discord Community Manager & Bot Developer | Muhammad Nadeem",
+  description:
+    "Top Rated Discord community manager and bot developer. Server setup, moderation, security and custom discord.py and discord.js bots for growing brands.",
+  keywords: [
+    "Discord community manager",
+    "hire Discord community manager",
+    "Discord bot developer",
+    "custom Discord bot",
+    "Discord server setup",
+    "Discord server builder",
+    "Discord moderation service",
+    "Discord security",
+    "discord.py developer",
+    "discord.js developer",
+    "Discord consultant",
+  ],
+};
+
 export const links = {
   github: process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/mdevvx",
   upwork: process.env.NEXT_PUBLIC_UPWORK_URL || "https://www.upwork.com/freelancers/mdevvx",
@@ -22,13 +45,12 @@ export const profile = {
   email: "muhammadnadeem.1596@gmail.com",
   siteName: "Muhammad Nadeem",
   description:
-    "Freelance Discord specialist: community management, custom bots, server architecture and security consulting for ecommerce, trading, gaming, AI and Web3 brands.",
+    "Discord community manager and bot developer. I run, build and secure Discord servers for ecommerce, trading, gaming, AI and Web3 brands, and write custom bots that fit how your community works.",
 };
 
 export const nav = [
   { label: "Services", href: "#services" },
   { label: "Bots", href: "#work" },
-  { label: "Health check", href: "#health-check" },
   { label: "Process", href: "#process" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
@@ -43,18 +65,24 @@ export const services: {
   blurb: string;
   points: string[];
   span: string;
+  /** e.g. "$500". Leave unset to show "Custom pricing". */
+  price?: string;
+  /** e.g. "one-time", "/month" */
+  priceUnit?: string;
+  /** Small line under the price, e.g. "Most clients land around $X" */
+  priceNote?: string;
 }[] = [
   {
     id: "management",
     icon: "users",
     title: "Community Management",
     blurb:
-      "Daily presence, moderation, events and reporting, so your team can focus on the business while the server stays healthy.",
+      "I'm in your server every day handling moderation, events and member questions, so your team can get back to running the business.",
     points: [
       "Day to day moderation and member support",
       "Engagement calendar, events and announcements",
       "Mod team onboarding and escalation process",
-      "Regular reporting on what is working",
+      "Regular reports on what's working and what isn't",
     ],
     span: "md:col-span-3",
   },
@@ -63,10 +91,10 @@ export const services: {
     icon: "layout",
     title: "Server Buildout",
     blurb:
-      "A server designed around your goals, built from scratch or rebuilt, ready to launch with a clear member journey.",
+      "A server planned around your goals, built from scratch or rebuilt, so new members know exactly where to go.",
     points: [
       "Channel architecture and role hierarchy",
-      "Permission matrix that stays maintainable",
+      "Permissions that stay easy to manage",
       "Welcome flow, verification and onboarding",
       "Branded embeds, rules and server guide",
     ],
@@ -77,7 +105,7 @@ export const services: {
     icon: "shield",
     title: "Moderation & Security",
     blurb:
-      "Scams, spam and raids stopped before they reach members, with playbooks your staff can follow under pressure.",
+      "Scams, spam and raids get stopped before your members ever see them, and your mods get a clear plan for when things go wrong.",
     points: [
       "AutoMod, anti-raid and verification setup",
       "Logging and alert channels",
@@ -91,7 +119,7 @@ export const services: {
     icon: "compass",
     title: "Strategy Consulting",
     blurb:
-      "You already have people running the server and need the plan, an honest review, or training for your team.",
+      "Your team already runs the server. You want a second pair of eyes, a clear plan, or training for your mods.",
     points: [
       "Server and permissions audit",
       "Staff training and SOP documents",
@@ -102,10 +130,17 @@ export const services: {
   },
 ];
 
-export const botService = {
+export const botService: {
+  title: string;
+  blurb: string;
+  tags: string[];
+  price?: string;
+  priceUnit?: string;
+  priceNote?: string;
+} = {
   title: "Custom Discord Bots",
   blurb:
-    "Off-the-shelf bots rarely match how your server actually works. I build bots to your spec in Python (discord.py) or JavaScript (discord.js v14), hand them off with documentation, and can host them for you.",
+    "Off-the-shelf bots rarely fit how your server actually works. I build bots around your exact workflow in Python (discord.py) or JavaScript (discord.js v14), document everything, and can host them for you too.",
   tags: [
     "Role automation",
     "Ticket systems",
@@ -122,22 +157,22 @@ export const processSteps = [
   {
     step: "01",
     title: "Tell me what you need",
-    body: "Send a message or book a call. Share the server, the goal and what is not working. No Discord knowledge needed.",
+    body: "Send a message or book a call. Tell me about the server, what you want from it and what isn't working. You don't need to know Discord.",
   },
   {
     step: "02",
-    title: "Get a straight read",
-    body: "I review the server or the idea and tell you what to fix first, what it takes and how long it will realistically run.",
+    title: "Get an honest review",
+    body: "I look at your server or idea and tell you what to fix first, what it'll take and how long it'll realistically run.",
   },
   {
     step: "03",
     title: "Scope, then build",
-    body: "We agree on scope, timeline and price in writing. I build, you review in short rounds, and nothing ships blind.",
+    body: "We agree on scope, timeline and price in writing. I build, you review as we go, and nothing goes live without your OK.",
   },
   {
     step: "04",
     title: "Hand off and support",
-    body: "You get documentation and a walkthrough. Stay on for ongoing management or support, or run it yourself.",
+    body: "You get documentation and a walkthrough. Keep me on for management and support, or run it yourself.",
   },
 ] as const;
 
@@ -171,7 +206,7 @@ export const projects: {
     href: "https://github.com/mdevvx/Support-Pilot",
   },
   {
-    title: "Shadowban Bot",
+    title: "Shadowban",
     categories: ["AI-powered", "Security & access"],
     kind: "AI moderation",
     blurb:
@@ -180,7 +215,7 @@ export const projects: {
     href: "https://github.com/mdevvx/Liberty-Conciergerie-Security-Bot",
   },
   {
-    title: "MANAVA Multiverse Bot",
+    title: "MANAVA Multiverse",
     categories: ["Engagement"],
     kind: "Client project, gaming",
     blurb:
@@ -189,7 +224,7 @@ export const projects: {
     href: "https://github.com/mdevvx/MANAVA-Setup-Bot",
   },
   {
-    title: "Luckmaxxing Protocol Bot",
+    title: "Luckmaxxing Protocol",
     categories: ["Engagement"],
     kind: "Client project, training",
     blurb:
@@ -198,7 +233,7 @@ export const projects: {
     href: "https://github.com/mdevvx/Luckmaxxing-Protocol-Bot",
   },
   {
-    title: "Membership Verification Bot",
+    title: "Membership Verification",
     categories: ["Security & access"],
     kind: "Client project, subscriptions",
     blurb:
@@ -207,7 +242,7 @@ export const projects: {
     href: "https://github.com/mdevvx/Winners-Circle-Official-Bot",
   },
   {
-    title: "Auth Handler Bot",
+    title: "Auth Handler",
     categories: ["Security & access"],
     kind: "Access control",
     blurb:
@@ -274,7 +309,7 @@ export const reviews: Review[] = [
     company: "BlueWillow AI",
     project: "Discord Moderation Help",
     rating: 5,
-    dates: "Feb 27 – Apr 5, 2023",
+    dates: "Feb 27 to Apr 5, 2023",
     featured: true,
     quote:
       "I just wanted to take a moment to express my gratitude for all the hard work and dedication you have put into moderating our Discord community. Your efforts have not gone unnoticed and have made a significant impact on our community's overall experience.\n\nI have been consistently impressed with your ability to keep the chat organized and friendly, while still allowing for open and constructive discussions. Your patience, professionalism, and positive attitude have been instrumental in creating a welcoming environment for everyone.\n\nYour swift and fair handling of rule violations and conflicts has been especially admirable. Your ability to diffuse tense situations and calmly address issues has helped to maintain the overall harmony of the community.\n\nThank you for your outstanding contributions to our community. Your time and effort have made a real difference, and we are lucky to have you as a moderator.",
@@ -284,16 +319,16 @@ export const reviews: Review[] = [
     client: "Davide Scaramella",
     project: "Discord setup and security hardening",
     rating: 5,
-    dates: "May 29 – Jun 26, 2026",
+    dates: "May 29 to Jun 26, 2026",
     quote:
-      "Great experience working with Muhammad. Our Discord server had been built up over time by a few different admins, and it had gradually turned into a mess — a blowout of superseded bots, roles, and channels that nobody had cleaned up. Security was my biggest concern going in, but Muhammad sorted out the whole thing: knowledgeable, effective, and quick to respond throughout. He delivered exactly what we needed and I'd happily work with him again.",
+      "Great experience working with Muhammad. Our Discord server had been built up over time by a few different admins, and it had gradually turned into a mess, a blowout of superseded bots, roles, and channels that nobody had cleaned up. Security was my biggest concern going in, but Muhammad sorted out the whole thing: knowledgeable, effective, and quick to respond throughout. He delivered exactly what we needed and I'd happily work with him again.",
     endorsements: ["Committed to Quality", "Solution Oriented", "Detail Oriented"],
   },
   {
     client: "Adam Wilcox",
     project: "Discord Server Creation",
     rating: 5,
-    dates: "May 2 – May 24, 2026",
+    dates: "May 2 to May 24, 2026",
     quote: "Great guy! Super easy to work with and has a great ability to follow instructions. Will use again 100%!!",
     endorsements: ["Committed to Quality", "Solution Oriented", "Detail Oriented"],
   },
@@ -302,7 +337,7 @@ export const reviews: Review[] = [
     company: "Imagine Innovation",
     project: "Pajama Billionaire Community automation and management",
     rating: 5,
-    dates: "Dec 10, 2025 – May 18, 2026",
+    dates: "Dec 10, 2025 to May 18, 2026",
     quote: "Nadeem was easy to work with, Very Efficient and he gets the work done!",
     endorsements: ["Solution Oriented", "Clear Communicator"],
   },
@@ -311,7 +346,7 @@ export const reviews: Review[] = [
     company: "Imagine Innovation",
     project: "Pajama Billionaire Community automation and management",
     rating: 5,
-    dates: "Nov 14 – Dec 9, 2025",
+    dates: "Nov 14 to Dec 9, 2025",
     quote:
       "Muhammad was a delight to work with. He did an excellent job with our automations and we will not hesitate to hire him for similar projects in the nearest future. Thank you Muhammad!",
     endorsements: ["Collaborative", "Committed to Quality", "Solution Oriented"],
@@ -320,7 +355,7 @@ export const reviews: Review[] = [
     client: "Lovro Jambrecina",
     project: "Discord Moderator",
     rating: 5,
-    dates: "Feb 12 – Mar 11, 2026",
+    dates: "Feb 12 to Mar 11, 2026",
     quote: "Delivered everything fast, was reliable and understood everything\nWill re-hire when I need some more work done\nGreat job!!!",
     endorsements: ["Reliable", "Clear Communicator"],
   },
@@ -328,7 +363,7 @@ export const reviews: Review[] = [
     client: "Shaun Eng",
     project: "Discord Revamp",
     rating: 5,
-    dates: "Feb 26 – May 8, 2026",
+    dates: "Feb 26 to May 8, 2026",
     quote: "Great experience with Discord and helped us revamp our server.",
     endorsements: ["Committed to Quality", "Solution Oriented", "Accountable for Outcomes"],
   },
@@ -336,7 +371,7 @@ export const reviews: Review[] = [
     client: "Nick Irvine",
     project: "Build and deploy a discord bot",
     rating: 5,
-    dates: "Feb 22 – May 22, 2026",
+    dates: "Feb 22 to May 22, 2026",
     endorsements: ["Committed to Quality", "Solution Oriented", "Clear Communicator"],
   },
 ];
@@ -354,34 +389,61 @@ export const trackRecord = {
   ],
 };
 
+/** Brands I've worked with, shown in the scrolling strip under the hero. */
+export const clients = [
+  "BlueWillow AI",
+  "Pajama Billionaire",
+  "MANAVA Multiverse",
+  "Vector Games",
+  "Liberty Conciergerie",
+  "RunItUp",
+  "Luckmaxxing",
+  "Winners Circle",
+];
+
+/** "Who this is for" section. */
+export const fit = {
+  good: [
+    { title: "Discord is part of your brand", body: "Not a side project. It's where customers decide whether to stick around." },
+    { title: "You want members who stay", body: "Retention and real activity, not a spike that fades in 30 days." },
+    { title: "You want honest feedback", body: "If something was built wrong, you'd rather hear it and fix it." },
+    { title: "You'd rather do it right once", body: "Proper systems and documentation, not patching the same problems every month." },
+  ],
+  notFit: [
+    "You want fake members or growth-hack promises",
+    "You're looking for the cheapest option out there",
+    "You want someone who'll agree with everything",
+  ],
+};
+
 export const faqs = [
   {
     q: "What is included in community management?",
-    a: "Someone owns the server day to day: moderation, member support, events, announcements, mod team coordination and reporting. The exact scope depends on how active your server is, so I scope it on a call and put it in writing.",
+    a: "I take care of the server day to day. That covers moderation, member support, events, announcements, keeping the mod team in sync and regular reports. How much work that is depends on how busy your server is, so we figure out the scope on a call and I put it in writing.",
   },
   {
     q: "Can you help us grow our member count?",
-    a: "I focus on keeping and activating the members you already attract, with structure, onboarding, events and moderation that make people stay. Paid ads and outbound growth are best handled by your marketing team.",
+    a: "Not directly. My job is keeping the members you already bring in, with a clear structure, good onboarding, regular events and solid moderation. Paid ads and outreach are better handled by your marketing team.",
   },
   {
     q: "We already have someone running the server. Can you just consult?",
-    a: "Yes. Strategy Consulting is for that: I review what is built, tell you honestly what to change, write the playbook and train your team.",
+    a: "Yes, that's what Strategy Consulting is for. I go through what you've built, tell you honestly what I'd change, write it all down and train your team on it.",
   },
   {
-    q: "We do not have a server yet. Where do we start?",
-    a: "Server Buildout. I design channels, roles, permissions, onboarding and security, then you can run it yourself or keep me on for management.",
+    q: "We don't have a server yet. Where do we start?",
+    a: "Start with a Server Buildout. I set up the channels, roles, permissions, onboarding and security. After that you can run it yourself or keep me on to manage it.",
   },
   {
-    q: "What can a custom bot do that off-the-shelf bots cannot?",
-    a: "Anything specific to your workflow: AI ticket triage, role assignment from your CRM or payment platform, restock and deal alerts, custom moderation rules, staff tooling. I scope it, quote it, build it and document it.",
+    q: "What can a custom bot do that off-the-shelf bots can't?",
+    a: "Pretty much anything specific to how you work. Think AI ticket triage, roles that sync with your CRM or payment platform, restock and deal alerts, custom moderation rules or tools for your staff. I scope it, quote it, build it and document it.",
   },
   {
     q: "Which languages and tools do you use for bots?",
-    a: "Python with discord.py or JavaScript with discord.js v14, usually with Supabase for data and Railway for hosting. I can work with your stack if you already have one.",
+    a: "Python with discord.py or JavaScript with discord.js v14, usually with Supabase for the database and Railway for hosting. If you already have a stack, I'm happy to work with it.",
   },
   {
     q: "How do we pay and how is the work protected?",
-    a: "I take client work through Upwork or directly through the DuoPlus agency. Scope, milestones and deliverables are agreed up front either way.",
+    a: "You can work with me directly or through my agency, DuoPlus. Either way, we agree on scope, milestones and what you're getting in writing before I start.",
   },
 ] as const;
 
@@ -421,7 +483,7 @@ export const healthQuestions: { area: HealthArea; q: string; fix: string }[] = [
   {
     area: "Security",
     q: "Only people who need admin or ban permissions have them, and mods use 2FA.",
-    fix: "Audit role permissions, remove Administrator from everyone who does not need it and require 2FA for moderation.",
+    fix: "Audit role permissions, remove Administrator from anyone who doesn't need it and require 2FA for moderation.",
   },
   {
     area: "Structure",
