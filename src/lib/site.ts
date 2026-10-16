@@ -460,7 +460,7 @@ export const trackRecord = {
     { value: `${formatRating(stats.avgRating)}★`, label: `Average from ${formatCount(stats.totalReviews)} reviews` },
     { value: formatEarnings(stats.totalEarnings), label: "Earned from client work" },
     { value: formatCount(stats.jobsCompleted), label: "Jobs completed" },
-    { value: formatCount(stats.hoursDelivered), label: "Hours delivered" },
+    { value: `${formatCount(stats.hoursDelivered)}+`, label: "Hours delivered" },
   ],
 };
 
