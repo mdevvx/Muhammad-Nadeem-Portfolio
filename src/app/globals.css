@@ -15,12 +15,12 @@
 }
 
 html[data-theme="light"] {
-  --bg: 252 251 247;
-  --surface: 255 255 255;
-  --elevated: 245 243 237;
-  --line: 232 228 219;
-  --fg: 30 28 24;
-  --muted: 102 98 90;
+  --bg: 238 235 228;
+  --surface: 246 244 238;
+  --elevated: 229 225 216;
+  --line: 214 209 198;
+  --fg: 44 41 37;
+  --muted: 98 94 86;
   color-scheme: light;
 }
 
