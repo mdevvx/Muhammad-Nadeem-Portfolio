@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { links, nav, profile, services, botService } from "@/lib/site";
 
 const socials = [
@@ -41,13 +42,19 @@ function FooterCol({ title, items }: { title: string; items: { label: string; hr
       <ul className="mt-4 space-y-2.5 text-sm">
         {items.map((i) => (
           <li key={i.label}>
-            <a
-              href={i.href}
-              {...(i.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="text-fg/80 transition hover:text-accent"
-            >
-              {i.label}
-            </a>
+            {i.external || i.href.startsWith("mailto:") ? (
+              <a
+                href={i.href}
+                {...(i.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="text-fg/80 transition hover:text-accent"
+              >
+                {i.label}
+              </a>
+            ) : (
+              <Link href={i.href} className="text-fg/80 transition hover:text-accent">
+                {i.label}
+              </Link>
+            )}
           </li>
         ))}
       </ul>

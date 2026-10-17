@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight, Command, CornerDownLeft, Copy, Hash, Moon, Search, Stethoscope } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -9,9 +10,9 @@ type Action = { id: string; label: string; hint: string; icon: LucideIcon; run: 
 
 export const OPEN_PALETTE_EVENT = "palette:open";
 
-function go(hash: string) {
+function go(hash: string, push: (href: string) => void) {
   if (window.location.pathname !== "/") {
-    window.location.href = `/${hash}`;
+    push(`/${hash}`);
     return;
   }
   document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
@@ -20,6 +21,7 @@ function go(hash: string) {
 
 /** Ctrl/⌘+K quick actions: jump to a section, copy the email, switch theme, open GitHub. */
 export default function CommandPalette() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
@@ -28,9 +30,9 @@ export default function CommandPalette() {
 
   const actions = useMemo<Action[]>(
     () => [
-      ...nav.map((n) => ({ id: n.href, label: n.label, hint: "Jump to section", icon: Hash, run: () => go(n.href) })),
-      { id: "contact", label: "Start a project", hint: "Jump to contact form", icon: CornerDownLeft, run: () => go("#contact") },
-      { id: "audit", label: "Run the Server Health Check", hint: "Free, 2 minutes", icon: Stethoscope, run: () => (window.location.href = "/health-check") },
+      ...nav.map((n) => ({ id: n.href, label: n.label, hint: "Jump to section", icon: Hash, run: () => go(n.href, router.push) })),
+      { id: "contact", label: "Start a project", hint: "Jump to contact form", icon: CornerDownLeft, run: () => go("#contact", router.push) },
+      { id: "audit", label: "Run the Server Health Check", hint: "Free, 2 minutes", icon: Stethoscope, run: () => router.push("/health-check") },
       {
         id: "copy",
         label: "Copy email address",
@@ -47,7 +49,7 @@ export default function CommandPalette() {
       },
       { id: "github", label: "Open GitHub", hint: "github.com/mdevvx", icon: ArrowUpRight, run: () => window.open(links.github, "_blank", "noopener") },
     ],
-    [],
+    [router],
   );
 
   const results = useMemo(() => {

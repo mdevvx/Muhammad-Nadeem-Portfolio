@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Command, Menu, X } from "lucide-react";
@@ -15,7 +16,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 print:hidden">
-      <a
+      <Link
         href="/health-check"
         className="group flex h-9 items-center justify-center gap-2.5 border-b border-accent/20 bg-accent-soft/15 px-4 text-xs font-medium text-fg backdrop-blur-md sm:text-[13px]"
       >
@@ -34,13 +35,13 @@ export default function Navbar() {
           <span className="sm:hidden">Free server check</span>
           <span className="hidden sm:inline">Get your free server health check</span>
         </span>
-      </a>
+      </Link>
       <div className="px-4 pt-3">
       <nav
         aria-label="Main"
         className="mx-auto flex max-w-4xl items-center justify-between rounded-full border border-line bg-surface/80 py-2 pl-5 pr-2 shadow-lg shadow-black/10 backdrop-blur-md"
       >
-        <a href={`${base}#top`} className="flex items-center gap-2 font-semibold tracking-tight" onClick={() => setOpen(false)}>
+        <Link href={`${base}#top`} className="flex items-center gap-2 font-semibold tracking-tight" onClick={() => setOpen(false)}>
           <Image
             src="/avatar.jpg"
             alt=""
@@ -50,18 +51,18 @@ export default function Navbar() {
             priority
           />
           {profile.siteName}
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-0.5 lg:flex">
           {nav.map((item) => (
             <li key={item.href}>
-              <a
+              <Link
                 href={`${base}${item.href}`}
                 data-nav-link
                 className="rounded-full px-3.5 py-2 text-sm text-muted transition hover:bg-elevated hover:text-fg data-[active]:bg-elevated data-[active]:text-fg"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -76,9 +77,9 @@ export default function Navbar() {
             <Command size={12} /> K
           </button>
           <ThemeToggle />
-          <a href={`${base}#contact`} className="btn-primary hidden px-4 py-2 sm:inline-flex">
+          <Link href={`${base}#contact`} className="btn-primary hidden px-4 py-2 sm:inline-flex">
             Hire me
-          </a>
+          </Link>
           <button
             type="button"
             className="grid h-9 w-9 place-items-center rounded-full border border-line lg:hidden"
@@ -100,19 +101,19 @@ export default function Navbar() {
           <ul className="flex flex-col">
             {nav.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={`${base}${item.href}`}
                   onClick={() => setOpen(false)}
                   className="block rounded-2xl px-4 py-3 text-sm font-medium text-fg hover:bg-elevated"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li className={`mt-2 grid gap-2 ${links.booking ? "grid-cols-2" : "grid-cols-1"}`}>
-              <a href={`${base}#contact`} onClick={() => setOpen(false)} className="btn-primary">
+              <Link href={`${base}#contact`} onClick={() => setOpen(false)} className="btn-primary">
                 Hire me
-              </a>
+              </Link>
               {links.booking && (
                 <a href={links.booking} target="_blank" rel="noopener noreferrer" className="btn-ghost">
                   Book a call

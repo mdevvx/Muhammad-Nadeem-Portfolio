@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, BadgeCheck, Crown, Star } from "lucide-react";
 import ServerMock from "./ServerMock";
 import { formatCount, formatRating, profile, reviews, stats, trackRecord } from "@/lib/site";
@@ -42,9 +43,9 @@ export default function Hero() {
             <a href="#contact" className="btn-primary w-full py-3.5 sm:w-auto sm:py-3">
               Start a project <ArrowRight size={16} />
             </a>
-            <a href="/health-check" className="btn-ghost w-full py-3.5 sm:w-auto sm:py-3">
+            <Link href="/health-check" className="btn-ghost w-full py-3.5 sm:w-auto sm:py-3">
               Free server health check
-            </a>
+            </Link>
           </div>
           <p className="mt-3 text-xs text-muted">Free 30-minute call · No pitch, no pressure · Replies within 24 hours</p>
 
