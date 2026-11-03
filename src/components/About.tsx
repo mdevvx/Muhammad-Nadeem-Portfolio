@@ -65,7 +65,7 @@ export default function About() {
             </p>
             <p>
               I co-founded <strong className="font-semibold text-fg">DuoPlus</strong> with Muhammad Shaukat, where we build
-              and run our own Discord products like PulseNotify and Threadly. Running them for real users is how I learned
+              and run our own Discord products like DiscoNotify and Threadly. Running them for real users is how I learned
               what it takes to keep a bot reliable. Today I work with ecommerce, trading, gaming, AI and Web3 communities.
             </p>
           </div>

@@ -261,15 +261,18 @@ export const projects: {
   tags: string[];
   categories: ProjectCategory[];
   href: string;
+  /** Optional live site, shown as a second link on the card. */
+  live?: string;
 }[] = [
   {
-    title: "PulseNotify",
+    title: "DiscoNotify",
     categories: ["Automation"],
     kind: "Own product",
     blurb:
       "Multi-server bot that posts an alert the moment a creator uploads, posts or goes live on YouTube, Kick or Instagram, with per-event toggles, custom messages and role mentions.",
     tags: ["discord.py", "Supabase", "Official APIs"],
     href: "https://github.com/mdevvx/PulseNotify-Bot",
+    live: "https://disconotify.com",
   },
   {
     title: "SupportPilot",

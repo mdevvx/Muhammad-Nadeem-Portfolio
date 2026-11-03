@@ -69,14 +69,26 @@ export default function Projects() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
-              >
-                View on GitHub <ArrowUpRight size={15} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
+              <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
+                {p.live && (
+                  <a
+                    href={p.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
+                  >
+                    Visit live site <ArrowUpRight size={15} />
+                  </a>
+                )}
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-1.5 text-sm font-semibold hover:underline ${p.live ? "text-muted" : "text-accent"}`}
+                >
+                  View on GitHub <ArrowUpRight size={15} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              </div>
             </article>
           ))}
         </div>

@@ -76,7 +76,7 @@ const scenarios: Scenario[] = [
     channel: "live-alerts",
     label: "Creator alerts",
     icon: Radio,
-    bot: "PulseNotify",
+    bot: "DiscoNotify",
     user: { initials: "⏱", name: "Scheduler", text: "Checking 48 tracked creators…" },
     reply: {
       color: "border-[#53fc18]",

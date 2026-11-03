@@ -28,7 +28,7 @@ Every external URL is `https://example.com/...` for now. Search `src/lib/site.ts
 
 - GitHub: https://github.com/mdevvx
 - Upwork: https://www.upwork.com/freelancers/mdevvx
-- Booking page, LinkedIn, X, Discord, DuoPlus and PulseNotify: your own URLs
+- Booking page, LinkedIn, X, Discord, DuoPlus and DiscoNotify: your own URLs
 
 ### Font
 
