@@ -48,7 +48,7 @@ export const viewport: Viewport = {
 };
 
 // Runs before paint so the saved theme is applied without a flash.
-const themeScript = `(function(){document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t)}}catch(e){}})();`;
+const themeScript = `(function(){document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme-v2");if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t)}}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

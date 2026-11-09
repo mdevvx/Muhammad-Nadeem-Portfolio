@@ -152,7 +152,7 @@ export const legalDocs: Record<"privacy" | "terms" | "cookies" | "disclaimer", L
         heading: "Strictly necessary storage",
         paragraphs: ["These keep the site working and remember your choices. They do not need consent and cannot be switched off."],
         list: [
-          "theme: remembers whether you picked light or dark mode (local storage).",
+          "theme-v2: remembers whether you picked light or dark mode (local storage).",
           "cookie-consent: remembers your cookie choice so the banner does not keep appearing (local storage).",
           "health-check-progress: keeps your answers if you leave the health check halfway (local storage, stays on your device).",
         ],
