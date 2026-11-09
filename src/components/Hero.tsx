@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Crown, Star } from "lucide-react";
+import { ArrowRight, BadgeCheck, Crown, Star, Stethoscope } from "lucide-react";
 import ServerMock from "./ServerMock";
 import { formatCount, formatRating, profile, reviews, stats, trackRecord } from "@/lib/site";
 import CountUp from "./CountUp";
@@ -30,8 +30,8 @@ export default function Hero() {
           </div>
 
           <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-            A Discord your members{" "}
-            <span className="text-gradient">actually stay in</span>
+            Your Discord is either{" "}
+            <span className="text-gradient">growing your brand</span> or quietly losing members
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
@@ -40,11 +40,11 @@ export default function Hero() {
           </p>
 
           <div className="mt-8 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
-            <a href="#contact" className="btn-primary w-full py-3.5 sm:w-auto sm:py-3">
+            <a href="#contact" data-track="cta_start_project" data-track-label="hero" className="btn-primary w-full py-3.5 sm:w-auto sm:py-3">
               Start a project <ArrowRight size={16} />
             </a>
-            <Link href="/health-check" className="btn-ghost w-full py-3.5 sm:w-auto sm:py-3">
-              Free server health check
+            <Link href="/health-check" data-track="cta_health_check" data-track-label="hero" className="btn-ghost w-full border-accent/60 py-3.5 text-accent hover:border-accent sm:w-auto sm:py-3">
+              <Stethoscope size={16} /> Free server health check
             </Link>
           </div>
           <p className="mt-3 text-xs text-muted">Free 30-minute call · No pitch, no pressure · Replies within 24 hours</p>

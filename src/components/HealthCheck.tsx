@@ -52,7 +52,7 @@ export default function HealthCheck() {
                   <MailX size={13} /> No email needed
                 </li>
               </ul>
-              <Link href="/health-check" className="btn-primary mt-6 w-full py-3.5">
+              <Link href="/health-check" data-track="cta_health_check" data-track-label="home_teaser" className="btn-primary mt-6 w-full py-3.5">
                 Start the free check <ArrowRight size={16} />
               </Link>
             </div>

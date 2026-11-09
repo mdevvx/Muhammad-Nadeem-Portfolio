@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { CalendarCheck, Check, Clock, Copy, Loader2, Mail, Send, X } from "lucide-react";
+import { track } from "@/lib/analytics";
 import SectionHeading from "./SectionHeading";
 import ServiceSelect from "./ServiceSelect";
 import { contactServices, links, profile } from "@/lib/site";
@@ -76,6 +77,7 @@ export default function Contact() {
       setService("");
       setMessage("");
       setSource("Contact form");
+      track("generate_lead", { label: data.source ?? "Contact form", service: data.service || undefined });
       setStatus({ state: "success" });
       // Short pause so the button settles before the confirmation pops up.
       setTimeout(() => setSentTo(firstName), 350);
@@ -114,7 +116,7 @@ export default function Contact() {
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-soft/15 text-accent">
                       <CalendarCheck size={18} />
                     </span>
-                    <a href={links.booking} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-accent">
+                    <a href={links.booking} data-track="cta_book_call" data-track-label="contact" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-accent">
                       Book a free 30 minute call
                     </a>
                   </li>

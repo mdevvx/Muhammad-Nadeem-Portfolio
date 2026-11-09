@@ -18,6 +18,8 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 print:hidden">
       <Link
         href="/health-check"
+        data-track="cta_health_check"
+        data-track-label="top_banner"
         className="group flex h-9 items-center justify-center gap-2.5 border-b border-accent/20 bg-accent-soft/15 px-4 text-xs font-medium text-fg backdrop-blur-md sm:text-[13px]"
       >
         <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
@@ -77,7 +79,7 @@ export default function Navbar() {
             <Command size={12} /> K
           </button>
           <ThemeToggle />
-          <Link href={`${base}#contact`} className="btn-primary hidden px-4 py-2 sm:inline-flex">
+          <Link href={`${base}#contact`} data-track="cta_start_project" data-track-label="nav" className="btn-primary hidden px-4 py-2 sm:inline-flex">
             Hire me
           </Link>
           <button
@@ -111,11 +113,11 @@ export default function Navbar() {
               </li>
             ))}
             <li className={`mt-2 grid gap-2 ${links.booking ? "grid-cols-2" : "grid-cols-1"}`}>
-              <Link href={`${base}#contact`} onClick={() => setOpen(false)} className="btn-primary">
+              <Link href={`${base}#contact`} data-track="cta_start_project" data-track-label="mobile_menu" onClick={() => setOpen(false)} className="btn-primary">
                 Hire me
               </Link>
               {links.booking && (
-                <a href={links.booking} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                <a href={links.booking} data-track="cta_book_call" data-track-label="mobile_menu" target="_blank" rel="noopener noreferrer" className="btn-ghost">
                   Book a call
                 </a>
               )}

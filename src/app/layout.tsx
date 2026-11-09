@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { display, sans, mono } from "@/lib/fonts";
 import { defaultTheme, paletteHex, paletteName, profile, seo, siteUrl } from "@/lib/site";
+import CookieConsent from "@/components/CookieConsent";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -48,7 +50,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       {/* Extensions like ColorZilla add attributes to <body> before hydration; ignore those. */}
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        <CookieConsent />
+        <Analytics />
+      </body>
     </html>
   );
 }

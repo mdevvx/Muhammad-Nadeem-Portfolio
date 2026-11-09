@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CookiePrefsButton from "./CookiePrefsButton";
 import { links, nav, profile, services, botService } from "@/lib/site";
 
 const socials = [
@@ -11,7 +12,7 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="border-t border-line pb-10 pt-14 print:hidden">
-      <div className="container-page grid grid-cols-2 gap-10 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
+      <div className="container-page grid grid-cols-2 gap-10 md:grid-cols-[1.6fr_1fr_1fr_1fr_1fr]">
         <div className="col-span-2 md:col-span-1">
           <p className="font-display text-xl font-bold">{profile.siteName}</p>
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted">

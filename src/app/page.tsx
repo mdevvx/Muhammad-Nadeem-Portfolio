@@ -4,6 +4,8 @@ import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import Products from "@/components/Products";
 import Portfolio from "@/components/Portfolio";
+import CaseStudy from "@/components/CaseStudy";
+import StatsBand from "@/components/StatsBand";
 import HealthCheck from "@/components/HealthCheck";
 import Reviews from "@/components/Reviews";
 import ClientMarquee from "@/components/ClientMarquee";
@@ -107,11 +109,13 @@ export default function Home() {
       <Navbar />
       <main id="main">
         <Hero />
+        <StatsBand />
         <ClientMarquee />
         <Services />
         <Products />
         <Projects />
         <Portfolio />
+        <CaseStudy />
         <Reviews />
         <Fit />
         <HealthCheck />

@@ -83,7 +83,7 @@ export default function Services() {
                   <span className="text-sm text-muted">{botService.price ? botService.priceUnit : "pricing"}</span>
                   <span className="w-full text-xs text-muted">{botService.priceNote ?? "Quoted per bot after a short scoping call"}</span>
                 </div>
-                <a href="#contact" className="btn-primary mt-6 w-full py-3.5 sm:w-auto sm:py-3">
+                <a href="#contact" data-track="cta_start_project" data-track-label="custom_bots" className="btn-primary mt-6 w-full py-3.5 sm:w-auto sm:py-3">
                   Discuss a bot
                 </a>
               </div>
@@ -122,7 +122,7 @@ export default function Services() {
             <span className="font-semibold text-fg">Need something in between?</span> Part-time coverage, project-based work or a
             buildout plus light management, scoped to fit earlier-stage brands.
           </p>
-          <a href="#contact" className="btn-ghost shrink-0">
+          <a href="#contact" data-track="cta_start_project" data-track-label="custom_plan" className="btn-ghost shrink-0">
             Scope a custom plan
           </a>
         </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { projectCategories, projects, type ProjectCategory } from "@/lib/site";
 
@@ -66,16 +65,6 @@ export default function Projects() {
                   </li>
                 ))}
               </ul>
-              {p.live && (
-                <a
-                  href={p.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
-                >
-                  Visit live site <ArrowUpRight size={15} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
-              )}
             </article>
           ))}
         </div>

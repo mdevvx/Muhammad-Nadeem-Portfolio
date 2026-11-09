@@ -39,11 +39,11 @@ export default function Products() {
                 <span className="font-semibold text-fg">Pricing:</span> {p.pricing}
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <a href={p.url} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                <a href={p.url} data-track="product_click" data-track-label={p.name} target="_blank" rel="noopener noreferrer" className="btn-primary">
                   Visit {p.name} <ArrowUpRight size={16} />
                 </a>
                 {p.dashboardUrl && (
-                  <a href={p.dashboardUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                  <a href={p.dashboardUrl} data-track="product_dashboard_click" data-track-label={p.name} target="_blank" rel="noopener noreferrer" className="btn-ghost">
                     Open dashboard
                   </a>
                 )}

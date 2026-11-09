@@ -32,7 +32,7 @@ Every external URL is `https://example.com/...` for now. Search `src/lib/site.ts
 
 ### Font
 
-The site uses Plus Jakarta Sans (self-hosted). To change it, open `src/lib/fonts.ts`, replace the exports with your font. They must expose `--font-sans`, `--font-display` and `--font-mono`.
+The site uses Inter Tight (self-hosted). To change it, open `src/lib/fonts.ts`, replace the exports with your font. They must expose `--font-sans`, `--font-display` and `--font-mono`.
 
 ### Contact form
 

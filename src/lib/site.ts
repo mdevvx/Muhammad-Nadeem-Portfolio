@@ -40,9 +40,9 @@ const num = (raw: string | undefined, fallback: number) => {
 };
 
 /** Unset: default price. Set but empty: no price, the card shows "Custom pricing". */
-const priceOf = (raw: string | undefined, fallback: number) => {
+const priceOf = (raw: string | undefined, fallback: number | undefined) => {
   if (raw === undefined) return fallback;
-  return raw.trim() === "" ? undefined : num(raw, fallback);
+  return raw.trim() === "" ? undefined : num(raw, fallback ?? 0);
 };
 
 export const stats = {
@@ -58,8 +58,8 @@ export const stats = {
 const prices = {
   management: priceOf(process.env.NEXT_PUBLIC_PRICE_COMMUNITY_MANAGEMENT, 1500),
   buildout: priceOf(process.env.NEXT_PUBLIC_PRICE_SERVER_BUILDOUT, 350),
-  security: priceOf(process.env.NEXT_PUBLIC_PRICE_MODERATION_SECURITY, 1000),
-  strategy: priceOf(process.env.NEXT_PUBLIC_PRICE_STRATEGY_CONSULTING, 800),
+  security: priceOf(process.env.NEXT_PUBLIC_PRICE_MODERATION_SECURITY, 750),
+  strategy: priceOf(process.env.NEXT_PUBLIC_PRICE_STRATEGY_CONSULTING, undefined),
 };
 
 /** $1,500 */
@@ -221,6 +221,9 @@ export const botService: {
   priceNote?: string;
 } = {
   title: "Custom Discord Bots",
+  price: "From $500",
+  priceUnit: "then custom pricing",
+  priceNote: "Quoted per bot after a short scoping call",
   blurb:
     "Off-the-shelf bots rarely fit how your server actually works. I build bots around your exact workflow in Python (discord.py) or JavaScript (discord.js v14), document everything, and can host them for you too.",
   tags: [
@@ -267,8 +270,6 @@ export const projects: {
   blurb: string;
   tags: string[];
   categories: ProjectCategory[];
-  /** Optional live site, shown as a link on the card. */
-  live?: string;
 }[] = [
   {
     title: "DiscoNotify",
@@ -277,7 +278,6 @@ export const projects: {
     blurb:
       "Multi-server bot that posts an alert the moment a creator uploads, posts or goes live on YouTube, Kick or Instagram, with per-event toggles, custom messages and role mentions.",
     tags: ["discord.py", "Supabase", "Dashboard"],
-    live: "https://disconotify.com",
   },
   {
     title: "Discobi",
@@ -286,7 +286,6 @@ export const projects: {
     blurb:
       "All-in-one bot for moderation, tickets, leveling, invite tracking and analytics, with 36 modules and 58 slash commands managed from a single web dashboard.",
     tags: ["Moderation", "Tickets", "Dashboard"],
-    live: "https://discobi.xyz",
   },
   {
     title: "SupportPilot",
@@ -483,6 +482,11 @@ export const clients = [
   "RunItUp",
   "Luckmaxxing",
   "Winners Circle",
+  "HYPR",
+  "Billionaire Holdings",
+  "Utopai Studios",
+  "Cultos",
+  "LimeWire",
 ];
 
 /** "Who this is for" section. */
@@ -701,3 +705,25 @@ export const experience: { role: string; org: string; period: string; points: st
     ],
   },
 ];
+
+/** Case study shown in the Results section. Add real metrics to `metrics` as you get them. */
+export const caseStudy = {
+  client: "BlueWillow AI",
+  tagline: "Moderating a 2 million member AI community",
+  metrics: [
+    { value: "2M+", label: "Community members" },
+    { value: "10 mo", label: "Feb to Nov 2023" },
+    { value: "5.0", label: "Client rating" },
+  ],
+  situation:
+    "BlueWillow was one of the fastest growing AI image communities on Discord, with over 2 million members, constant newcomers and a lot of rule-breaking and conflict to keep on top of.",
+  actions: [
+    "Watched chat around the clock for offensive language and scams, and muted or banned rule-breakers fast.",
+    "Answered member questions and resolved disputes so small problems never became big ones.",
+    "Enforced BlueWillow's specific policies consistently and fed ideas back to the team on improving the community.",
+  ],
+  outcome:
+    "The server stayed organised, friendly and open to constructive discussion at scale, and the founder wrote a public 5-star review for the work.",
+  quote: "Your swift and fair handling of rule violations and conflicts has been especially admirable.",
+  quoteBy: "Daniel Jeong, BlueWillow AI",
+};

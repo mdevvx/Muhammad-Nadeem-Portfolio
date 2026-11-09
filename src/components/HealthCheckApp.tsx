@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { track } from "@/lib/analytics";
 import { ArrowLeft, ArrowRight, Check, Keyboard, Link2, Printer, RotateCcw, Send, Stethoscope } from "lucide-react";
 import { botService, healthAreas, healthQuestions, services, type HealthArea } from "@/lib/site";
 import { PREFILL_STORAGE_KEY, type ContactPrefill } from "./Contact";
@@ -70,6 +71,7 @@ export default function HealthCheckApp() {
         setNiche(params.get("n") ?? "");
         setStep(healthQuestions.length);
         setPhase("results");
+        track("health_check_completed");
         setReady(true);
         return;
       }
@@ -190,6 +192,7 @@ export default function HealthCheckApp() {
     } catch {
       /* ignore */
     }
+    track("health_check_sent_to_contact");
     router.push("/#contact");
   }
 
@@ -261,7 +264,11 @@ export default function HealthCheckApp() {
               </div>
             </fieldset>
 
-            <button type="button" onClick={() => setPhase("quiz")} className="btn-primary mt-10 w-full py-3.5 sm:w-auto">
+            <button type="button" onClick={() => {
+                track("health_check_started", { resumed: answers.some((a) => a !== undefined) });
+                setPhase("quiz");
+              }}
+              className="btn-primary mt-10 w-full py-3.5 sm:w-auto">
               {answers.some((a) => a !== undefined) ? "Continue the questions" : "Start the questions"} <ArrowRight size={16} />
             </button>
           </div>
