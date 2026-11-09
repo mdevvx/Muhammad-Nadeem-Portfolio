@@ -503,18 +503,66 @@ export const clients = [
 ];
 
 /** "Who this is for" section. */
+export type FitIcon = "gem" | "users" | "feedback" | "docs" | "team" | "bot";
+
 export const fit = {
   good: [
-    { title: "Discord is part of your brand", body: "Not a side project. It's where customers decide whether to stick around." },
-    { title: "You want members who stay", body: "Retention and real activity, not a spike that fades in 30 days." },
-    { title: "You want honest feedback", body: "If something was built wrong, you'd rather hear it and fix it." },
-    { title: "You'd rather do it right once", body: "Proper systems and documentation, not patching the same problems every month." },
+    {
+      icon: "gem" as FitIcon,
+      title: "Discord is part of your brand",
+      body: "Not a side project. It's where customers decide whether to stick around, ask for help and talk to each other.",
+      detail: "Common for product communities, paid memberships, creator and trading servers.",
+    },
+    {
+      icon: "users" as FitIcon,
+      title: "You want members who stay",
+      body: "Retention and real activity, not a spike that fades in 30 days.",
+      detail: "I focus on what keeps people around: onboarding, events and fast, friendly support.",
+    },
+    {
+      icon: "feedback" as FitIcon,
+      title: "You want honest feedback",
+      body: "If something was built wrong, you'd rather hear it and fix it.",
+      detail: "You get a clear list of what to fix first and what to leave alone, in writing.",
+    },
+    {
+      icon: "docs" as FitIcon,
+      title: "You'd rather do it right once",
+      body: "Proper systems and documentation, not patching the same problems every month.",
+      detail: "Everything is documented so your team can run it without me.",
+    },
+    {
+      icon: "team" as FitIcon,
+      title: "You have someone who can decide",
+      body: "A founder or lead who can approve work, share access and answer questions quickly.",
+      detail: "Fast decisions on your side keep projects moving and costs down.",
+    },
+    {
+      icon: "bot" as FitIcon,
+      title: "You have repetitive work to automate",
+      body: "Tickets, role sync, alerts and onboarding that eat your team's time.",
+      detail: "A custom bot or one of my products can take it off your plate.",
+    },
   ],
   notFit: [
-    "You want fake members or growth-hack promises",
-    "You're looking for the cheapest option out there",
-    "You want someone who'll agree with everything",
+    {
+      title: "You want fake members or growth hacks",
+      body: "Bought members and engagement bait hurt retention and can get a server flagged.",
+    },
+    {
+      title: "You're looking for the cheapest option",
+      body: "I price for quality and for being accountable once the work is live.",
+    },
+    {
+      title: "You want someone who'll agree with everything",
+      body: "You'll get honest pushback when an idea won't work for your community.",
+    },
+    {
+      title: "You mainly need paid ads or outreach",
+      body: "I keep the members you bring in. Marketing teams are better placed to bring them in.",
+    },
   ],
+  bestFor: ["Ecommerce", "Trading", "Gaming", "AI", "Web3"],
 };
 
 export const faqs = [
