@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
+import { themeStorageKey } from "@/lib/site";
 
 type Theme = "dark" | "light";
 
@@ -18,7 +19,7 @@ export default function ThemeToggle() {
     setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
     try {
-      localStorage.setItem("theme-v2", next);
+      localStorage.setItem(themeStorageKey, next);
     } catch {
       /* storage can be blocked; the toggle still works for this visit */
     }

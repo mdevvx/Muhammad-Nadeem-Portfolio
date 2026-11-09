@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { display, sans, mono } from "@/lib/fonts";
-import { defaultTheme, paletteHex, paletteName, profile, seo, siteUrl } from "@/lib/site";
+import { defaultTheme, paletteHex, paletteName, profile, seo, siteUrl, themeStorageKey } from "@/lib/site";
 import CookieConsent from "@/components/CookieConsent";
 import Analytics from "@/components/Analytics";
 import "./globals.css";
@@ -48,7 +48,7 @@ export const viewport: Viewport = {
 };
 
 // Runs before paint so the saved theme is applied without a flash.
-const themeScript = `(function(){document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme-v2");if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t)}}catch(e){}})();`;
+const themeScript = `(function(){document.documentElement.classList.add("js");try{var t=localStorage.getItem(${JSON.stringify(themeStorageKey)});if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t)}}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

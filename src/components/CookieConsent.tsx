@@ -78,7 +78,7 @@ export default function CookieConsent() {
                   onClick={() => setAnalytics((v) => !v)}
                   className={`relative h-6 w-11 shrink-0 rounded-full border transition ${analytics ? "border-accent bg-accent-soft" : "border-line bg-elevated"}`}
                 >
-                  <span className={`absolute top-0.5 h-4 w-4 rounded-full bg-white transition-all ${analytics ? "left-[22px]" : "left-0.5"}`} />
+                  <span className={`absolute top-0.5 h-4 w-4 rounded-full transition-all ${analytics ? "left-[22px] bg-on-accent" : "left-0.5 bg-muted"}`} />
                 </button>
               </div>
             </div>

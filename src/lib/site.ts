@@ -95,6 +95,9 @@ export const defaultTheme: "dark" | "light" =
       ? "dark"
       : "light";
 
+/** Where a visitor's own theme choice is saved. Includes the default so changing the env default takes effect for everyone. */
+export const themeStorageKey = `theme-v2-${defaultTheme}`;
+
 /** Hex values for the share image, tab icon and browser bar color (CSS tokens can't be used there). */
 export const paletteHex = {
   lagoon: { accent: "#0e7c8a", pop: "#0369a1", onAccent: "#ffffff", bg: "#f4f6f7", fg: "#121c21", muted: "#57656e" },
@@ -503,45 +506,23 @@ export const clients = [
 ];
 
 /** "Who this is for" section. */
-export type FitIcon = "gem" | "users" | "feedback" | "docs" | "team" | "bot";
-
 export const fit = {
   good: [
     {
-      icon: "gem" as FitIcon,
       title: "Discord is part of your brand",
-      body: "Not a side project. It's where customers decide whether to stick around, ask for help and talk to each other.",
-      detail: "Common for product communities, paid memberships, creator and trading servers.",
+      body: "Not a side project. It's where customers decide whether to stick around.",
     },
     {
-      icon: "users" as FitIcon,
       title: "You want members who stay",
       body: "Retention and real activity, not a spike that fades in 30 days.",
-      detail: "I focus on what keeps people around: onboarding, events and fast, friendly support.",
     },
     {
-      icon: "feedback" as FitIcon,
       title: "You want honest feedback",
       body: "If something was built wrong, you'd rather hear it and fix it.",
-      detail: "You get a clear list of what to fix first and what to leave alone, in writing.",
     },
     {
-      icon: "docs" as FitIcon,
       title: "You'd rather do it right once",
       body: "Proper systems and documentation, not patching the same problems every month.",
-      detail: "Everything is documented so your team can run it without me.",
-    },
-    {
-      icon: "team" as FitIcon,
-      title: "You have someone who can decide",
-      body: "A founder or lead who can approve work, share access and answer questions quickly.",
-      detail: "Fast decisions on your side keep projects moving and costs down.",
-    },
-    {
-      icon: "bot" as FitIcon,
-      title: "You have repetitive work to automate",
-      body: "Tickets, role sync, alerts and onboarding that eat your team's time.",
-      detail: "A custom bot or one of my products can take it off your plate.",
     },
   ],
   notFit: [
@@ -562,7 +543,6 @@ export const fit = {
       body: "I keep the members you bring in. Marketing teams are better placed to bring them in.",
     },
   ],
-  bestFor: ["Ecommerce", "Trading", "Gaming", "AI", "Web3"],
 };
 
 export const faqs = [
