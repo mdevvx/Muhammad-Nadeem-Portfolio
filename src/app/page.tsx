@@ -17,7 +17,7 @@ import About from "@/components/About";
 import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import { botService, faqs, links, profile, seo, services, siteUrl } from "@/lib/site";
+import { botService, faqs, links, products, profile, seo, services, siteUrl } from "@/lib/site";
 
 const sameAs = [links.upwork, links.linkedin, links.github, links.discord].filter(Boolean);
 
@@ -43,6 +43,14 @@ const jsonLd = {
         "discord.js",
         "Community security",
         "Whop setup and access control",
+        "Discord bot development",
+        "Discord ticket bots",
+        "Discord bot dashboards",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Supabase",
+        "Community management",
       ],
     },
     {
@@ -85,6 +93,17 @@ const jsonLd = {
       publisher: { "@id": `${siteUrl}/#person` },
       inLanguage: "en",
     },
+    ...products.map((p) => ({
+      "@type": "SoftwareApplication",
+      "@id": `${siteUrl}/#${p.name.toLowerCase()}`,
+      name: p.name,
+      description: p.blurb,
+      url: p.url,
+      applicationCategory: "CommunicationApplication",
+      operatingSystem: "Discord",
+      author: { "@id": `${siteUrl}/#person` },
+      offers: { "@type": "Offer", price: 0, priceCurrency: "USD", description: p.pricing },
+    })),
     {
       "@type": "FAQPage",
       "@id": `${siteUrl}/#faq`,

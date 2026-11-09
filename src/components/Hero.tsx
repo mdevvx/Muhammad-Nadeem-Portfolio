@@ -30,8 +30,8 @@ export default function Hero() {
           </div>
 
           <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-            Your Discord is either{" "}
-            <span className="text-gradient">growing your brand</span> or quietly losing members
+            Is your Discord{" "}
+            <span className="text-gradient">growing your brand</span> or losing members?
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">

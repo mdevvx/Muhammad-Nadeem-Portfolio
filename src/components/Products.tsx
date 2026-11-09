@@ -14,7 +14,7 @@ export default function Products() {
                 Bots you can <span className="text-gradient">add today</span>
               </>
             }
-            description="Our own Discord products, live and used by real servers. Each one comes with a web dashboard, and more are on the way."
+            description="Our own Discord bots, live and used by real Discord servers. Each one comes with a web dashboard to manage your community, and more are on the way."
           />
         </div>
 

@@ -22,7 +22,7 @@ export default function Projects() {
                 Discord bots <span className="text-gradient">in production</span>
               </>
             }
-            description="Custom bots I&apos;ve built for client servers, plus a few of my own products, in discord.py and discord.js."
+            description="Custom Discord bot development for client servers, plus a few of my own bots and dashboards, built with discord.py, discord.js and Next.js."
           />
         </div>
 

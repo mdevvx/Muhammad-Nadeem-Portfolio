@@ -32,6 +32,13 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
   category: "technology",
+  applicationName: profile.name,
+  formatDetection: { telephone: false },
+  // Search Console / Bing Webmaster verification: set the env vars to the token each site gives you.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } : undefined,
+  },
 };
 
 export const viewport: Viewport = {

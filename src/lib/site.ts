@@ -10,21 +10,33 @@ export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://mnadeem.duo
 
 /** Search snippet: aim for ~150-160 characters with the main search terms up front. */
 export const seo = {
-  title: "Discord Community Manager & Bot Developer | Muhammad Nadeem",
+  title: "Discord Community Manager & Discord Bot Developer | Muhammad Nadeem",
   description:
-    "Top Rated Discord community manager and bot developer. Server setup, moderation, security and custom discord.py and discord.js bots for growing brands.",
+    "Top Rated Discord community manager and bot developer. Discord server setup, moderation, security and custom Discord bots in discord.py and discord.js, plus Next.js dashboards. 100% job success.",
   keywords: [
     "Discord community manager",
     "hire Discord community manager",
-    "Discord bot developer",
-    "custom Discord bot",
+    "Discord community management",
     "Discord server setup",
     "Discord server builder",
+    "Discord server management",
     "Discord moderation service",
+    "Discord moderator for hire",
     "Discord security",
+    "Discord bot developer",
+    "custom Discord bot",
+    "Discord bot development",
+    "hire Discord bot developer",
     "discord.py developer",
     "discord.js developer",
+    "Discord ticket bot",
+    "Discord bot dashboard",
+    "Next.js developer",
+    "Whop Discord setup",
     "Discord consultant",
+    "community management",
+    "Discobi",
+    "DiscoNotify",
   ],
 };
 

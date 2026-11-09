@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import CommandPalette from "./CommandPalette";
 import { legalUpdated, type LegalDoc } from "@/lib/legal";
+import { siteUrl } from "@/lib/site";
 
 /** Shared layout for the Privacy, Terms, Cookie and Disclaimer pages. */
 export default function LegalPage({ doc }: { doc: LegalDoc }) {
@@ -38,6 +39,19 @@ export default function LegalPage({ doc }: { doc: LegalDoc }) {
       </main>
       <Footer />
       <CommandPalette />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+              { "@type": "ListItem", position: 2, name: doc.title, item: `${siteUrl}/${doc.slug}` },
+            ],
+          }),
+        }}
+      />
     </>
   );
 }

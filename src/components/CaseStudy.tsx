@@ -8,6 +8,7 @@ export default function CaseStudy() {
       <div className="container-page">
         <div data-reveal>
           <SectionHeading
+            wide
             eyebrow="Case study"
             title={
               <>

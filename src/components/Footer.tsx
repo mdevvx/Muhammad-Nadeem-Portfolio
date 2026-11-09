@@ -12,7 +12,7 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="border-t border-line pb-10 pt-14 print:hidden">
-      <div className="container-page grid grid-cols-2 gap-10 md:grid-cols-[1.6fr_1fr_1fr_1fr_1fr]">
+      <div className="mx-auto grid w-full max-w-5xl grid-cols-2 gap-10 px-4 md:grid-cols-[1.6fr_1fr_1fr_1fr_1fr]">
         <div className="col-span-2 md:col-span-1">
           <p className="font-display text-xl font-bold">{profile.siteName}</p>
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted">
@@ -28,7 +28,7 @@ export default function Footer() {
         />
       </div>
 
-      <div className="container-page mt-12 border-t border-line/60 pt-6 text-center text-xs text-muted">
+      <div className="mt-12 border-t border-line/60 px-4 pt-6 text-center text-xs text-muted">
         <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
         <p className="mt-1">Not affiliated with Discord Inc. Discord is a trademark of its respective owner.</p>
       </div>
