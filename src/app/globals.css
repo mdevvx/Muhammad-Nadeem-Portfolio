@@ -24,30 +24,30 @@ html[data-theme="light"] {
   color-scheme: light;
 }
 
-/* lagoon: taken from the profile photo background, a green that drifts into teal and sky blue.
-   Light is a cool mint paper with deep green text; dark is a green-tinted near black. */
+/* lagoon: teal and sky blue from the profile photo background, on cool near-neutral slate so the
+   page does not read as one big green. Light is a soft cool paper; dark is a blue-black slate. */
 html[data-palette="lagoon"][data-theme="light"] {
-  --bg: 238 245 241;
-  --surface: 248 252 250;
-  --elevated: 224 237 231;
-  --line: 203 221 212;
-  --fg: 21 40 32;
-  --muted: 80 104 93;
-  --accent: 24 117 70;
-  --accent-soft: 31 129 78;
-  --pop: 15 118 130;
+  --bg: 244 246 247;
+  --surface: 251 252 252;
+  --elevated: 233 237 239;
+  --line: 215 221 225;
+  --fg: 18 28 33;
+  --muted: 87 101 110;
+  --accent: 14 116 130;
+  --accent-soft: 14 124 138;
+  --pop: 3 105 161;
   --on-accent: 255 255 255;
 }
 html[data-palette="lagoon"]:not([data-theme="light"]) {
-  --bg: 8 17 14;
-  --surface: 14 27 22;
-  --elevated: 21 39 32;
-  --line: 36 62 52;
-  --fg: 238 247 243;
-  --muted: 148 175 164;
-  --accent: 74 205 130;
-  --accent-soft: 31 129 78;
-  --pop: 56 200 215;
+  --bg: 11 14 17;
+  --surface: 17 22 26;
+  --elevated: 25 31 36;
+  --line: 40 49 56;
+  --fg: 240 244 246;
+  --muted: 150 163 172;
+  --accent: 45 190 196;
+  --accent-soft: 14 124 138;
+  --pop: 56 189 248;
   --on-accent: 255 255 255;
 }
 

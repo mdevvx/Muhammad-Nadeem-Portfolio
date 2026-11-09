@@ -41,7 +41,7 @@ export default function Navbar() {
       <div className="px-4 pt-3">
       <nav
         aria-label="Main"
-        className="mx-auto flex max-w-5xl items-center justify-between rounded-full border border-line bg-surface/80 py-2 pl-5 pr-2 shadow-lg shadow-black/10 backdrop-blur-md"
+        className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-line bg-surface/80 py-2 pl-5 pr-2 shadow-lg shadow-black/10 backdrop-blur-md"
       >
         <Link href={`${base}#top`} className="flex items-center gap-2 font-semibold tracking-tight" onClick={() => setOpen(false)}>
           <Image
@@ -98,7 +98,7 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="mx-auto mt-2 max-w-5xl animate-msg-in rounded-3xl border border-line bg-surface/95 p-3 shadow-xl backdrop-blur-md lg:hidden"
+          className="mx-auto mt-2 max-w-6xl animate-msg-in rounded-3xl border border-line bg-surface/95 p-3 shadow-xl backdrop-blur-md lg:hidden"
         >
           <ul className="flex flex-col">
             {nav.map((item) => (

@@ -1,24 +1,24 @@
 /**
  * FONT SETUP (single place to change)
  *
- * Inter Tight is used for body text and headings. It is self-hosted
- * (latin subset, variable weight 100-900) so builds never depend on reaching
+ * Plus Jakarta Sans is used for body text and headings. It is self-hosted
+ * (latin subset, variable weight 200-800) so builds never depend on reaching
  * Google Fonts. To swap fonts, replace the exports below; they must expose the
  * CSS variables --font-sans, --font-display and --font-mono.
  */
 import localFont from "next/font/local";
 
 export const sans = localFont({
-  src: "../fonts/InterTight-Latin.woff2",
+  src: "../fonts/PlusJakartaSans-Latin.woff2",
   variable: "--font-sans",
-  weight: "100 900",
+  weight: "200 800",
   display: "swap",
 });
 
 export const display = localFont({
-  src: "../fonts/InterTight-Latin.woff2",
+  src: "../fonts/PlusJakartaSans-Latin.woff2",
   variable: "--font-display",
-  weight: "100 900",
+  weight: "200 800",
   display: "swap",
 });
 
