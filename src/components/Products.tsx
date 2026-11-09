@@ -21,13 +21,10 @@ export default function Products() {
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {products.map((p) => (
             <article key={p.name} data-reveal className="card group flex flex-col p-6 sm:p-8">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="chip border-accent/40 bg-accent/10 text-fg">
-                  <LayoutDashboard size={13} className="text-accent" aria-hidden="true" /> Dashboard available
-                </span>
-                <span className="chip">{p.pricing}</span>
-              </div>
-              <h3 className="mt-5 text-2xl font-bold tracking-tight">{p.name}</h3>
+              <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-medium text-fg">
+                <LayoutDashboard size={13} className="text-accent" aria-hidden="true" /> Dashboard available
+              </span>
+              <h3 className="mt-4 text-2xl font-bold tracking-tight">{p.name}</h3>
               <p className="mt-1 text-sm font-medium text-accent">{p.tagline}</p>
               <p className="mt-4 text-sm leading-relaxed text-muted">{p.blurb}</p>
               <ul className="mt-5 flex-1 space-y-2 text-sm">
@@ -38,7 +35,10 @@ export default function Products() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-7 flex flex-wrap gap-3">
+              <p className="mt-6 border-t border-line pt-4 text-sm text-muted">
+                <span className="font-semibold text-fg">Pricing:</span> {p.pricing}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
                 <a href={p.url} target="_blank" rel="noopener noreferrer" className="btn-primary">
                   Visit {p.name} <ArrowUpRight size={16} />
                 </a>

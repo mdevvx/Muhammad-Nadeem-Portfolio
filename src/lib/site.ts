@@ -642,6 +642,7 @@ export const products: {
       "36 modules, 58 slash commands, starter templates",
     ],
     url: "https://discobi.xyz",
+    dashboardUrl: "https://dashboard.discobi.xyz",
     pricing: "Free, or $4.99/mo per server",
   },
 ];
@@ -663,25 +664,6 @@ export const experience: { role: string; org: string; period: string; points: st
       "Configure channels, roles and permissions, and run bots, automations and integrations.",
       "Set up and manage Whop: product configuration, access control and member onboarding.",
       "Work with internal teams to align community initiatives with business goals.",
-    ],
-  },
-  {
-    role: "Co-founder & Bot Developer",
-    org: "DuoPlus",
-    period: "Present",
-    points: [
-      "Build and run our own Discord products, DiscoNotify and Discobi, each with a web dashboard.",
-      "Own the full stack: bot code, databases, billing, hosting and uptime.",
-    ],
-  },
-  {
-    role: "Discord Specialist & Bot Developer",
-    org: "Freelance, Upwork (Top Rated)",
-    period: `${stats.yearsExperience}+ years`,
-    points: [
-      `${formatCount(stats.jobsCompleted)} jobs completed with 100% job success and a ${formatRating(stats.avgRating)} average rating.`,
-      "Community management, server builds, moderation and security for ecommerce, trading, gaming, AI and Web3 brands.",
-      "Custom discord.py and discord.js bots delivered with documentation so teams can own them.",
     ],
   },
   {
@@ -716,15 +698,6 @@ export const experience: { role: string; org: string; period: string; points: st
     points: [
       "Moderated a community of over 2 million users: muting and banning rule-breakers, resolving conflicts and answering questions.",
       "Enforced community policies and fed improvement ideas back to the team.",
-    ],
-  },
-  {
-    role: "Frontend Developer",
-    org: "TechOverflow, Lahore",
-    period: "Mar 2022 to Mar 2023",
-    points: [
-      "Built responsive web apps with React.js, Redux, Tailwind CSS and Material-UI.",
-      "Developed scalable backends with Node.js, Express.js and MongoDB.",
     ],
   },
 ];
