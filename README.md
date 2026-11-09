@@ -32,7 +32,7 @@ Every external URL is `https://example.com/...` for now. Search `src/lib/site.ts
 
 ### Font
 
-The PulseNotify font could not be inspected while this was built, so Geist (bundled locally) is a stand-in. Open `src/lib/fonts.ts`, replace the two exports with your real font (a Google Fonts example is in the file comment). Both must expose `--font-sans` and `--font-mono`.
+The site uses Plus Jakarta Sans (self-hosted). To change it, open `src/lib/fonts.ts`, replace the exports with your font. They must expose `--font-sans`, `--font-display` and `--font-mono`.
 
 ### Contact form
 
