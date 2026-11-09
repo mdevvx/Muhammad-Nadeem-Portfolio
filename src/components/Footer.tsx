@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUp, Mail } from "lucide-react";
+import { ArrowUp, Mail } from "lucide-react";
 import CookiePrefsButton from "./CookiePrefsButton";
 import {
   DiscordIcon,
@@ -50,23 +50,6 @@ export default function Footer() {
               Discord community management, custom bots and server security for
               brands that take their community seriously.
             </p>
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-line bg-bg/60 px-3 py-1.5 text-xs font-medium">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
-              Currently accepting clients
-            </p>
-            <div className="mt-5">
-              <Link
-                href="/#contact"
-                data-track="cta_start_project"
-                data-track-label="footer"
-                className="btn-primary px-5 py-2.5"
-              >
-                Start a project <ArrowRight size={15} />
-              </Link>
-            </div>
           </div>
 
           <Col
