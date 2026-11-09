@@ -72,8 +72,8 @@ export const formatCount = (n: number) => n.toLocaleString("en-US");
 /** 4.9 */
 export const formatRating = (n: number) => n.toFixed(1);
 
-/** Color palette: "crimson" (default), "forest", "rose" or "ink". Set NEXT_PUBLIC_PALETTE to switch. */
-export const paletteName = (["crimson", "forest", "rose", "ink"] as const).find((p) => p === process.env.NEXT_PUBLIC_PALETTE) ?? "crimson";
+/** Color palette: "crimson" (default), "forest", "rose", "ink", "ember", "gold", "teal" or "lime". Set NEXT_PUBLIC_PALETTE to switch. */
+export const paletteName = (["crimson", "forest", "rose", "ink", "ember", "gold", "teal", "lime"] as const).find((p) => p === process.env.NEXT_PUBLIC_PALETTE) ?? "crimson";
 
 /** Theme a first-time visitor sees. crimson is a black palette so it opens dark; the rest open light. */
 export const defaultTheme: "dark" | "light" =
@@ -86,15 +86,19 @@ export const defaultTheme: "dark" | "light" =
 /** Hex values for the share image, tab icon and browser bar color (CSS tokens can't be used there). */
 export const paletteHex = {
   crimson: { accent: "#be123c", pop: "#f43f5e", onAccent: "#ffffff", bg: "#0a090a", fg: "#f6f1f2", muted: "#aaa0a4" },
-  forest: { accent: "#15803d", pop: "#b45309", onAccent: "#ffffff", bg: "#fcfbf7", fg: "#1e1c18", muted: "#66625a" },
-  rose: { accent: "#e11d48", pop: "#b45309", onAccent: "#ffffff", bg: "#fcfbf7", fg: "#1e1c18", muted: "#66625a" },
-  ink: { accent: "#1c1c1a", pop: "#a16207", onAccent: "#ffffff", bg: "#fcfbf7", fg: "#1e1c18", muted: "#66625a" },
+  forest: { accent: "#15803d", pop: "#b45309", onAccent: "#ffffff", bg: "#eeebe4", fg: "#2c2925", muted: "#625e56" },
+  rose: { accent: "#e11d48", pop: "#b45309", onAccent: "#ffffff", bg: "#eeebe4", fg: "#2c2925", muted: "#625e56" },
+  ink: { accent: "#1c1c1a", pop: "#a16207", onAccent: "#ffffff", bg: "#eeebe4", fg: "#2c2925", muted: "#625e56" },
+  ember: { accent: "#c2410c", pop: "#a16207", onAccent: "#ffffff", bg: "#eeebe4", fg: "#2c2925", muted: "#625e56" },
+  gold: { accent: "#926208", pop: "#9f1239", onAccent: "#ffffff", bg: "#eeebe4", fg: "#2c2925", muted: "#625e56" },
+  teal: { accent: "#0f766e", pop: "#c2410c", onAccent: "#ffffff", bg: "#eeebe4", fg: "#2c2925", muted: "#625e56" },
+  lime: { accent: "#3f6212", pop: "#a16207", onAccent: "#ffffff", bg: "#eeebe4", fg: "#2c2925", muted: "#625e56" },
 }[paletteName];
 
 export const links = {
   github: process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/mdevvx",
   upwork: process.env.NEXT_PUBLIC_UPWORK_URL || "https://www.upwork.com/freelancers/mdevvx",
-  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "",
+  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/mdevvx/",
   discord: process.env.NEXT_PUBLIC_DISCORD_URL || "",
   booking: process.env.NEXT_PUBLIC_BOOKING_URL || "",
 };
@@ -113,7 +117,9 @@ export const profile = {
 
 export const nav = [
   { label: "Services", href: "#services" },
+  { label: "Products", href: "#products" },
   { label: "Bots", href: "#work" },
+  { label: "Portfolio", href: "#portfolio" },
   { label: "Process", href: "#process" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
@@ -163,6 +169,7 @@ export const services: {
       "Permissions that stay easy to manage",
       "Welcome flow, verification and onboarding",
       "Branded embeds, rules and server guide",
+      "Whop setup: products, access control and Discord role sync",
     ],
     span: "md:col-span-3",
     price: prices.buildout !== undefined ? formatPrice(prices.buildout) : undefined,
@@ -260,8 +267,7 @@ export const projects: {
   blurb: string;
   tags: string[];
   categories: ProjectCategory[];
-  href: string;
-  /** Optional live site, shown as a second link on the card. */
+  /** Optional live site, shown as a link on the card. */
   live?: string;
 }[] = [
   {
@@ -270,9 +276,17 @@ export const projects: {
     kind: "Own product",
     blurb:
       "Multi-server bot that posts an alert the moment a creator uploads, posts or goes live on YouTube, Kick or Instagram, with per-event toggles, custom messages and role mentions.",
-    tags: ["discord.py", "Supabase", "Official APIs"],
-    href: "https://github.com/mdevvx/PulseNotify-Bot",
+    tags: ["discord.py", "Supabase", "Dashboard"],
     live: "https://disconotify.com",
+  },
+  {
+    title: "Discobi",
+    categories: ["Security & access", "Engagement"],
+    kind: "Own product",
+    blurb:
+      "All-in-one bot for moderation, tickets, leveling, invite tracking and analytics, with 36 modules and 58 slash commands managed from a single web dashboard.",
+    tags: ["Moderation", "Tickets", "Dashboard"],
+    live: "https://discobi.xyz",
   },
   {
     title: "SupportPilot",
@@ -281,7 +295,6 @@ export const projects: {
     blurb:
       "Ticket panel opens a private thread per request, then a Claude-backed triage layer searches the knowledge base and answers, asks a follow-up or escalates to staff with a confidence tag.",
     tags: ["discord.py", "Claude API", "pgvector"],
-    href: "https://github.com/mdevvx/Support-Pilot",
   },
   {
     title: "Shadowban",
@@ -290,7 +303,6 @@ export const projects: {
     blurb:
       "Silently intercepts suspicious messages, classifies them with Claude Haiku and routes them to a private mod queue where staff approve, reject or release with one click.",
     tags: ["discord.js v14", "Claude Haiku", "Supabase"],
-    href: "https://github.com/mdevvx/Liberty-Conciergerie-Security-Bot",
   },
   {
     title: "MANAVA Multiverse",
@@ -299,7 +311,6 @@ export const projects: {
     blurb:
       "Esports squads with their own roles and channels, a unified XP economy across Discord and in-game events, seasonal leaderboards and creator application reviews.",
     tags: ["discord.py", "Webhooks", "Seasons & XP"],
-    href: "https://github.com/mdevvx/MANAVA-Setup-Bot",
   },
   {
     title: "Luckmaxxing Protocol",
@@ -308,7 +319,6 @@ export const projects: {
     blurb:
       "An 8-day guided program delivered in private threads: enrollment codes, button-driven dialogue, scheduled daily lessons, tracked video days and completion roles.",
     tags: ["discord.py", "Supabase", "Scheduling"],
-    href: "https://github.com/mdevvx/Luckmaxxing-Protocol-Bot",
   },
   {
     title: "Membership Verification",
@@ -317,7 +327,6 @@ export const projects: {
     blurb:
       "Members verify by email against GoHighLevel tags and get the matching role. A background check every 6 hours removes roles when a subscription lapses.",
     tags: ["discord.py", "GoHighLevel API", "Roles"],
-    href: "https://github.com/mdevvx/Winners-Circle-Official-Bot",
   },
   {
     title: "Auth Handler",
@@ -326,7 +335,6 @@ export const projects: {
     blurb:
       "Login and logout portals with email and password, role assignment on login, in-Discord user management for admins and full audit logging.",
     tags: ["discord.py", "Supabase", "Auth"],
-    href: "https://github.com/mdevvx/Auth-Handler-Discord-Bot",
   },
   {
     title: "Threadly",
@@ -335,7 +343,6 @@ export const projects: {
     blurb:
       "Creates a personal welcome thread or channel for every new member, with fully customizable welcome messages built on Discord's Components V2.",
     tags: ["discord.py", "Components V2", "Supabase"],
-    href: "https://github.com/mdevvx/Threadly-Bot",
   },
   {
     title: "PulseReact",
@@ -344,7 +351,6 @@ export const projects: {
     blurb:
       "Per-server auto-react system: any number of channels and emojis, filtered by message type such as text, image, link, video or file.",
     tags: ["discord.py", "Supabase", "Automation"],
-    href: "https://github.com/mdevvx/PulseReact-Bot",
   },
 ];
 
@@ -597,5 +603,128 @@ export const healthQuestions: { area: HealthArea; q: string; fix: string }[] = [
     area: "Operations",
     q: "Repetitive work like roles after payment or social alerts is automated.",
     fix: "Automate the repetitive work with a custom bot: payment-to-role sync, alerts, reminders and logging.",
+  },
+];
+
+/** Our own Discord products. Add new entries here and they show up in the Products section. */
+export const products: {
+  name: string;
+  tagline: string;
+  blurb: string;
+  features: string[];
+  url: string;
+  dashboardUrl?: string;
+  pricing: string;
+}[] = [
+  {
+    name: "DiscoNotify",
+    tagline: "Alerts the moment your creators post or go live",
+    blurb:
+      "Announces new uploads, posts and live streams from YouTube, Twitch, Kick, Instagram, X and TikTok, with custom messages and role mentions per alert type.",
+    features: [
+      "Checks as often as every 30 seconds",
+      "Never repeats an alert after a restart",
+      "Custom text and role pings for uploads and streams",
+      "Rich alert cards with a watch button",
+    ],
+    url: "https://disconotify.com",
+    dashboardUrl: "https://dashboard.disconotify.com",
+    pricing: "Free, or $1.99/mo per server",
+  },
+  {
+    name: "Discobi",
+    tagline: "One bot. Every essential.",
+    blurb: "Moderation, tickets, leveling, invite tracking and analytics in one bot, with one dashboard and one bill.",
+    features: [
+      "Join gate, spam and link filters, raid alerts",
+      "Ticket and support tools",
+      "Leveling with role rewards",
+      "36 modules, 58 slash commands, starter templates",
+    ],
+    url: "https://discobi.xyz",
+    pricing: "Free, or $4.99/mo per server",
+  },
+];
+
+/** Experience timeline for the Portfolio section, newest first (from LinkedIn). Edit freely. */
+export const experience: { role: string; org: string; period: string; points: string[] }[] = [
+  {
+    role: "Discord Community Manager",
+    org: "HYPR, Australia",
+    period: "Feb 2026 to Present",
+    points: ["Managing and growing the Discord community."],
+  },
+  {
+    role: "Discord Community Manager",
+    org: "Billionaire Holdings Ltd, Inc., United States",
+    period: "Nov 2025 to Present",
+    points: [
+      "Manage and moderate the server, keeping it professional, active and well organised, with real-time member support.",
+      "Configure channels, roles and permissions, and run bots, automations and integrations.",
+      "Set up and manage Whop: product configuration, access control and member onboarding.",
+      "Work with internal teams to align community initiatives with business goals.",
+    ],
+  },
+  {
+    role: "Co-founder & Bot Developer",
+    org: "DuoPlus",
+    period: "Present",
+    points: [
+      "Build and run our own Discord products, DiscoNotify and Discobi, each with a web dashboard.",
+      "Own the full stack: bot code, databases, billing, hosting and uptime.",
+    ],
+  },
+  {
+    role: "Discord Specialist & Bot Developer",
+    org: "Freelance, Upwork (Top Rated)",
+    period: `${stats.yearsExperience}+ years`,
+    points: [
+      `${formatCount(stats.jobsCompleted)} jobs completed with 100% job success and a ${formatRating(stats.avgRating)} average rating.`,
+      "Community management, server builds, moderation and security for ecommerce, trading, gaming, AI and Web3 brands.",
+      "Custom discord.py and discord.js bots delivered with documentation so teams can own them.",
+    ],
+  },
+  {
+    role: "Discord Community Manager",
+    org: "Utopai Studios, United States",
+    period: "Sep 2024 to May 2025",
+    points: [
+      "Fostered discussion, answered questions and ran interactive events.",
+      "Moderated the server into a safe, well-structured and welcoming space.",
+      "Supported marketing by promoting the Beta waitlist and driving sign-ups.",
+    ],
+  },
+  {
+    role: "Discord Moderator",
+    org: "Cultos, Canada",
+    period: "Sep to Nov 2023",
+    points: [
+      "Enforced guidelines, mediated disputes and kept the server structure clean.",
+      "Started conversations around NFTs, blockchain, token listings and digital art, and curated industry news.",
+    ],
+  },
+  {
+    role: "Discord Moderator",
+    org: "LimeWire, United States",
+    period: "Aug to Nov 2023",
+    points: ["Moderated the community after the rebrand from BlueWillow AI."],
+  },
+  {
+    role: "Discord Moderator",
+    org: "BlueWillow AI, United States",
+    period: "Feb to Nov 2023",
+    points: [
+      "Moderated a community of over 2 million users: muting and banning rule-breakers, resolving conflicts and answering questions.",
+      "Enforced community policies and fed improvement ideas back to the team.",
+    ],
+  },
+  {
+    role: "Frontend Developer",
+    org: "TechOverflow, Lahore",
+    period: "Mar 2022 to Mar 2023",
+    points: [
+      "Built responsive web apps with React.js, Redux, Tailwind CSS and Material-UI.",
+      "Developed scalable backends with Node.js, Express.js and MongoDB.",
+    ],
   },
 ];

@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
+import Products from "@/components/Products";
+import Portfolio from "@/components/Portfolio";
 import HealthCheck from "@/components/HealthCheck";
 import Reviews from "@/components/Reviews";
 import ClientMarquee from "@/components/ClientMarquee";
@@ -38,6 +40,7 @@ const jsonLd = {
         "discord.py",
         "discord.js",
         "Community security",
+        "Whop setup and access control",
       ],
     },
     {
@@ -106,7 +109,9 @@ export default function Home() {
         <Hero />
         <ClientMarquee />
         <Services />
+        <Products />
         <Projects />
+        <Portfolio />
         <Reviews />
         <Fit />
         <HealthCheck />

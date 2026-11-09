@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, FolderGit2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
-import { links, projectCategories, projects, type ProjectCategory } from "@/lib/site";
+import { projectCategories, projects, type ProjectCategory } from "@/lib/site";
 
 type Filter = "All" | ProjectCategory;
 
@@ -15,7 +15,7 @@ export default function Projects() {
   return (
     <section id="work" className="py-16 sm:py-20">
       <div className="container-page">
-        <div data-reveal className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div data-reveal>
           <SectionHeading
             eyebrow="Custom Discord bots"
             title={
@@ -25,9 +25,6 @@ export default function Projects() {
             }
             description="Custom bots I&apos;ve built for client servers, plus a few of my own products, in discord.py and discord.js."
           />
-          <a href={links.github} target="_blank" rel="noopener noreferrer" className="btn-ghost shrink-0 self-start sm:self-auto">
-            <FolderGit2 size={16} /> All bots on GitHub
-          </a>
         </div>
 
         <div role="group" aria-label="Filter bots" className="mt-10 flex flex-wrap gap-2">
@@ -69,26 +66,16 @@ export default function Projects() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
-                {p.live && (
-                  <a
-                    href={p.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
-                  >
-                    Visit live site <ArrowUpRight size={15} />
-                  </a>
-                )}
+              {p.live && (
                 <a
-                  href={p.href}
+                  href={p.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-1.5 text-sm font-semibold hover:underline ${p.live ? "text-muted" : "text-accent"}`}
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
                 >
-                  View on GitHub <ArrowUpRight size={15} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  Visit live site <ArrowUpRight size={15} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </a>
-              </div>
+              )}
             </article>
           ))}
         </div>

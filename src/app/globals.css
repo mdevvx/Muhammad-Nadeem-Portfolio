@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Neutrals per theme. Brand colors (--accent, --accent-soft, --pop, --on-accent) come from the
-   palette blocks below, picked with NEXT_PUBLIC_PALETTE (crimson | forest | rose | ink). No blue or purple. */
+   palette blocks below, picked with NEXT_PUBLIC_PALETTE (crimson | forest | rose | ink | ember | gold | teal | lime). No blue or purple. */
 :root {
   --bg: 12 12 11;
   --surface: 22 22 20;
@@ -84,6 +84,62 @@ html[data-palette="ink"]:not([data-theme="light"]) {
   --accent-soft: 245 244 240;
   --pop: 250 204 21;
   --on-accent: 28 28 26;
+}
+
+/* ember: burnt orange with warm gold */
+html[data-palette="ember"][data-theme="light"] {
+  --accent: 194 65 12;
+  --accent-soft: 234 88 12;
+  --pop: 161 98 7;
+  --on-accent: 255 255 255;
+}
+html[data-palette="ember"]:not([data-theme="light"]) {
+  --accent: 251 146 60;
+  --accent-soft: 249 115 22;
+  --pop: 250 204 21;
+  --on-accent: 43 17 4;
+}
+
+/* gold: black and gold, bright and premium */
+html[data-palette="gold"][data-theme="light"] {
+  --accent: 146 98 8;
+  --accent-soft: 180 120 10;
+  --pop: 159 18 57;
+  --on-accent: 255 255 255;
+}
+html[data-palette="gold"]:not([data-theme="light"]) {
+  --accent: 250 204 21;
+  --accent-soft: 234 179 8;
+  --pop: 251 146 60;
+  --on-accent: 36 24 2;
+}
+
+/* teal: deep teal with coral */
+html[data-palette="teal"][data-theme="light"] {
+  --accent: 15 118 110;
+  --accent-soft: 13 148 136;
+  --pop: 194 65 12;
+  --on-accent: 255 255 255;
+}
+html[data-palette="teal"]:not([data-theme="light"]) {
+  --accent: 45 212 191;
+  --accent-soft: 20 184 166;
+  --pop: 251 146 60;
+  --on-accent: 4 47 46;
+}
+
+/* lime: fresh lime green with warm gold */
+html[data-palette="lime"][data-theme="light"] {
+  --accent: 63 98 18;
+  --accent-soft: 77 124 15;
+  --pop: 161 98 7;
+  --on-accent: 255 255 255;
+}
+html[data-palette="lime"]:not([data-theme="light"]) {
+  --accent: 163 230 53;
+  --accent-soft: 132 204 22;
+  --pop: 250 204 21;
+  --on-accent: 26 46 5;
 }
 
 @keyframes shrink {
