@@ -26,8 +26,8 @@ const fromCode = (c: string): Answer | undefined => (c === "y" ? 1 : c === "p" ?
 
 function band(score: number) {
   if (score >= 80) return { label: "Solid foundation", tone: "text-accent", note: "A few tweaks will take this server from good to great." };
-  if (score >= 50) return { label: "Gaps worth fixing", tone: "text-amber-400", note: "Members are probably slipping through some of these gaps right now." };
-  return { label: "At risk", tone: "text-red-400", note: "These gaps are costing you members and leave the server open to raids and scams." };
+  if (score >= 50) return { label: "Gaps worth fixing", tone: "text-amber-600", note: "Members are probably slipping through some of these gaps right now." };
+  return { label: "At risk", tone: "text-red-600", note: "These gaps are costing you members and leave the server open to raids and scams." };
 }
 
 /** Context-aware tip shown with the results. */
@@ -389,7 +389,7 @@ export default function HealthCheckApp() {
                         <div className="flex flex-wrap items-center gap-2">
                           <span
                             className={`rounded-full px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider ${
-                              high ? "bg-red-400/15 text-red-400" : "bg-amber-400/15 text-amber-400"
+                              high ? "bg-red-400/15 text-red-600" : "bg-amber-400/15 text-amber-600"
                             }`}
                           >
                             {high ? "High priority" : "Medium"}

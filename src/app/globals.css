@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Neutrals per theme. Brand colors (--accent, --accent-soft, --pop, --on-accent) come from the
-   palette blocks below, picked with NEXT_PUBLIC_PALETTE (crimson | forest | rose | ink | ember | gold | teal | lime). No blue or purple. */
+   palette blocks below, picked with NEXT_PUBLIC_PALETTE (lagoon | crimson | forest | rose | ink | ember | gold | teal | lime). No blue or purple. */
 :root {
   --bg: 12 12 11;
   --surface: 22 22 20;
@@ -22,6 +22,33 @@ html[data-theme="light"] {
   --fg: 44 41 37;
   --muted: 98 94 86;
   color-scheme: light;
+}
+
+/* lagoon: taken from the profile photo background, a green that drifts into teal and sky blue.
+   Light is a cool mint paper with deep green text; dark is a green-tinted near black. */
+html[data-palette="lagoon"][data-theme="light"] {
+  --bg: 238 245 241;
+  --surface: 248 252 250;
+  --elevated: 224 237 231;
+  --line: 203 221 212;
+  --fg: 21 40 32;
+  --muted: 80 104 93;
+  --accent: 24 117 70;
+  --accent-soft: 31 129 78;
+  --pop: 15 118 130;
+  --on-accent: 255 255 255;
+}
+html[data-palette="lagoon"]:not([data-theme="light"]) {
+  --bg: 8 17 14;
+  --surface: 14 27 22;
+  --elevated: 21 39 32;
+  --line: 36 62 52;
+  --fg: 238 247 243;
+  --muted: 148 175 164;
+  --accent: 74 205 130;
+  --accent-soft: 31 129 78;
+  --pop: 56 200 215;
+  --on-accent: 255 255 255;
 }
 
 /* crimson: warm black with deep wine crimson. Neutrals are tinted warm so the black never looks blue. */

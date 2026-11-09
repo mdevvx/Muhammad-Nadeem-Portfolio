@@ -1,10 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BadgeCheck, ChevronLeft, ChevronRight, Crown, Quote, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, X } from "lucide-react";
 import SectionHeading from "./SectionHeading";
-import CountUp from "./CountUp";
-import { reviews, trackRecord, type Review } from "@/lib/site";
+import { reviews, type Review } from "@/lib/site";
 
 const slides = reviews.filter((r) => r.quote);
 const AUTOPLAY_MS = 6000;
@@ -113,38 +112,6 @@ export default function Reviews() {
             >
               <ChevronRight size={18} />
             </button>
-          </div>
-        </div>
-
-        {/* Track record band */}
-        <div className="card relative mt-10 overflow-hidden">
-          <div className="relative grid grid-cols-1 gap-6 p-6 sm:p-8 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-10">
-            <ul className="flex flex-wrap gap-3 lg:flex-col">
-              {trackRecord.badges.map((b, i) => (
-                <li
-                  key={b}
-                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold ${
-                    i === 0 ? "border-pop/50 bg-pop/10" : "border-accent/50 bg-accent/10"
-                  }`}
-                >
-                  {i === 0 ? <Crown size={16} className="text-pop" /> : <BadgeCheck size={16} className="text-accent" />}
-                  {b}
-                </li>
-              ))}
-            </ul>
-            <dl className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4 lg:border-l lg:border-line lg:pl-10">
-              {trackRecord.stats.map((s) => (
-                <div key={s.label}>
-                  <dt className="sr-only">{s.label}</dt>
-                  <dd>
-                    <span className="text-gradient block font-display text-3xl font-bold sm:text-5xl">
-                      <CountUp value={s.value} />
-                    </span>
-                    <span className="mt-1 block text-xs text-muted sm:text-sm">{s.label}</span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
           </div>
         </div>
 

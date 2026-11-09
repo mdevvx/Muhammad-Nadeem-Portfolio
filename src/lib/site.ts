@@ -84,8 +84,8 @@ export const formatCount = (n: number) => n.toLocaleString("en-US");
 /** 4.9 */
 export const formatRating = (n: number) => n.toFixed(1);
 
-/** Color palette: "crimson" (default), "forest", "rose", "ink", "ember", "gold", "teal" or "lime". Set NEXT_PUBLIC_PALETTE to switch. */
-export const paletteName = (["crimson", "forest", "rose", "ink", "ember", "gold", "teal", "lime"] as const).find((p) => p === process.env.NEXT_PUBLIC_PALETTE) ?? "crimson";
+/** Color palette: "lagoon" (default, from the profile photo), "crimson", "forest", "rose", "ink", "ember", "gold", "teal" or "lime". Set NEXT_PUBLIC_PALETTE to switch. */
+export const paletteName = (["lagoon", "crimson", "forest", "rose", "ink", "ember", "gold", "teal", "lime"] as const).find((p) => p === process.env.NEXT_PUBLIC_PALETTE) ?? "lagoon";
 
 /** Theme a first-time visitor sees. crimson is a black palette so it opens dark; the rest open light. */
 export const defaultTheme: "dark" | "light" =
@@ -97,6 +97,7 @@ export const defaultTheme: "dark" | "light" =
 
 /** Hex values for the share image, tab icon and browser bar color (CSS tokens can't be used there). */
 export const paletteHex = {
+  lagoon: { accent: "#1f814e", pop: "#0f7682", onAccent: "#ffffff", bg: "#eef5f1", fg: "#152820", muted: "#50685d" },
   crimson: { accent: "#be123c", pop: "#f43f5e", onAccent: "#ffffff", bg: "#0a090a", fg: "#f6f1f2", muted: "#aaa0a4" },
   forest: { accent: "#15803d", pop: "#b45309", onAccent: "#ffffff", bg: "#eeebe4", fg: "#2c2925", muted: "#625e56" },
   rose: { accent: "#e11d48", pop: "#b45309", onAccent: "#ffffff", bg: "#eeebe4", fg: "#2c2925", muted: "#625e56" },

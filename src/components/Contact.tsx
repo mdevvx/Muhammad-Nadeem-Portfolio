@@ -211,7 +211,7 @@ export default function Contact() {
                 id="form-status"
                 role="status"
                 aria-live="polite"
-                className="min-h-[1.25rem] text-sm text-red-400"
+                className="min-h-[1.25rem] text-sm text-red-600"
               >
                 {status.state === "error" && status.message}
               </p>
