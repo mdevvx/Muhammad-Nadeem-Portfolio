@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUp, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import CookiePrefsButton from "./CookiePrefsButton";
 import {
   DiscordIcon,
@@ -115,13 +115,6 @@ export default function Footer() {
             Not affiliated with Discord Inc. Discord is a trademark of its
             respective owner.
           </p>
-          <Link
-            href="/#top"
-            aria-label="Back to top"
-            className="mt-3 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-medium text-fg/80 transition hover:border-accent/60 hover:text-accent sm:absolute sm:right-8 sm:top-1/2 sm:mt-0 sm:-translate-y-1/2"
-          >
-            Back to top <ArrowUp size={14} aria-hidden="true" />
-          </Link>
         </div>
       </div>
     </footer>

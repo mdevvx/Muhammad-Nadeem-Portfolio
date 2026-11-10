@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { display, sans, mono } from "@/lib/fonts";
 import { defaultTheme, paletteHex, paletteName, profile, seo, siteUrl, themeStorageKey } from "@/lib/site";
 import CookieConsent from "@/components/CookieConsent";
+import BackToTop from "@/components/BackToTop";
 import Analytics from "@/components/Analytics";
 import "./globals.css";
 
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       {/* Extensions like ColorZilla add attributes to <body> before hydration; ignore those. */}
       <body suppressHydrationWarning>
         {children}
+        <BackToTop />
         <CookieConsent />
         <Analytics />
       </body>

@@ -58,15 +58,15 @@ export default function Fit() {
         </div>
 
         <div className="mt-4 flex flex-col gap-4 rounded-2xl border border-line bg-surface/60 p-6 sm:flex-row sm:items-center sm:justify-between">
-          <div>
+          <div className="text-center sm:text-left">
             <p className="font-semibold">Not sure which side you&apos;re on?</p>
             <p className="mt-1 text-sm text-muted">Run the free two-minute health check, or send me a quick message.</p>
           </div>
-          <div className="flex shrink-0 flex-wrap gap-3">
-            <Link href="/health-check" data-track="cta_health_check" data-track-label="fit" className="btn-ghost border-accent/60 text-accent hover:border-accent">
+          <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
+            <Link href="/health-check" data-track="cta_health_check" data-track-label="fit" className="btn-ghost w-full justify-center border-accent/60 py-3.5 text-accent hover:border-accent sm:w-auto sm:py-3">
               <Stethoscope size={16} aria-hidden="true" /> Free health check
             </Link>
-            <a href="#contact" data-track="cta_start_project" data-track-label="fit" className="btn-primary">
+            <a href="#contact" data-track="cta_start_project" data-track-label="fit" className="btn-primary w-full justify-center py-3.5 sm:w-auto sm:py-3">
               Start a project <ArrowRight size={16} aria-hidden="true" />
             </a>
           </div>

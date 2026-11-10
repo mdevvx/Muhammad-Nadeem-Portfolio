@@ -38,13 +38,15 @@ export default function Products() {
               <p className="mt-6 border-t border-line pt-4 text-sm text-muted">
                 <span className="font-semibold text-fg">Pricing:</span> {p.pricing}
               </p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <a href={p.url} data-track="product_click" data-track-label={p.name} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Visit {p.name} <ArrowUpRight size={16} />
+              <div className="mt-5 flex gap-3">
+                <a href={p.url} data-track="product_click" data-track-label={p.name} target="_blank" rel="noopener noreferrer" className="btn-primary flex-1 whitespace-nowrap px-4 sm:flex-none sm:px-5">
+                  <span className="sm:hidden">Visit site</span>
+                  <span className="hidden sm:inline">Visit {p.name}</span> <ArrowUpRight size={16} />
                 </a>
                 {p.dashboardUrl && (
-                  <a href={p.dashboardUrl} data-track="product_dashboard_click" data-track-label={p.name} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                    Open dashboard
+                  <a href={p.dashboardUrl} data-track="product_dashboard_click" data-track-label={p.name} target="_blank" rel="noopener noreferrer" className="btn-ghost flex-1 whitespace-nowrap px-4 sm:flex-none sm:px-5">
+                    <span className="sm:hidden">Dashboard</span>
+                    <span className="hidden sm:inline">Open dashboard</span>
                   </a>
                 )}
               </div>

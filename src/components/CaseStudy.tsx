@@ -20,11 +20,11 @@ export default function CaseStudy() {
           />
         </div>
 
-        <dl data-reveal className="mt-10 grid grid-cols-3 gap-4">
+        <dl data-reveal className="mt-10 grid grid-cols-3 items-stretch gap-3 sm:gap-4">
           {c.metrics.map((m) => (
-            <div key={m.label} className="card p-5 text-center sm:p-6">
-              <dd className="font-display text-3xl font-bold text-accent sm:text-4xl">{m.value}</dd>
-              <dt className="mt-1 text-xs text-muted sm:text-sm">{m.label}</dt>
+            <div key={m.label} className="card flex flex-col items-center justify-start px-2 py-5 text-center sm:p-6">
+              <dd className="whitespace-nowrap font-display text-2xl font-bold leading-none text-accent sm:text-4xl">{m.value}</dd>
+              <dt className="mt-2 text-[11px] leading-snug text-muted sm:text-sm">{m.label}</dt>
             </div>
           ))}
         </dl>
